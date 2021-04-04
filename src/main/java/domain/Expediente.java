@@ -47,4 +47,46 @@ public class Expediente {
   public void setNotaMediaProvisional(double notaMediaProvisional) {
     this.notaMediaProvisional = notaMediaProvisional;
   }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (activo ? 1231 : 1237);
+		long temp;
+		temp = Double.doubleToLongBits(notaMediaProvisional);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + numExpediente;
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Expediente other = (Expediente) obj;
+		if (activo != other.activo)
+			return false;
+		if (Double.doubleToLongBits(notaMediaProvisional) != Double.doubleToLongBits(other.notaMediaProvisional))
+			return false;
+		if (numExpediente != other.numExpediente)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Expediente [numExpediente=" + numExpediente + ", activo=" + activo + ", notaMediaProvisional="
+				+ notaMediaProvisional + "]";
+	}
+	
+	
+  
+  
+  
+  
 }
