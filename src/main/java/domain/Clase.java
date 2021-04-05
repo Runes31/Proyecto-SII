@@ -7,9 +7,9 @@ import javax.persistence.*;
 @Entity
 public class Clase {
 
-  @Id @Column(nullable = false)
+  @Id
   private Date dia;
-  @Id @Column(nullable = false)
+  @Id 
   private Date horaIni;
   private Date horaFin;
   
