@@ -6,14 +6,18 @@ import javax.persistence.*;
 
 @Entity
 public class Matricula{
-
-	private String cursoAcademico;
-	private String estado;
-	private int numArchivo;
-	private String turnoPreferente;
-	private Date fechaMatricula;
-	private boolean nuevoIngreso;
-	private String listadoAsignaturas;
+  
+  @Id
+  private String cursoAcademico;
+  @Column(nullable = false)
+  private String estado;
+  @Column(nullable = false)
+  private int numArchivo;
+  private String turnoPreferente;
+  @Column(nullable = false)
+  private Date fechaMatricula;
+  private boolean nuevoIngreso;
+  private String listadoAsignaturas;
 
   public Matricula() { }
 
