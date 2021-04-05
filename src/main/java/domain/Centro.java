@@ -6,55 +6,55 @@ import javax.persistence.*;
 public class Centro {
 
   @Id @GeneratedValue
-  private String ID;
+  private int ID;
   @Column(unique = true,nullable = false)
-  private String Nombre;
+  private String nombre;
   @Column(nullable = false)
-  private String Dirección;
-  private int TLF_Consejeria;
+  private String dirección;
+  private int TLFconsejeria;
   
 	public Centro() { }
 
-  public String getID() {
+  public int getID() {
     return ID;
   }
 
-  public void setID(String iD) {
+  public void setID(int iD) {
     ID = iD;
   }
 
   public String getNombre() {
-    return Nombre;
+    return nombre;
   }
 
   public void setNombre(String nombre) {
-    Nombre = nombre;
+    this.nombre = nombre;
   }
 
   public String getDirección() {
-    return Dirección;
+    return dirección;
   }
 
   public void setDirección(String dirección) {
-    Dirección = dirección;
+    this.dirección = dirección;
   }
 
-  public int getTLF_Consejeria() {
-    return TLF_Consejeria;
+  public int getTLFconsejeria() {
+    return TLFconsejeria;
   }
 
-  public void setTLF_Consejeria(int tLF_Consejeria) {
-    TLF_Consejeria = tLF_Consejeria;
+  public void setTLFconsejeria(int tLFconsejeria) {
+    TLFconsejeria = tLFconsejeria;
   }
 
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((Dirección == null) ? 0 : Dirección.hashCode());
-    result = prime * result + ((ID == null) ? 0 : ID.hashCode());
-    result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
-    result = prime * result + TLF_Consejeria;
+    result = prime * result + ID;
+    result = prime * result + TLFconsejeria;
+    result = prime * result + ((dirección == null) ? 0 : dirección.hashCode());
+    result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
     return result;
   }
 
@@ -67,31 +67,27 @@ public class Centro {
     if (getClass() != obj.getClass())
       return false;
     Centro other = (Centro) obj;
-    if (Dirección == null) {
-      if (other.Dirección != null)
-        return false;
-    } else if (!Dirección.equals(other.Dirección))
+    if (ID != other.ID)
       return false;
-    if (ID == null) {
-      if (other.ID != null)
-        return false;
-    } else if (!ID.equals(other.ID))
+    if (TLFconsejeria != other.TLFconsejeria)
       return false;
-    if (Nombre == null) {
-      if (other.Nombre != null)
+    if (dirección == null) {
+      if (other.dirección != null)
         return false;
-    } else if (!Nombre.equals(other.Nombre))
+    } else if (!dirección.equals(other.dirección))
       return false;
-    if (TLF_Consejeria != other.TLF_Consejeria)
+    if (nombre == null) {
+      if (other.nombre != null)
+        return false;
+    } else if (!nombre.equals(other.nombre))
       return false;
     return true;
   }
 
   @Override
   public String toString() {
-    return "Centro [ID=" + ID + ", Nombre=" + Nombre + ", Dirección=" + Dirección + ", TLF_Consejeria=" + TLF_Consejeria
+    return "Centro [ID=" + ID + ", nombre=" + nombre + ", dirección=" + dirección + ", TLFconsejeria=" + TLFconsejeria
         + "]";
   }
-   
-	
+
 }
