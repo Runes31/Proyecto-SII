@@ -3,6 +3,9 @@ package domain;
 import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn (name="disc", discriminatorType = DiscriminatorType.CHAR)
+@DiscriminatorValue("A")
 public class Asignatura {
   
   @Id
