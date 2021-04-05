@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Alumno {
-  // TODO: Comprobar que están todos los atributos
+  
   @Id @GeneratedValue
   private int id;
   @Column(unique = true, nullable = false)

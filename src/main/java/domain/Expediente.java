@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Expediente {
-	// TODO: Añadir los atributos que faltan
+	
 	@Id
 	private int numExpediente;
 	private boolean activo;
