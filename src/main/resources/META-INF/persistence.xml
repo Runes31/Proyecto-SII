@@ -8,6 +8,7 @@
 		<class>domain.Encuesta</class>
 		<class>domain.Asignatura</class>
 		<class>domain.Optativa</class>
+		<class>domain.Matricula</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sii"/>
 			<property name="javax.persistence.jdbc.user" value="siiuser"/>
