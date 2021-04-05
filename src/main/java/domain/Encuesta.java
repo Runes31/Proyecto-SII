@@ -10,7 +10,7 @@ public class Encuesta{
   @Id
   private Date fechaEnvio;
   
-	public Encuesta() { }
+  public Encuesta() { }
 
   public Date getFechaEnvio() {
     return fechaEnvio;
