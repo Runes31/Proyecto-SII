@@ -1,8 +1,11 @@
 package domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Expediente {
@@ -25,6 +28,8 @@ public class Expediente {
 	private int creditosPE;
 	@Column(nullable = false)
 	private int creditosTF;
+	@OneToMany
+  private List<Encuesta> encuesta;
 
 
 	public Expediente() {

@@ -11,14 +11,12 @@ public class GruposPorAsignatura {
   @Id @GeneratedValue
   private String cursoAcademico;
   private boolean oferta;
-  
-  public GruposPorAsignatura() { }
-  
   @OneToMany
   private List<Clase> clases;
-  
   @ManyToMany
   private List<Encuesta> Encuestas;
+  
+  public GruposPorAsignatura() { }
   
   @Override
   public int hashCode() {

@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,6 +20,8 @@ public class Grupo {
   private boolean visible;
   private boolean asignar;
   private int plazas;
+  @OneToMany
+  private List<Grupo> grupo;
   
   public Grupo() {
     

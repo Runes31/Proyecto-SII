@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +13,13 @@ public class Titulacion {
   private String nombre;
   @Column(nullable = false)
   private int creditos;
-
+  @OneToMany
+  private List<Asignatura> asignatura;
+  @OneToMany
+  private List<Expediente> expedientes;
+  @OneToMany
+  private List<Grupo> grupo;
+  
   public Titulacion() { }
 
   public String getCodigo() {
