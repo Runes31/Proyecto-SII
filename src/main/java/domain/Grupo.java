@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Grupo {
 
-  @Id
+  @Id @GeneratedValue
   private int id;
   @Column(unique = true, nullable = false)
   private String curso;
