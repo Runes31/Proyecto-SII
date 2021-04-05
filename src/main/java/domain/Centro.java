@@ -13,7 +13,7 @@ public class Centro {
   private String dirección;
   private int TLFconsejeria;
   
-	public Centro() { }
+  public Centro() { }
 
   public int getID() {
     return ID;
