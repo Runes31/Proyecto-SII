@@ -3,7 +3,7 @@ package domain;
 import javax.persistence.*;
 
 @Entity
-public class Titulación {
+public class Titulacion {
    
   @Id 
   private String codigo;
@@ -12,9 +12,7 @@ public class Titulación {
   @Column(nullable = false)
   private int creditos;
 
-	public Titulación() {
-		super();
-	}
+	public Titulacion() { }
 
   public String getCodigo() {
     return codigo;
@@ -58,7 +56,7 @@ public class Titulación {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    Titulación other = (Titulación) obj;
+    Titulacion other = (Titulacion) obj;
     if (codigo == null) {
       if (other.codigo != null)
         return false;
@@ -78,7 +76,4 @@ public class Titulación {
   public String toString() {
     return "Titulación [codigo=" + codigo + ", nombre=" + nombre + ", creditos=" + creditos + "]";
   }
-	
-  
-   
 }
