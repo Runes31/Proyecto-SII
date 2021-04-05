@@ -1,6 +1,5 @@
 package domain;
 
-import domain.Asignatura;
 import javax.persistence.*;
 
 @Entity
