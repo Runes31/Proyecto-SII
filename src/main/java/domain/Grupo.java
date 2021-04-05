@@ -23,9 +23,7 @@ public class Grupo {
   @OneToMany
   private List<Grupo> grupo;
   
-  public Grupo() {
-    
-  }
+  public Grupo() { }
 
   public Grupo(int id, String curso, String letra, String turno, boolean ingles, boolean visible, boolean asignar,
       int plazas) {
@@ -104,11 +102,19 @@ public class Grupo {
   public void setPlazas(int plazas) {
     this.plazas = plazas;
   }
+  
+  public List<Grupo> getGrupo() {
+    return grupo;
+  }
+
+  public void setGrupo(List<Grupo> grupo) {
+    this.grupo = grupo;
+  }
 
   @Override
   public String toString() {
     return "Grupo [id=" + id + ", curso=" + curso + ", letra=" + letra + ", Turno=" + Turno + ", ingles=" + ingles
-        + ", visible=" + visible + ", asignar=" + asignar + ", plazas=" + plazas + "]";
+        + ", visible=" + visible + ", asignar=" + asignar + ", plazas=" + plazas + ", grupo=" + grupo + "]";
   }
 
   @Override
@@ -118,6 +124,7 @@ public class Grupo {
     result = prime * result + ((Turno == null) ? 0 : Turno.hashCode());
     result = prime * result + (asignar ? 1231 : 1237);
     result = prime * result + ((curso == null) ? 0 : curso.hashCode());
+    result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
     result = prime * result + id;
     result = prime * result + (ingles ? 1231 : 1237);
     result = prime * result + ((letra == null) ? 0 : letra.hashCode());
@@ -147,6 +154,11 @@ public class Grupo {
         return false;
     } else if (!curso.equals(other.curso))
       return false;
+    if (grupo == null) {
+      if (other.grupo != null)
+        return false;
+    } else if (!grupo.equals(other.grupo))
+      return false;
     if (id != other.id)
       return false;
     if (ingles != other.ingles)
@@ -162,4 +174,5 @@ public class Grupo {
       return false;
     return true;
   }
+  
 }

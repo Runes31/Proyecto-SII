@@ -31,8 +31,7 @@ public class Expediente {
 	@OneToMany
   private List<Encuesta> encuesta;
 
-
-	public Expediente() {
+  public Expediente() {
 	}
 
 	public Expediente(int numExpediente, boolean activo) {
@@ -125,65 +124,79 @@ public class Expediente {
 	public void setCreditosTF(int creditosTF) {
 		this.creditosTF = creditosTF;
 	}
+	
+	public List<Encuesta> getEncuesta() {
+    return encuesta;
+  }
+
+  public void setEncuesta(List<Encuesta> encuesta) {
+    this.encuesta = encuesta;
+  }
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (activo ? 1231 : 1237);
-		result = prime * result + creditosCF;
-		result = prime * result + creditosFB;
-		result = prime * result + creditosOB;
-		result = prime * result + creditosOP;
-		result = prime * result + creditosPE;
-		result = prime * result + creditosSuperados;
-		result = prime * result + creditosTF;
-		long temp;
-		temp = Double.doubleToLongBits(notaMediaProvisional);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + numExpediente;
-		return result;
-	}
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + (activo ? 1231 : 1237);
+    result = prime * result + creditosCF;
+    result = prime * result + creditosFB;
+    result = prime * result + creditosOB;
+    result = prime * result + creditosOP;
+    result = prime * result + creditosPE;
+    result = prime * result + creditosSuperados;
+    result = prime * result + creditosTF;
+    result = prime * result + ((encuesta == null) ? 0 : encuesta.hashCode());
+    long temp;
+    temp = Double.doubleToLongBits(notaMediaProvisional);
+    result = prime * result + (int) (temp ^ (temp >>> 32));
+    result = prime * result + numExpediente;
+    return result;
+  }
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Expediente other = (Expediente) obj;
-		if (activo != other.activo)
-			return false;
-		if (creditosCF != other.creditosCF)
-			return false;
-		if (creditosFB != other.creditosFB)
-			return false;
-		if (creditosOB != other.creditosOB)
-			return false;
-		if (creditosOP != other.creditosOP)
-			return false;
-		if (creditosPE != other.creditosPE)
-			return false;
-		if (creditosSuperados != other.creditosSuperados)
-			return false;
-		if (creditosTF != other.creditosTF)
-			return false;
-		if (Double.doubleToLongBits(notaMediaProvisional) != Double.doubleToLongBits(other.notaMediaProvisional))
-			return false;
-		if (numExpediente != other.numExpediente)
-			return false;
-		return true;
-	}
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Expediente other = (Expediente) obj;
+    if (activo != other.activo)
+      return false;
+    if (creditosCF != other.creditosCF)
+      return false;
+    if (creditosFB != other.creditosFB)
+      return false;
+    if (creditosOB != other.creditosOB)
+      return false;
+    if (creditosOP != other.creditosOP)
+      return false;
+    if (creditosPE != other.creditosPE)
+      return false;
+    if (creditosSuperados != other.creditosSuperados)
+      return false;
+    if (creditosTF != other.creditosTF)
+      return false;
+    if (encuesta == null) {
+      if (other.encuesta != null)
+        return false;
+    } else if (!encuesta.equals(other.encuesta))
+      return false;
+    if (Double.doubleToLongBits(notaMediaProvisional) != Double.doubleToLongBits(other.notaMediaProvisional))
+      return false;
+    if (numExpediente != other.numExpediente)
+      return false;
+    return true;
+  }
 
 	@Override
-	public String toString() {
-		return "Expediente [numExpediente=" + numExpediente + ", activo=" + activo + ", notaMediaProvisional="
-				+ notaMediaProvisional + ", creditosSuperados=" + creditosSuperados + ", creditosFB=" + creditosFB
-				+ ", creditosOB=" + creditosOB + ", creditosOP=" + creditosOP + ", creditosCF=" + creditosCF
-				+ ", creditosPE=" + creditosPE + ", creditosTF=" + creditosTF + "]";
-	}
+  public String toString() {
+    return "Expediente [numExpediente=" + numExpediente + ", activo=" + activo + ", notaMediaProvisional="
+        + notaMediaProvisional + ", creditosSuperados=" + creditosSuperados + ", creditosFB=" + creditosFB
+        + ", creditosOB=" + creditosOB + ", creditosOP=" + creditosOP + ", creditosCF=" + creditosCF + ", creditosPE="
+        + creditosPE + ", creditosTF=" + creditosTF + ", encuesta=" + encuesta + "]";
+  }
   
   
 }

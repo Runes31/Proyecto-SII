@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -9,6 +10,7 @@ public class Encuesta{
 
   @Id
   private Date fechaEnvio;
+  private List<GruposPorAsignatura> gruposPorAsignatura;
   
   public Encuesta() { }
 
@@ -19,12 +21,21 @@ public class Encuesta{
   public void setFechaEnvio(Date fechaEnvio) {
     this.fechaEnvio = fechaEnvio;
   }
+  
+  public List<GruposPorAsignatura> getGrupoPorAsignatura() {
+    return gruposPorAsignatura;
+  }
+
+  public void setGrupoPorAsignatura(List<GruposPorAsignatura> gruposPorAsignatura) {
+    this.gruposPorAsignatura = gruposPorAsignatura;
+  }
 
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((fechaEnvio == null) ? 0 : fechaEnvio.hashCode());
+    result = prime * result + ((gruposPorAsignatura == null) ? 0 : gruposPorAsignatura.hashCode());
     return result;
   }
 
@@ -42,12 +53,17 @@ public class Encuesta{
         return false;
     } else if (!fechaEnvio.equals(other.fechaEnvio))
       return false;
+    if (gruposPorAsignatura == null) {
+      if (other.gruposPorAsignatura != null)
+        return false;
+    } else if (!gruposPorAsignatura.equals(other.gruposPorAsignatura))
+      return false;
     return true;
   }
 
   @Override
   public String toString() {
-    return "Encuesta [fechaEnvio=" + fechaEnvio + "]";
+    return "Encuesta [fechaEnvio=" + fechaEnvio + ", gruposPorAsignatura=" + gruposPorAsignatura + "]";
   }
-   
+  
 }

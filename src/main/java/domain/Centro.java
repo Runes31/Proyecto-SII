@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,8 @@ public class Centro {
   @Column(nullable = false)
   private String dirección;
   private int TLFconsejeria;
+  @ManyToMany(mappedBy = "centros")
+  private List<Titulacion> titulaciones;
   
   public Centro() { }
 
@@ -46,6 +50,14 @@ public class Centro {
   public void setTLFconsejeria(int tLFconsejeria) {
     TLFconsejeria = tLFconsejeria;
   }
+  
+  public List<Titulacion> getTitulaciones() {
+    return titulaciones;
+  }
+
+  public void setTitulaciones(List<Titulacion> titulaciones) {
+    this.titulaciones = titulaciones;
+  }
 
   @Override
   public int hashCode() {
@@ -55,6 +67,7 @@ public class Centro {
     result = prime * result + TLFconsejeria;
     result = prime * result + ((dirección == null) ? 0 : dirección.hashCode());
     result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+    result = prime * result + ((titulaciones == null) ? 0 : titulaciones.hashCode());
     return result;
   }
 
@@ -81,13 +94,18 @@ public class Centro {
         return false;
     } else if (!nombre.equals(other.nombre))
       return false;
+    if (titulaciones == null) {
+      if (other.titulaciones != null)
+        return false;
+    } else if (!titulaciones.equals(other.titulaciones))
+      return false;
     return true;
   }
 
   @Override
   public String toString() {
     return "Centro [ID=" + ID + ", nombre=" + nombre + ", dirección=" + dirección + ", TLFconsejeria=" + TLFconsejeria
-        + "]";
+        + ", titulaciones=" + titulaciones + "]";
   }
 
 }
