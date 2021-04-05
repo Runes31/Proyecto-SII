@@ -4,6 +4,7 @@
 		<class>domain.Expediente</class>
 		<class>domain.Alumno</class>
 		<class>domain.Titulación</class>
+		<class>domain.Centro</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sii"/>
 			<property name="javax.persistence.jdbc.user" value="siiuser"/>
