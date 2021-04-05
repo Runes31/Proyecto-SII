@@ -3,6 +3,7 @@
 	<persistence-unit name="Proyecto-SII" transaction-type="RESOURCE_LOCAL">
 		<class>domain.Expediente</class>
 		<class>domain.Alumno</class>
+		<class>domain.Titulación</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sii"/>
 			<property name="javax.persistence.jdbc.user" value="siiuser"/>
