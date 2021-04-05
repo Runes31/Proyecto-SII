@@ -12,7 +12,7 @@ public class Titulacion {
   @Column(nullable = false)
   private int creditos;
 
-	public Titulacion() { }
+  public Titulacion() { }
 
   public String getCodigo() {
     return codigo;
