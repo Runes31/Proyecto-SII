@@ -29,10 +29,6 @@ public class GruposPorAsignatura {
     return result;
   }
 
-
-
-
-
   @Override
   public boolean equals(Object obj) {
     if (this == obj)
@@ -52,41 +48,21 @@ public class GruposPorAsignatura {
     return true;
   }
 
-
-
-
-
   public String getCursoAcademico() {
     return cursoAcademico;
   }
-
-
-
-
 
   public void setCursoAcademico(String cursoAcademico) {
     this.cursoAcademico = cursoAcademico;
   }
 
-
-
-
-
   public boolean isOferta() {
     return oferta;
   }
 
-
-
-
-
   public void setOferta(boolean oferta) {
     this.oferta = oferta;
   }
-
-
-
-
 
   @Override
   public String toString() {
