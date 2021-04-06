@@ -1,23 +1,45 @@
 package domain;
 
+import domain.GruposPorAsignatura.GruposPorAsignaturaId;
+import java.io.Serializable;
 import java.util.List;
-
+import java.util.Objects;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+@Entity
+@IdClass(GruposPorAsignaturaId.class)
 public class GruposPorAsignatura {
-  @Id @GeneratedValue
+
+  public static class GruposPorAsignaturaId implements Serializable {
+    private String cursoAcademico;
+    private String asignatura;
+    private int grupo;
+  }
+
+  @Id
+  @GeneratedValue
   private String cursoAcademico;
   private boolean oferta;
-  @OneToMany
+  @OneToMany(mappedBy = "gruposPorAsignaturas")
   private List<Clase> clases;
-  @ManyToMany(mappedBy = "gruposPorAsignatura")
+  @ManyToMany(mappedBy = "gruposPorAsignaturas")
   private List<Encuesta> encuestas;
-  
-  public GruposPorAsignatura() { }
-  
+  @Id
+  @ManyToOne
+  private Asignatura asignatura;
+  @Id
+  @ManyToOne
+  private Grupo grupo;
+
+  public GruposPorAsignatura() {
+  }
+
   public String getCursoAcademico() {
     return cursoAcademico;
   }
@@ -33,7 +55,7 @@ public class GruposPorAsignatura {
   public void setOferta(boolean oferta) {
     this.oferta = oferta;
   }
-  
+
   public List<Clase> getClases() {
     return clases;
   }
@@ -50,49 +72,50 @@ public class GruposPorAsignatura {
     this.encuestas = encuestas;
   }
 
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((clases == null) ? 0 : clases.hashCode());
-    result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
-    result = prime * result + ((encuestas == null) ? 0 : encuestas.hashCode());
-    result = prime * result + (oferta ? 1231 : 1237);
-    return result;
+  public Asignatura getAsignatura() {
+    return asignatura;
+  }
+
+  public void setAsignatura(Asignatura asignatura) {
+    this.asignatura = asignatura;
+  }
+
+  public Grupo getGrupo() {
+    return grupo;
+  }
+
+  public void setGrupo(Grupo grupo) {
+    this.grupo = grupo;
   }
 
   @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
+  public boolean equals(Object o) {
+    if (this == o) {
       return true;
-    if (obj == null)
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
-    if (getClass() != obj.getClass())
-      return false;
-    GruposPorAsignatura other = (GruposPorAsignatura) obj;
-    if (clases == null) {
-      if (other.clases != null)
-        return false;
-    } else if (!clases.equals(other.clases))
-      return false;
-    if (cursoAcademico == null) {
-      if (other.cursoAcademico != null)
-        return false;
-    } else if (!cursoAcademico.equals(other.cursoAcademico))
-      return false;
-    if (encuestas == null) {
-      if (other.encuestas != null)
-        return false;
-    } else if (!encuestas.equals(other.encuestas))
-      return false;
-    if (oferta != other.oferta)
-      return false;
-    return true;
+    }
+    GruposPorAsignatura that = (GruposPorAsignatura) o;
+    return oferta == that.oferta && cursoAcademico.equals(that.cursoAcademico) && Objects
+        .equals(clases, that.clases) && Objects.equals(encuestas, that.encuestas)
+        && asignatura.equals(that.asignatura) && grupo.equals(that.grupo);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(cursoAcademico, oferta, clases, encuestas, asignatura, grupo);
   }
 
   @Override
   public String toString() {
-    return "GruposPorAsignatura [cursoAcademico=" + cursoAcademico + ", oferta=" + oferta + ", clases=" + clases
-        + ", encuestas=" + encuestas + "]";
+    return "GruposPorAsignatura{" +
+        "cursoAcademico='" + cursoAcademico + '\'' +
+        ", oferta=" + oferta +
+        ", clases=" + clases +
+        ", encuestas=" + encuestas +
+        ", asignatura=" + asignatura +
+        ", grupo=" + grupo +
+        '}';
   }
 }

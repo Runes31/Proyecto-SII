@@ -1,12 +1,23 @@
 package domain;
 
+import domain.Matricula.MatriculaId;
+import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 
 @Entity
+@IdClass(MatriculaId.class)
 public class Matricula{
-  
+
+  public static class MatriculaId implements Serializable {
+    private String cursoAcademico;
+    private int expediente;
+  }
+
   @Id
   private String cursoAcademico;
   @Column(nullable = false)
@@ -18,6 +29,9 @@ public class Matricula{
   private Date fechaMatricula;
   private boolean nuevoIngreso;
   private String listadoAsignaturas;
+  @Id
+  @ManyToOne
+  private Expediente expediente;
 
   public Matricula() { }
 

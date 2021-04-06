@@ -1,6 +1,16 @@
 package domain;
 
-import javax.persistence.*;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -23,6 +33,9 @@ public class Asignatura {
   private int duracion;
   private String cuatrimestre;
   private String idiomas;
+  @ManyToOne(optional = false)
+  @JoinColumn(nullable = false)
+  private Titulacion titulacion;
 
 	public Asignatura() { }
 
@@ -106,79 +119,52 @@ public class Asignatura {
     this.idiomas = idiomas;
   }
 
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((caracter == null) ? 0 : caracter.hashCode());
-    result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-    result = prime * result + creditos;
-    result = prime * result + ((cuatrimestre == null) ? 0 : cuatrimestre.hashCode());
-    result = prime * result + curso;
-    result = prime * result + duracion;
-    result = prime * result + ((idiomas == null) ? 0 : idiomas.hashCode());
-    result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-    result = prime * result + (ofertada ? 1231 : 1237);
-    result = prime * result + ((referencia == null) ? 0 : referencia.hashCode());
-    return result;
+  public Titulacion getTitulacion() {
+    return titulacion;
+  }
+
+  public void setTitulacion(Titulacion titulacion) {
+    this.titulacion = titulacion;
   }
 
   @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
+  public boolean equals(Object o) {
+    if (this == o) {
       return true;
-    if (obj == null)
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Asignatura other = (Asignatura) obj;
-    if (caracter == null) {
-      if (other.caracter != null)
-        return false;
-    } else if (!caracter.equals(other.caracter))
-      return false;
-    if (codigo == null) {
-      if (other.codigo != null)
-        return false;
-    } else if (!codigo.equals(other.codigo))
-      return false;
-    if (creditos != other.creditos)
-      return false;
-    if (cuatrimestre == null) {
-      if (other.cuatrimestre != null)
-        return false;
-    } else if (!cuatrimestre.equals(other.cuatrimestre))
-      return false;
-    if (curso != other.curso)
-      return false;
-    if (duracion != other.duracion)
-      return false;
-    if (idiomas == null) {
-      if (other.idiomas != null)
-        return false;
-    } else if (!idiomas.equals(other.idiomas))
-      return false;
-    if (nombre == null) {
-      if (other.nombre != null)
-        return false;
-    } else if (!nombre.equals(other.nombre))
-      return false;
-    if (ofertada != other.ofertada)
-      return false;
-    if (referencia == null) {
-      if (other.referencia != null)
-        return false;
-    } else if (!referencia.equals(other.referencia))
-      return false;
-    return true;
+    }
+    Asignatura that = (Asignatura) o;
+    return creditos == that.creditos && ofertada == that.ofertada && curso == that.curso
+        && duracion == that.duracion && referencia.equals(that.referencia) && codigo
+        .equals(that.codigo) && nombre.equals(that.nombre) && Objects
+        .equals(caracter, that.caracter) && Objects.equals(cuatrimestre, that.cuatrimestre)
+        && Objects.equals(idiomas, that.idiomas) && titulacion.equals(that.titulacion);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects
+        .hash(referencia, codigo, creditos, ofertada, nombre, curso, caracter, duracion,
+            cuatrimestre,
+            idiomas, titulacion);
   }
 
   @Override
   public String toString() {
-    return "Asignatura [referencia=" + referencia + ", codigo=" + codigo + ", creditos=" + creditos + ", ofertada="
-        + ofertada + ", nombre=" + nombre + ", curso=" + curso + ", caracter=" + caracter + ", duracion=" + duracion
-        + ", cuatrimestre=" + cuatrimestre + ", idiomas=" + idiomas + "]";
+    return "Asignatura{" +
+        "referencia='" + referencia + '\'' +
+        ", codigo='" + codigo + '\'' +
+        ", creditos=" + creditos +
+        ", ofertada=" + ofertada +
+        ", nombre='" + nombre + '\'' +
+        ", curso=" + curso +
+        ", caracter='" + caracter + '\'' +
+        ", duracion=" + duracion +
+        ", cuatrimestre='" + cuatrimestre + '\'' +
+        ", idiomas='" + idiomas + '\'' +
+        ", titulacion=" + titulacion +
+        '}';
   }
-	
-	
 }

@@ -1,8 +1,12 @@
 package domain;
 
 import java.util.List;
-
-import javax.persistence.*;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Titulacion {
@@ -13,13 +17,14 @@ public class Titulacion {
   private String nombre;
   @Column(nullable = false)
   private int creditos;
-  @OneToMany
-  private List<Asignatura> asignatura;
-  @OneToMany
-  private List<Expediente> expedientes;
-  @OneToMany
-  private List<Grupo> grupo;
+  @ManyToMany(mappedBy = "titulaciones")
   private List<Centro> centros;
+  @OneToMany(mappedBy = "titulacion")
+  private List<Asignatura> asignaturas;
+  @OneToMany(mappedBy = "titulacion")
+  private List<Expediente> expedientes;
+  @OneToMany(mappedBy = "titulacion")
+  private List<Grupo> grupos;
   
   public Titulacion() { }
 
@@ -47,12 +52,20 @@ public class Titulacion {
     this.creditos = creditos;
   }
 
-  public List<Asignatura> getAsignatura() {
-    return asignatura;
+  public List<Centro> getCentros() {
+    return centros;
   }
 
-  public void setAsignatura(List<Asignatura> asignatura) {
-    this.asignatura = asignatura;
+  public void setCentros(List<Centro> centros) {
+    this.centros = centros;
+  }
+
+  public List<Asignatura> getAsignaturas() {
+    return asignaturas;
+  }
+
+  public void setAsignaturas(List<Asignatura> asignaturas) {
+    this.asignaturas = asignaturas;
   }
 
   public List<Expediente> getExpedientes() {
@@ -63,83 +76,44 @@ public class Titulacion {
     this.expedientes = expedientes;
   }
 
-  public List<Grupo> getGrupo() {
-    return grupo;
+  public List<Grupo> getGrupos() {
+    return grupos;
   }
 
-  public void setGrupo(List<Grupo> grupo) {
-    this.grupo = grupo;
+  public void setGrupos(List<Grupo> grupos) {
+    this.grupos = grupos;
   }
 
-  public List<Centro> getCentros() {
-    return centros;
-  }
-
-  public void setCentros(List<Centro> centros) {
-    this.centros = centros;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Titulacion that = (Titulacion) o;
+    return creditos == that.creditos && codigo.equals(that.codigo) && nombre.equals(that.nombre)
+        && Objects.equals(centros, that.centros) && Objects
+        .equals(asignaturas, that.asignaturas) && Objects
+        .equals(expedientes, that.expedientes) && Objects.equals(grupos, that.grupos);
   }
 
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((asignatura == null) ? 0 : asignatura.hashCode());
-    result = prime * result + ((centros == null) ? 0 : centros.hashCode());
-    result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-    result = prime * result + creditos;
-    result = prime * result + ((expedientes == null) ? 0 : expedientes.hashCode());
-    result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
-    result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-    return result;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Titulacion other = (Titulacion) obj;
-    if (asignatura == null) {
-      if (other.asignatura != null)
-        return false;
-    } else if (!asignatura.equals(other.asignatura))
-      return false;
-    if (centros == null) {
-      if (other.centros != null)
-        return false;
-    } else if (!centros.equals(other.centros))
-      return false;
-    if (codigo == null) {
-      if (other.codigo != null)
-        return false;
-    } else if (!codigo.equals(other.codigo))
-      return false;
-    if (creditos != other.creditos)
-      return false;
-    if (expedientes == null) {
-      if (other.expedientes != null)
-        return false;
-    } else if (!expedientes.equals(other.expedientes))
-      return false;
-    if (grupo == null) {
-      if (other.grupo != null)
-        return false;
-    } else if (!grupo.equals(other.grupo))
-      return false;
-    if (nombre == null) {
-      if (other.nombre != null)
-        return false;
-    } else if (!nombre.equals(other.nombre))
-      return false;
-    return true;
+    return Objects.hash(codigo, nombre, creditos, centros, asignaturas, expedientes, grupos);
   }
 
   @Override
   public String toString() {
-    return "Titulacion [codigo=" + codigo + ", nombre=" + nombre + ", creditos=" + creditos + ", asignatura="
-        + asignatura + ", expedientes=" + expedientes + ", grupo=" + grupo + ", centros=" + centros + "]";
+    return "Titulacion{" +
+        "codigo='" + codigo + '\'' +
+        ", nombre='" + nombre + '\'' +
+        ", creditos=" + creditos +
+        ", centros=" + centros +
+        ", asignaturas=" + asignaturas +
+        ", expedientes=" + expedientes +
+        ", grupos=" + grupos +
+        '}';
   }
 }

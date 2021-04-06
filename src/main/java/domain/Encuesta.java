@@ -1,17 +1,36 @@
 package domain;
 
+import domain.Encuesta.EncuestaId;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.*;
+import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
+@IdClass(EncuestaId.class)
 public class Encuesta{
 
+  public static class EncuestaId implements Serializable {
+    private Date fechaEnvio;
+    private int expediente;
+  }
+
   @Id
+  @Temporal(TemporalType.TIMESTAMP)
   private Date fechaEnvio;
-  private List<GruposPorAsignatura> gruposPorAsignatura;
-  
+  @Id
+  @ManyToOne
+  private Expediente expediente;
+  @ManyToMany
+  private List<GruposPorAsignatura> gruposPorAsignaturas;
+
   public Encuesta() { }
 
   public Date getFechaEnvio() {
@@ -21,49 +40,47 @@ public class Encuesta{
   public void setFechaEnvio(Date fechaEnvio) {
     this.fechaEnvio = fechaEnvio;
   }
-  
-  public List<GruposPorAsignatura> getGrupoPorAsignatura() {
-    return gruposPorAsignatura;
+
+  public Expediente getExpediente() {
+    return expediente;
   }
 
-  public void setGrupoPorAsignatura(List<GruposPorAsignatura> gruposPorAsignatura) {
-    this.gruposPorAsignatura = gruposPorAsignatura;
+  public void setExpediente(Expediente expediente) {
+    this.expediente = expediente;
+  }
+
+  public List<GruposPorAsignatura> getGruposPorAsignaturas() {
+    return gruposPorAsignaturas;
+  }
+
+  public void setGruposPorAsignaturas(List<GruposPorAsignatura> gruposPorAsignaturas) {
+    this.gruposPorAsignaturas = gruposPorAsignaturas;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Encuesta encuesta = (Encuesta) o;
+    return fechaEnvio.equals(encuesta.fechaEnvio) && expediente.equals(encuesta.expediente)
+        && Objects.equals(gruposPorAsignaturas, encuesta.gruposPorAsignaturas);
   }
 
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((fechaEnvio == null) ? 0 : fechaEnvio.hashCode());
-    result = prime * result + ((gruposPorAsignatura == null) ? 0 : gruposPorAsignatura.hashCode());
-    return result;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Encuesta other = (Encuesta) obj;
-    if (fechaEnvio == null) {
-      if (other.fechaEnvio != null)
-        return false;
-    } else if (!fechaEnvio.equals(other.fechaEnvio))
-      return false;
-    if (gruposPorAsignatura == null) {
-      if (other.gruposPorAsignatura != null)
-        return false;
-    } else if (!gruposPorAsignatura.equals(other.gruposPorAsignatura))
-      return false;
-    return true;
+    return Objects.hash(fechaEnvio, expediente, gruposPorAsignaturas);
   }
 
   @Override
   public String toString() {
-    return "Encuesta [fechaEnvio=" + fechaEnvio + ", gruposPorAsignatura=" + gruposPorAsignatura + "]";
+    return "Encuesta{" +
+        "fechaEnvio=" + fechaEnvio +
+        ", expediente=" + expediente +
+        ", gruposPorAsignaturas=" + gruposPorAsignaturas +
+        '}';
   }
-  
 }

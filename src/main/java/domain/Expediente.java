@@ -1,10 +1,12 @@
 package domain;
 
 import java.util.List;
-
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -28,11 +30,18 @@ public class Expediente {
 	private int creditosPE;
 	@Column(nullable = false)
 	private int creditosTF;
-	@OneToMany
-  private List<Encuesta> encuesta;
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
+	private Titulacion titulacion;
+	@ManyToOne(optional = false)
+	@JoinColumn(nullable = false)
+	private Alumno alumno;
+	@OneToMany(mappedBy = "expediente")
+	private List<Encuesta> encuestas;
+	@OneToMany(mappedBy = "expediente")
+	private List<Matricula> matriculas;
 
-  public Expediente() {
-	}
+  public Expediente() { }
 
 	public Expediente(int numExpediente, boolean activo) {
 		this.numExpediente = numExpediente;
@@ -124,79 +133,84 @@ public class Expediente {
 	public void setCreditosTF(int creditosTF) {
 		this.creditosTF = creditosTF;
 	}
-	
-	public List<Encuesta> getEncuesta() {
-    return encuesta;
-  }
 
-  public void setEncuesta(List<Encuesta> encuesta) {
-    this.encuesta = encuesta;
-  }
+	public Titulacion getTitulacion() {
+		return titulacion;
+	}
 
-	@Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + (activo ? 1231 : 1237);
-    result = prime * result + creditosCF;
-    result = prime * result + creditosFB;
-    result = prime * result + creditosOB;
-    result = prime * result + creditosOP;
-    result = prime * result + creditosPE;
-    result = prime * result + creditosSuperados;
-    result = prime * result + creditosTF;
-    result = prime * result + ((encuesta == null) ? 0 : encuesta.hashCode());
-    long temp;
-    temp = Double.doubleToLongBits(notaMediaProvisional);
-    result = prime * result + (int) (temp ^ (temp >>> 32));
-    result = prime * result + numExpediente;
-    return result;
-  }
+	public void setTitulacion(Titulacion titulacion) {
+		this.titulacion = titulacion;
+	}
 
-	@Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Expediente other = (Expediente) obj;
-    if (activo != other.activo)
-      return false;
-    if (creditosCF != other.creditosCF)
-      return false;
-    if (creditosFB != other.creditosFB)
-      return false;
-    if (creditosOB != other.creditosOB)
-      return false;
-    if (creditosOP != other.creditosOP)
-      return false;
-    if (creditosPE != other.creditosPE)
-      return false;
-    if (creditosSuperados != other.creditosSuperados)
-      return false;
-    if (creditosTF != other.creditosTF)
-      return false;
-    if (encuesta == null) {
-      if (other.encuesta != null)
-        return false;
-    } else if (!encuesta.equals(other.encuesta))
-      return false;
-    if (Double.doubleToLongBits(notaMediaProvisional) != Double.doubleToLongBits(other.notaMediaProvisional))
-      return false;
-    if (numExpediente != other.numExpediente)
-      return false;
-    return true;
-  }
+	public Alumno getAlumno() {
+		return alumno;
+	}
+
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
+	}
+
+	public List<Encuesta> getEncuestas() {
+		return encuestas;
+	}
+
+	public void setEncuestas(List<Encuesta> encuestas) {
+		this.encuestas = encuestas;
+	}
+
+	public List<Matricula> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
+	}
 
 	@Override
-  public String toString() {
-    return "Expediente [numExpediente=" + numExpediente + ", activo=" + activo + ", notaMediaProvisional="
-        + notaMediaProvisional + ", creditosSuperados=" + creditosSuperados + ", creditosFB=" + creditosFB
-        + ", creditosOB=" + creditosOB + ", creditosOP=" + creditosOP + ", creditosCF=" + creditosCF + ", creditosPE="
-        + creditosPE + ", creditosTF=" + creditosTF + ", encuesta=" + encuesta + "]";
-  }
-  
-  
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Expediente that = (Expediente) o;
+		return numExpediente == that.numExpediente && activo == that.activo
+				&& Double.compare(that.notaMediaProvisional, notaMediaProvisional) == 0
+				&& creditosSuperados == that.creditosSuperados && creditosFB == that.creditosFB
+				&& creditosOB == that.creditosOB && creditosOP == that.creditosOP
+				&& creditosCF == that.creditosCF && creditosPE == that.creditosPE
+				&& creditosTF == that.creditosTF && titulacion.equals(that.titulacion) && Objects
+				.equals(alumno, that.alumno) && Objects.equals(encuestas, that.encuestas)
+				&& Objects.equals(matriculas, that.matriculas);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects
+				.hash(numExpediente, activo, notaMediaProvisional, creditosSuperados, creditosFB,
+						creditosOB,
+						creditosOP, creditosCF, creditosPE, creditosTF, titulacion, alumno, encuestas,
+						matriculas);
+	}
+
+	@Override
+	public String toString() {
+		return "Expediente{" +
+				"numExpediente=" + numExpediente +
+				", activo=" + activo +
+				", notaMediaProvisional=" + notaMediaProvisional +
+				", creditosSuperados=" + creditosSuperados +
+				", creditosFB=" + creditosFB +
+				", creditosOB=" + creditosOB +
+				", creditosOP=" + creditosOP +
+				", creditosCF=" + creditosCF +
+				", creditosPE=" + creditosPE +
+				", creditosTF=" + creditosTF +
+				", titulacion=" + titulacion +
+				", alumno=" + alumno +
+				", encuestas=" + encuestas +
+				", matriculas=" + matriculas +
+				'}';
+	}
 }

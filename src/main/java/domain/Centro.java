@@ -1,30 +1,41 @@
 package domain;
 
 import java.util.List;
-
-import javax.persistence.*;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Centro {
 
   @Id @GeneratedValue
-  private int ID;
+  private int id;
   @Column(unique = true,nullable = false)
   private String nombre;
   @Column(nullable = false)
-  private String dirección;
-  private int TLFconsejeria;
-  @ManyToMany(mappedBy = "centros")
+  private String direccion;
+  private int tlfConsejeria;
+  @ManyToMany
+  @JoinTable(
+      name = "centro_titulacion",
+      joinColumns = @JoinColumn(name = "centro_id"),
+      inverseJoinColumns = @JoinColumn(name = "titulacion_id")
+  )
   private List<Titulacion> titulaciones;
   
   public Centro() { }
 
-  public int getID() {
-    return ID;
+  public int getId() {
+    return id;
   }
 
-  public void setID(int iD) {
-    ID = iD;
+  public void setId(int iD) {
+    id = iD;
   }
 
   public String getNombre() {
@@ -35,20 +46,20 @@ public class Centro {
     this.nombre = nombre;
   }
 
-  public String getDirección() {
-    return dirección;
+  public String getDireccion() {
+    return direccion;
   }
 
-  public void setDirección(String dirección) {
-    this.dirección = dirección;
+  public void setDireccion(String direccion) {
+    this.direccion = direccion;
   }
 
-  public int getTLFconsejeria() {
-    return TLFconsejeria;
+  public int getTlfConsejeria() {
+    return tlfConsejeria;
   }
 
-  public void setTLFconsejeria(int tLFconsejeria) {
-    TLFconsejeria = tLFconsejeria;
+  public void setTlfConsejeria(int tLFconsejeria) {
+    tlfConsejeria = tLFconsejeria;
   }
   
   public List<Titulacion> getTitulaciones() {
@@ -60,52 +71,33 @@ public class Centro {
   }
 
   @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ID;
-    result = prime * result + TLFconsejeria;
-    result = prime * result + ((dirección == null) ? 0 : dirección.hashCode());
-    result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-    result = prime * result + ((titulaciones == null) ? 0 : titulaciones.hashCode());
-    return result;
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Centro centro = (Centro) o;
+    return id == centro.id && tlfConsejeria == centro.tlfConsejeria && nombre.equals(centro.nombre)
+        && direccion.equals(centro.direccion) && Objects
+        .equals(titulaciones, centro.titulaciones);
   }
 
   @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Centro other = (Centro) obj;
-    if (ID != other.ID)
-      return false;
-    if (TLFconsejeria != other.TLFconsejeria)
-      return false;
-    if (dirección == null) {
-      if (other.dirección != null)
-        return false;
-    } else if (!dirección.equals(other.dirección))
-      return false;
-    if (nombre == null) {
-      if (other.nombre != null)
-        return false;
-    } else if (!nombre.equals(other.nombre))
-      return false;
-    if (titulaciones == null) {
-      if (other.titulaciones != null)
-        return false;
-    } else if (!titulaciones.equals(other.titulaciones))
-      return false;
-    return true;
+  public int hashCode() {
+    return Objects.hash(id, nombre, direccion, tlfConsejeria, titulaciones);
   }
 
   @Override
   public String toString() {
-    return "Centro [ID=" + ID + ", nombre=" + nombre + ", dirección=" + dirección + ", TLFconsejeria=" + TLFconsejeria
-        + ", titulaciones=" + titulaciones + "]";
+    return "Centro{" +
+        "ID=" + id +
+        ", nombre='" + nombre + '\'' +
+        ", direccion='" + direccion + '\'' +
+        ", TLFconsejeria=" + tlfConsejeria +
+        ", titulaciones=" + titulaciones +
+        '}';
   }
 
 }

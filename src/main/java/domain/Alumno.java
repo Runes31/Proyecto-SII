@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ public class Alumno {
   @Id @GeneratedValue
   private int id;
   @Column(unique = true, nullable = false)
-  private String DNI;
+  private String dni;
   @Column(nullable = false)
   private String nombre;
   @Column(nullable = false)
@@ -21,31 +22,26 @@ public class Alumno {
   private String emailPersonal;
   private String telefono;
   private String movil;
-  @OneToMany
+  @Column(nullable = false)
+  private String direccion;
+  @Column(nullable = false)
+  private String localidad;
+  @Column(nullable = false)
+  private String provincia;
+  private String codigoPostal;
+  @OneToMany(mappedBy = "alumno")
   private List<Expediente> expedientes;
 
   public Alumno() { }
 
-  public Alumno(String DNI, String nombre, String emailInstitucional, String emailPersonal,
+  public Alumno(String dni, String nombre, String emailInstitucional, String emailPersonal,
       String telefono, String movil) {
-    this.DNI = DNI;
+    this.dni = dni;
     this.nombre = nombre;
     this.emailInstitucional = emailInstitucional;
     this.emailPersonal = emailPersonal;
     this.telefono = telefono;
     this.movil = movil;
-  }
-
-  public Alumno(String DNI, String nombre, String emailInstitucional,
-      String emailPersonal, String telefono, String movil,
-      List<Expediente> expedientes) {
-    this.DNI = DNI;
-    this.nombre = nombre;
-    this.emailInstitucional = emailInstitucional;
-    this.emailPersonal = emailPersonal;
-    this.telefono = telefono;
-    this.movil = movil;
-    this.expedientes = expedientes;
   }
 
   public int getId() {
@@ -56,12 +52,12 @@ public class Alumno {
     this.id = id;
   }
   
-  public String getDNI() {
-    return DNI;
+  public String getDni() {
+    return dni;
   }
 
-  public void setDNI(String DNI) {
-    this.DNI = DNI;
+  public void setDni(String DNI) {
+    this.dni = DNI;
   }
 
   public String getNombre() {
@@ -112,76 +108,79 @@ public class Alumno {
     this.expedientes = expedientes;
   }
 
+  public String getDireccion() {
+    return direccion;
+  }
+
+  public void setDireccion(String direccion) {
+    this.direccion = direccion;
+  }
+
+  public String getLocalidad() {
+    return localidad;
+  }
+
+  public void setLocalidad(String localidad) {
+    this.localidad = localidad;
+  }
+
+  public String getProvincia() {
+    return provincia;
+  }
+
+  public void setProvincia(String provincia) {
+    this.provincia = provincia;
+  }
+
+  public String getCodigoPostal() {
+    return codigoPostal;
+  }
+
+  public void setCodigoPostal(String codigoPostal) {
+    this.codigoPostal = codigoPostal;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Alumno alumno = (Alumno) o;
+    return id == alumno.id && dni.equals(alumno.dni) && nombre.equals(alumno.nombre)
+        && emailInstitucional.equals(alumno.emailInstitucional) && Objects
+        .equals(emailPersonal, alumno.emailPersonal) && Objects
+        .equals(telefono, alumno.telefono) && Objects.equals(movil, alumno.movil)
+        && direccion.equals(alumno.direccion) && localidad.equals(alumno.localidad)
+        && Objects.equals(provincia, alumno.provincia) && Objects
+        .equals(codigoPostal, alumno.codigoPostal) && Objects
+        .equals(expedientes, alumno.expedientes);
+  }
+
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((DNI == null) ? 0 : DNI.hashCode());
-    result = prime * result + ((emailInstitucional == null) ? 0 : emailInstitucional.hashCode());
-    result = prime * result + ((emailPersonal == null) ? 0 : emailPersonal.hashCode());
-    result = prime * result + ((expedientes == null) ? 0 : expedientes.hashCode());
-    result = prime * result + id;
-    result = prime * result + ((movil == null) ? 0 : movil.hashCode());
-    result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-    result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
-    return result;
+    return Objects
+        .hash(id, dni, nombre, emailInstitucional, emailPersonal, telefono, movil, direccion,
+            localidad, provincia, codigoPostal, expedientes);
   }
 
   @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Alumno other = (Alumno) obj;
-    if (DNI == null) {
-      if (other.DNI != null)
-        return false;
-    } else if (!DNI.equals(other.DNI))
-      return false;
-    if (emailInstitucional == null) {
-      if (other.emailInstitucional != null)
-        return false;
-    } else if (!emailInstitucional.equals(other.emailInstitucional))
-      return false;
-    if (emailPersonal == null) {
-      if (other.emailPersonal != null)
-        return false;
-    } else if (!emailPersonal.equals(other.emailPersonal))
-      return false;
-    if (expedientes == null) {
-      if (other.expedientes != null)
-        return false;
-    } else if (!expedientes.equals(other.expedientes))
-      return false;
-    if (id != other.id)
-      return false;
-    if (movil == null) {
-      if (other.movil != null)
-        return false;
-    } else if (!movil.equals(other.movil))
-      return false;
-    if (nombre == null) {
-      if (other.nombre != null)
-        return false;
-    } else if (!nombre.equals(other.nombre))
-      return false;
-    if (telefono == null) {
-      if (other.telefono != null)
-        return false;
-    } else if (!telefono.equals(other.telefono))
-      return false;
-    return true;
-  }
-
-	@Override
   public String toString() {
-    return "Alumno [id=" + id + ", DNI=" + DNI + ", nombre=" + nombre + ", emailInstitucional=" + emailInstitucional
-        + ", emailPersonal=" + emailPersonal + ", telefono=" + telefono + ", movil=" + movil + ", expedientes="
-        + expedientes + "]";
+    return "Alumno{" +
+        "id=" + id +
+        ", DNI='" + dni + '\'' +
+        ", nombre='" + nombre + '\'' +
+        ", emailInstitucional='" + emailInstitucional + '\'' +
+        ", emailPersonal='" + emailPersonal + '\'' +
+        ", telefono='" + telefono + '\'' +
+        ", movil='" + movil + '\'' +
+        ", direccion='" + direccion + '\'' +
+        ", localidad='" + localidad + '\'' +
+        ", provincia='" + provincia + '\'' +
+        ", codigoPostal='" + codigoPostal + '\'' +
+        ", expedientes=" + expedientes +
+        '}';
   }
-  
-  
 }
