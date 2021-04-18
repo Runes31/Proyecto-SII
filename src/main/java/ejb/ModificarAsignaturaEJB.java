@@ -2,6 +2,7 @@ package ejb;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import domain.Asignatura;
 import exceptions.AsignaturaNoEncontradaException;
@@ -9,6 +10,7 @@ import exceptions.AsignaturaNoEncontradaException;
 @Stateless
 public class ModificarAsignaturaEJB implements GestionAsignatura {
 
+  @PersistenceContext(name="Proyecto-SII")
   private EntityManager em;
   
   @Override
