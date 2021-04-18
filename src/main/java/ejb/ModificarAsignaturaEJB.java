@@ -2,11 +2,9 @@ package ejb;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import domain.Asignatura;
 import exceptions.AsignaturaNoEncontradaException;
-
 
 @Stateless
 public class ModificarAsignaturaEJB implements GestionAsignatura {
