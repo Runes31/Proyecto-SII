@@ -14,5 +14,7 @@ public interface GestionAsignatura {
    * @throws AsignaturaNoEncontradaException
    */
   public void actualizarAsignatura(Asignatura asignatura) throws AsignaturaNoEncontradaException;
+  
+  public void borrarAsignatura(Asignatura asignatura) throws AsignaturaNoEncontradaException;
 
 }

@@ -18,6 +18,14 @@ public class ModificarAsignaturaEJB implements GestionAsignatura {
     Asignatura p = em.find(Asignatura.class, asignatura);
     if (p == null) throw new AsignaturaNoEncontradaException();
     em.merge(asignatura);
-      
   }
+
+  @Override
+  public void borrarAsignatura(Asignatura asignatura) throws AsignaturaNoEncontradaException {
+	  Asignatura asig = em.find(Asignatura.class, asignatura);
+	  if (asig == null) throw new AsignaturaNoEncontradaException();
+	  em.remove(asignatura);
+  }
+  
+  
 }
