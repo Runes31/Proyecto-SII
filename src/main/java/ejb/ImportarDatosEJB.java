@@ -24,8 +24,10 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 
 import domain.Alumno;
+import domain.Asignatura;
 import domain.Expediente;
 import domain.Matricula;
+import domain.Titulacion;
 
 @Stateless
 public class ImportarDatosEJB implements ImportarDatos{
@@ -91,15 +93,9 @@ public class ImportarDatosEJB implements ImportarDatos{
     }
     
   }
-
-  @Override
-  public void importarPreferenciasCSV() {
-    // TODO Auto-generated method stub
-    
-  }
   
   @Override
-  public void importarAlumnosExcel(File fichero) throws IOException {
+  public void importarAlumnosExcel(File fichero) {
     try {
       FileInputStream file = new FileInputStream(fichero);
       XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -147,16 +143,99 @@ public class ImportarDatosEJB implements ImportarDatos{
           exp.setCreditosCF(Integer.valueOf(cellIterator.next().toString()));
           exp.setCreditosPE(Integer.valueOf(cellIterator.next().toString()));
           exp.setCreditosTF(Integer.valueOf(cellIterator.next().toString()));
+          
+          em.persist(al);
+          em.persist(m);
+          em.persist(exp);
          
       }
       file.close(); workbook.close();
     } catch (Exception e) { e.printStackTrace(); }    
   }
   
-  @Override
-  public void importarPreferenciasExcel() {
-    // TODO Auto-generated method stub
-    
+  public void importarTitulacionCSV(File fichero) throws IOException, CsvException {
+    try (CSVReader reader = new CSVReader(new FileReader(fichero))) {
+      List<String[]> l = reader.readAll();
+      for(int i = 0; i < l.size(); i++) {
+        Titulacion t = new Titulacion();
+        String str = Arrays.toString(l.get(i));
+        String[] aux = str.split(";");
+        t.setCodigo(aux[0]);
+        t.setNombre(aux[1]);
+        t.setCodigo(aux[2]);          
+        
+        em.persist(t);
+      }
+    }
   }
+  
+  public void importarTitulacionExcel(File fichero) {
+    try {
+      FileInputStream file = new FileInputStream(fichero);
+      XSSFWorkbook workbook = new XSSFWorkbook(file);
+      XSSFSheet sheet = workbook.getSheetAt(0);
+      
+      Iterator<Row> rowIterator = sheet.iterator();
+      while (rowIterator.hasNext()) {
+        Titulacion t = new Titulacion();
+        Row row = rowIterator.next();
+        Iterator<Cell> cellIterator = row.cellIterator();
+        t.setCodigo(cellIterator.next().toString());
+        t.setNombre(cellIterator.next().toString());
+        t.setCodigo(cellIterator.next().toString());  
+        
+        em.persist(t);
+      }
+      file.close(); workbook.close();
+    } catch (Exception e) { e.printStackTrace(); }    
+  }
+  
+  public void importarAsignaturaCSV(File fichero) throws IOException, CsvException {
+    try (CSVReader reader = new CSVReader(new FileReader(fichero))) {
+      List<String[]> l = reader.readAll();
+      for(int i = 0; i < l.size(); i++) {
+        Asignatura asig = new Asignatura();
+        String str = Arrays.toString(l.get(i));
+        String[] aux = str.split(";");
+        asig.setOfertada(Boolean.parseBoolean(aux[1]));
+        asig.setCodigo(aux[2]);
+        asig.setReferencia(aux[3]);
+        asig.setNombre(aux[4]);
+        asig.setCurso(Integer.valueOf(aux[5]));
+        asig.setCreditos(Integer.valueOf(aux[6]));
+        asig.setCuatrimestre(aux[10]);
+        asig.setIdiomas(aux[11]);
+        
+        em.persist(asig);
+      }
+    }
+  }
+  
+  public void importarAsignaturanExcel(File fichero) {
+    try {
+      FileInputStream file = new FileInputStream(fichero);
+      XSSFWorkbook workbook = new XSSFWorkbook(file);
+      XSSFSheet sheet = workbook.getSheetAt(0);
+      
+      Iterator<Row> rowIterator = sheet.iterator();
+      while (rowIterator.hasNext()) {
+        Asignatura asig = new Asignatura();
+        Row row = rowIterator.next();
+        Iterator<Cell> cellIterator = row.cellIterator();
+        asig.setOfertada(Boolean.parseBoolean(cellIterator.next().toString()));
+        asig.setCodigo(cellIterator.next().toString());
+        asig.setReferencia(cellIterator.next().toString());
+        asig.setNombre(cellIterator.next().toString());
+        asig.setCurso(Integer.valueOf(cellIterator.next().toString()));
+        asig.setCreditos(Integer.valueOf(cellIterator.next().toString()));
+        asig.setCuatrimestre(cellIterator.next().toString());
+        asig.setIdiomas(cellIterator.next().toString());
+       
+        em.persist(asig);
+      }
+      file.close(); workbook.close();
+    } catch (Exception e) { e.printStackTrace(); }    
+  }
+
   
 }

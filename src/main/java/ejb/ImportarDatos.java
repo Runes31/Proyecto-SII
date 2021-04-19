@@ -11,27 +11,41 @@ import com.opencsv.exceptions.CsvException;
 
 @Local
 public interface ImportarDatos {
+  
   /**
-   * Requisito 006
+   * Requisito 006 y Requisito 012
    * Importa los datos de los alumnos desde un fichero Excel o CSV
-   * @param pathFichero
+   * Además importa las preferecnias de los alumnos en la elección de grupos
+   * @param fichero
    * @throws IOException 
    * @throws FileNotFoundException 
    * @throws CsvException 
    * @throws ParseException 
    */
-  public void importarAlumnosCSV(File fichero) throws FileNotFoundException, IOException, CsvException, ParseException;
+  public void importarAlumnosCSV(File fichero) throws IOException, CsvException, ParseException;
   
-  public void importarAlumnosExcel(File fichero) throws IOException;
+  public void importarAlumnosExcel(File fichero);
   
   /**
-   * Requisito 012
-   * Importar los datos recopilados de las preferencias de los alumnos en la elección de grupos
+   * Importa los datos de las titulaciones en CSV o Excel
+   * @param fichero
+   * @throws IOException 
+   * @throws CsvException 
+   * @throws FileNotFoundException 
    */
-  public void importarPreferenciasCSV();
-
-  public void importarPreferenciasExcel();
-
+  public void importarTitulacionCSV(File fichero) throws IOException, CsvException;
   
+  public void importarTitulacionExcel(File fichero);
+  
+  /**
+   * Importa las asignaturas ofertadas en CSV o Excel
+   * @param fichero
+   * @throws IOException 
+   * @throws CsvException 
+   * @throws FileNotFoundException 
+   */
+  public void importarAsignaturaCSV(File fichero) throws IOException, CsvException;
+  
+  public void importarAsignaturanExcel(File fichero);
 
 }
