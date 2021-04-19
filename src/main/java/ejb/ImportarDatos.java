@@ -30,6 +30,8 @@ public interface ImportarDatos {
    */
   public void importarPreferenciasCSV();
 
+  public void importarPreferenciasExcel();
+
   
 
 }

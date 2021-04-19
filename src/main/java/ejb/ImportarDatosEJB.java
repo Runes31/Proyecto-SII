@@ -160,4 +160,11 @@ public class ImportarDatosEJB implements ImportarDatos{
       file.close(); workbook.close();
     } catch (Exception e) { e.printStackTrace(); }    
   }
+  
+  @Override
+  public void importarPreferenciasExcel() {
+    // TODO Auto-generated method stub
+    
+  }
+  
 }
