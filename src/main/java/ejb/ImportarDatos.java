@@ -22,10 +22,14 @@ public interface ImportarDatos {
    */
   public void importarAlumnosCSV(File fichero) throws FileNotFoundException, IOException, CsvException, ParseException;
   
+  public void importarAlumnosExcell(File fichero) throws IOException;
+  
   /**
    * Requisito 012
    * Importar los datos recopilados de las preferencias de los alumnos en la elección de grupos
    */
   public void importarPreferenciasCSV();
+
+  
 
 }
