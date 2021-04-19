@@ -101,7 +101,6 @@ public class ImportarDatosEJB implements ImportarDatos{
   
   @Override
   public void importarAlumnosExcel(File fichero) throws IOException {
-    String cursoAcademico = "", estadoMatricula = "";
     try {
       FileInputStream file = new FileInputStream(fichero);
       XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -115,13 +114,11 @@ public class ImportarDatosEJB implements ImportarDatos{
           Row row = rowIterator.next();
           Iterator<Cell> cellIterator = row.cellIterator();
           Cell cell = cellIterator.next();
-          cell = cellIterator.next();
-          cursoAcademico = cell.toString();
-          cell = cellIterator.next();
+          m.setCursoAcademico(cellIterator.next().toString());
           cell = cellIterator.next();
           cell = cellIterator.next();
           cell = cellIterator.next();
-          estadoMatricula = cell.toString();
+          m.setEstado(cellIterator.next().toString());
           row = rowIterator.next();
           al.setDni(cellIterator.next().toString());
           String nombre = cellIterator.next().toString();
@@ -143,7 +140,7 @@ public class ImportarDatosEJB implements ImportarDatos{
           Date fechaMatricula = new SimpleDateFormat("dd/MM/yyyy").parse(fM);
           m.setFechaMatricula(fechaMatricula);
           m.setTurnoPreferente(cellIterator.next().toString());
-          String gruposAsig = cellIterator.next().toString();
+          m.setListadoAsignaturas(cellIterator.next().toString());
           exp.setCreditosSuperados(Integer.valueOf(cellIterator.next().toString()));
           exp.setCreditosFB(Integer.valueOf(cellIterator.next().toString()));
           exp.setCreditosOB(Integer.valueOf(cellIterator.next().toString()));
@@ -160,7 +157,7 @@ public class ImportarDatosEJB implements ImportarDatos{
           mat.add(m);
           exp.setMatriculas(mat);
       }
-      file.close();
+      file.close(); workbook.close();
     } catch (Exception e) { e.printStackTrace(); }    
   }
 }
