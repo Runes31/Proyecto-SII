@@ -149,13 +149,6 @@ public class ImportarDatosEJB implements ImportarDatos{
           exp.setCreditosPE(Integer.valueOf(cellIterator.next().toString()));
           exp.setCreditosTF(Integer.valueOf(cellIterator.next().toString()));
          
-          
-          List<Expediente> ex = new ArrayList<Expediente>();
-          ex.add(exp);
-          al.setExpedientes(ex);
-          List<Matricula> mat = new ArrayList<Matricula>();
-          mat.add(m);
-          exp.setMatriculas(mat);
       }
       file.close(); workbook.close();
     } catch (Exception e) { e.printStackTrace(); }    
