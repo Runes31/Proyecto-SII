@@ -8,7 +8,7 @@ import exceptions.AlumnoNoEncontradoException;
 public interface GestionAlumno {
   /**
    * Requisito 005
-   * Actualizar un expediente a partir de los datos de entrada
+   * Actualizar un alumno a partir de los datos de entrada
    * @param alumno
    * @throws AlumnoNoEncontradoException
    */
