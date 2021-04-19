@@ -61,15 +61,15 @@ public class ImportarDatosEJB implements ImportarDatos{
           al.setProvincia(aux[12]);
           al.setCodigoPostal(aux[13]);
           
-          Expediente ex = new Expediente(Integer.valueOf(aux[4]), true, Double.parseDouble(aux[17]));   
-          ex.setCreditosSuperados(Integer.valueOf(aux[18]));
-          ex.setCreditosFB(Integer.valueOf(aux[19]));
-          ex.setCreditosOB(Integer.valueOf(aux[20]));
-          ex.setCreditosOP(Integer.valueOf(aux[21]));
-          ex.setCreditosCF(Integer.valueOf(aux[22]));
-          ex.setCreditosPE(Integer.valueOf(aux[23]));
-          ex.setCreditosTF(Integer.valueOf(aux[24].substring(0,aux[24].length()-1)));
-          ex.setAlumno(al);          
+          Expediente exp = new Expediente(Integer.valueOf(aux[4]), true, Double.parseDouble(aux[17]));   
+          exp.setCreditosSuperados(Integer.valueOf(aux[18]));
+          exp.setCreditosFB(Integer.valueOf(aux[19]));
+          exp.setCreditosOB(Integer.valueOf(aux[20]));
+          exp.setCreditosOP(Integer.valueOf(aux[21]));
+          exp.setCreditosCF(Integer.valueOf(aux[22]));
+          exp.setCreditosPE(Integer.valueOf(aux[23]));
+          exp.setCreditosTF(Integer.valueOf(aux[24].substring(0,aux[24].length()-1)));
+          exp.setAlumno(al);          
           
           Matricula m = new Matricula();
           m.setCursoAcademico(cursoAcademido);
@@ -81,17 +81,11 @@ public class ImportarDatosEJB implements ImportarDatos{
           m.setFechaMatricula(fechaMatricula);
           m.setNuevoIngreso(false);
           m.setListadoAsignaturas(aux[16]);
-          
-          List<Expediente> exp = new ArrayList<Expediente>();
-          exp.add(ex);
-          al.setExpedientes(exp);
-          List<Matricula> mat = new ArrayList<Matricula>();
-          mat.add(m);
-          ex.setMatriculas(mat);
+          m.setExpediente(exp);
           
           em.persist(al);
           em.persist(m);
-          em.persist(ex);
+          em.persist(exp);
         }
         
       }
@@ -106,13 +100,8 @@ public class ImportarDatosEJB implements ImportarDatos{
   }
   
   @Override
-  public void importarAlumnosExcell(File fichero) throws IOException {
-    int i = 0;
-    String str;
-    String cursoAcademido = "", estadoMatricula = "";
-    Alumno al = null;
-    Expediente exp = null;
-    Matricula m = null;
+  public void importarAlumnosExcel(File fichero) throws IOException {
+    String cursoAcademico = "", estadoMatricula = "";
     try {
       FileInputStream file = new FileInputStream(fichero);
       XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -120,11 +109,14 @@ public class ImportarDatosEJB implements ImportarDatos{
       
       Iterator<Row> rowIterator = sheet.iterator();
       while (rowIterator.hasNext()) {
+          Alumno al = new Alumno();
+          Expediente exp = new Expediente();
+          Matricula m = new Matricula();
           Row row = rowIterator.next();
           Iterator<Cell> cellIterator = row.cellIterator();
           Cell cell = cellIterator.next();
           cell = cellIterator.next();
-          cursoAcademido = cell.toString();
+          cursoAcademico = cell.toString();
           cell = cellIterator.next();
           cell = cellIterator.next();
           cell = cellIterator.next();

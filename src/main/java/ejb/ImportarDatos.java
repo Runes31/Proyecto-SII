@@ -22,7 +22,7 @@ public interface ImportarDatos {
    */
   public void importarAlumnosCSV(File fichero) throws FileNotFoundException, IOException, CsvException, ParseException;
   
-  public void importarAlumnosExcell(File fichero) throws IOException;
+  public void importarAlumnosExcel(File fichero) throws IOException;
   
   /**
    * Requisito 012

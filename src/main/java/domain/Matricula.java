@@ -90,6 +90,14 @@ public class Matricula{
   public void setListadoAsignaturas(String listadoAsignaturas) {
     this.listadoAsignaturas = listadoAsignaturas;
   }
+  
+  public Expediente getExpediente() {
+    return expediente;
+  }
+
+  public void setExpediente(Expediente expediente) {
+    this.expediente = expediente;
+  }
 
   @Override
   public int hashCode() {
