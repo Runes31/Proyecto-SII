@@ -1,11 +1,16 @@
 package ejb;
 
+import java.util.Iterator;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import domain.Asignatura;
+import domain.AsignaturasMatricula;
+import domain.GruposPorAsignatura;
 import exceptions.AsignaturaNoEncontradaException;
+
 
 @Stateless
 public class ModificarAsignaturaEJB implements GestionAsignatura {
@@ -24,8 +29,24 @@ public class ModificarAsignaturaEJB implements GestionAsignatura {
   public void borrarAsignatura(Asignatura asignatura) throws AsignaturaNoEncontradaException {
 	  Asignatura asig = em.find(Asignatura.class, asignatura);
 	  if (asig == null) throw new AsignaturaNoEncontradaException();
+	  
+	  for (Iterator<GruposPorAsignatura> iterator = asig.getGruposPorAsignatura().iterator(); iterator.hasNext();) {
+		GruposPorAsignatura ga = iterator.next();
+		em.remove(ga);
+	}
+	  
+	  for (Iterator<AsignaturasMatricula> iterator = asig.getAsignaturasMatricula().iterator(); iterator.hasNext();) {
+		AsignaturasMatricula am = iterator.next();
+		em.remove(am);
+	}
+	  
 	  em.remove(asignatura);
+	  
+	  
+	 
   }
+
+
   
   
 }
