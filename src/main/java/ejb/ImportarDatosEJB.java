@@ -1,5 +1,6 @@
 package ejb;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -28,10 +29,10 @@ public class ImportarDatosEJB implements ImportarDatos{
   private EntityManager em;
   
   @Override
-  public void importarAlumnosCSV(String pathFichero) throws FileNotFoundException, IOException, CsvException, ParseException {
+  public void importarAlumnosCSV(File fichero) throws FileNotFoundException, IOException, CsvException, ParseException {
     String str;
     String cursoAcademido = "", estadoMatricula = "";
-    try (CSVReader reader = new CSVReader(new FileReader(pathFichero))) {
+    try (CSVReader reader = new CSVReader(new FileReader(fichero))) {
       List<String[]> l = reader.readAll();
       for(int i = 0; i < l.size(); i++) {
         if(i == 0) {
