@@ -2,6 +2,7 @@ package ejb;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.ejb.Local;
 
@@ -16,8 +17,9 @@ public interface ImportarDatos {
    * @throws IOException 
    * @throws FileNotFoundException 
    * @throws CsvException 
+   * @throws ParseException 
    */
-  public void importarAlumnosCSV(String pathFichero) throws FileNotFoundException, IOException, CsvException;
+  public void importarAlumnosCSV(String pathFichero) throws FileNotFoundException, IOException, CsvException, ParseException;
   
   /**
    * Requisito 012
