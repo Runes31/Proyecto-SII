@@ -27,6 +27,7 @@ import domain.Alumno;
 import domain.Asignatura;
 import domain.Expediente;
 import domain.Matricula;
+import domain.Optativa;
 import domain.Titulacion;
 
 @Stateless
@@ -200,7 +201,7 @@ public class ImportarDatosEJB implements ImportarDatos{
           XSSFSheet sheet = workbook.getSheetAt(i);
           Iterator<Row> rowIterator = sheet.iterator();
           while (rowIterator.hasNext()) {
-            Asignatura asig = new Asignatura();
+            Optativa opt = new Optativa();
             Row row = rowIterator.next();
             Iterator<Cell> cellIterator = row.cellIterator();
             asig.setOfertada(Boolean.parseBoolean(cellIterator.next().toString()));
