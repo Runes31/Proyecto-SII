@@ -1,5 +1,6 @@
 package ejb;
 
+
 import javax.ejb.Local;
 
 import domain.Matricula;
@@ -15,5 +16,7 @@ public interface GestionMatricula {
    * @throws MatriculaNoEncontradaException
    */
   public void actualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException ;
+  
+  public void visualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException ;
   
 }

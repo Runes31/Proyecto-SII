@@ -1,8 +1,11 @@
 package ejb;
 
+
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 
 
 import domain.Matricula;
@@ -20,5 +23,19 @@ public class ModificarMatricula implements GestionMatricula {
     if(p==null) throw new MatriculaNoEncontradaException();
     em.merge(matricula);
   }
+  
+  @Override
+  public void visualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException {
+	  Matricula p=em.find(Matricula.class, matricula);
+	  if(p==null) throw new MatriculaNoEncontradaException();
+	  
+	  String consulta = "Select * from Matricula";
+	  em.createQuery(consulta);
+	
+	 
+	  
+  }
+
+	
 
 }
