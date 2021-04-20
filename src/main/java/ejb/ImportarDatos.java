@@ -44,7 +44,6 @@ public interface ImportarDatos {
    * @throws CsvException 
    * @throws FileNotFoundException 
    */
-  public void importarAsignaturaCSV(File fichero) throws IOException, CsvException;
   
   public void importarAsignaturanExcel(File fichero);
 
