@@ -3,6 +3,8 @@ package ejb;
 import domain.Asignatura;
 import domain.AsignaturasMatricula;
 import domain.Encuesta;
+import domain.Expediente;
+import domain.Grupo;
 import domain.GruposPorAsignatura;
 import exceptions.GrupoNoEncontradoException;
 import java.util.List;
@@ -10,7 +12,9 @@ import java.util.Map;
 import javax.ejb.Local;
 
 import domain.Matricula;
+import domain.Titulacion;
 import exceptions.MatriculaNoEncontradaException;
+import exceptions.ProyectoException;
 
 
 @Local
@@ -23,11 +27,11 @@ public interface GestionMatricula {
   public void actualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException ;
   
   /**
-   * Visualizar todos los datos de la matr�cula solicita como entrada
+   * Visualizar todos las matriculas 
    * @return List con las matriculas
    */
   
-  public List<Matricula> visualizarMatricula() ;
+  public List<Matricula> visualizarMatricula(Titulacion t, Grupo g, Expediente e) throws ProyectoException;
 
   /**
    * Asigna grupos a los alumnos que no tengan
