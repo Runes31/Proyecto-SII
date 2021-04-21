@@ -7,6 +7,8 @@ import domain.Expediente;
 import domain.Grupo;
 import domain.GruposPorAsignatura;
 import exceptions.GrupoNoEncontradoException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,15 +96,6 @@ public class GestionMatriculaEJB implements GestionMatricula {
   }
 
   @Override
-  public void visualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException {
-    Matricula p=em.find(Matricula.class, matricula);
-    if(p==null) throw new MatriculaNoEncontradaException();
-
-    String consulta = "Select * from Matricula";
-    em.createQuery(consulta);
-  }
-
-  @Override
   public List<AsignaturasMatricula> listarAsignaciones() {
     CriteriaBuilder cb = em.getCriteriaBuilder();
     CriteriaQuery<AsignaturasMatricula> cq = cb.createQuery(AsignaturasMatricula.class);
@@ -147,4 +140,10 @@ public class GestionMatriculaEJB implements GestionMatricula {
      */
     em.merge(encuesta);
   }
+
+	@Override
+	public List<Matricula> visualizarMatricula() {
+		List<Matricula> matriculas = getAllMatriculas().stream().collect(Collectors.toList());
+		 return matriculas;
+	}
 }

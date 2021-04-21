@@ -24,11 +24,10 @@ public interface GestionMatricula {
   
   /**
    * Visualizar todos los datos de la matr�cula solicita como entrada
-   * @param matricula
-   * @throws MatriculaNoEncontradaException
+   * @return List con las matriculas
    */
   
-  public void visualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException ;
+  public List<Matricula> visualizarMatricula() ;
 
   /**
    * Asigna grupos a los alumnos que no tengan
