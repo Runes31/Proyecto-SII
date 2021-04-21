@@ -1,24 +1,23 @@
-package Test;
+package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import java.math.BigDecimal;
-import java.sql.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class EjemploTest {
   
@@ -41,73 +40,21 @@ public class EjemploTest {
   
   @Before
   public void setup() throws NamingException  {
-    gestionLotes = (GestionLotes) ctx.lookup(LOTES_EJB);
-    gestionProductos = (GestionProductos) ctx.lookup(PRODUCTOS_EJB);
-    BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory(nombreUnidadPersistencia);
+    EntityManager em = emf.createEntityManager();
+    em.getTransaction().begin();
+    //TODO: Crear base de batos con usando las importaciones
+    em.getTransaction().commit();
   }
 
   @Test
-  public void testInsertarLote() {
-    
-    final String productoSalchicha = "Salchicha";
-    
-    try {
-      
-      
-      Lote lote = new Lote ("ST1", null, BigDecimal.TEN, Date.valueOf("2021-04-11"));
-      lote.setLoteIngredientes(new HashMap<Ingrediente, String>());
-      
-      Producto salchicha = gestionProductos.obtenerProductoEIngredientes(productoSalchicha);
-      salchicha.getIngredientes().forEach(ingrediente->{
-        lote.getLoteIngredientes().put(ingrediente, "");
-      });
-      
-      try {
-        gestionLotes.insertarLote(productoSalchicha, lote);
-      } catch (ProductoNoEncontradoException|IngredientesIncorrectosException|LoteExistenteException e) {
-        fail("Lanzó excepción al insertar");
-      }
-    } catch (TrazabilidadException e) {
-      throw new RuntimeException(e);
-    }
-        
-    try {
-      List<Lote> lotes = gestionLotes.obtenerLotesDeProducto(productoSalchicha);
-      assertEquals(1, lotes.size());
-      assertEquals(4,lotes.get(0).getLoteIngredientes().size());
-      assertEquals("ST1", lotes.get(0).getCodigo());
-      assertTrue(BigDecimal.valueOf(10L).compareTo(lotes.get(0).getCantidad())==0);
-      assertEquals(Date.valueOf("2021-04-11"), lotes.get(0).getFechaFabricacion());
-    } catch (TrazabilidadException e) {
-      fail("No debería lanzar excepción");
-    }
+  public void testComprobarImportaciones() {
+    //TODO: Comprobar que las importaciones son correctas    
   }
   
   @Test
-  public void testInsertarLoteProductoNoEncontrado() {
-    try {
-      final String productoSalchicha = "Salchicha";
-
-      Lote lote = new Lote ("ST1", null, BigDecimal.TEN, Date.valueOf("2021-04-11"));
-      lote.setLoteIngredientes(new HashMap<Ingrediente, String>());
-      
-      Producto salchicha = gestionProductos.obtenerProductoEIngredientes(productoSalchicha);
-      salchicha.getIngredientes().forEach(ingrediente->{
-        lote.getLoteIngredientes().put(ingrediente, "");
-      });
-      
-      try {
-        gestionLotes.insertarLote("Salchichón", lote);
-        fail("Debe lanzar excepción");
-      } catch (ProductoNoEncontradoException e) {
-        // OK
-      } catch (TrazabilidadException e) {
-        fail("Debe lanzar excepción de producto no encontrado"); 
-      }
-      
-    } catch (TrazabilidadException e) {
-      throw new RuntimeException(e);
-    }
+  public void testModificarAlumno() {
+    //TODO: Comprobar que la clase modificar Alumno funciona correctamente    
   }
   
   @Test
