@@ -102,4 +102,21 @@ public class GestionMatriculaEJB implements GestionMatricula {
     String consulta = "Select * from Matricula";
     em.createQuery(consulta);
   }
+
+  @Override
+  public List<AsignaturasMatricula> listarAsignaciones() {
+    CriteriaBuilder cb = em.getCriteriaBuilder();
+    CriteriaQuery<AsignaturasMatricula> cq = cb.createQuery(AsignaturasMatricula.class);
+    Root<AsignaturasMatricula> rootEntry = cq.from(AsignaturasMatricula.class);
+    CriteriaQuery<AsignaturasMatricula> all = cq.select(rootEntry);
+    TypedQuery<AsignaturasMatricula> allQuery = em.createQuery(all);
+    return allQuery.getResultList();
+  }
+
+  @Override
+  public List<AsignaturasMatricula> listarAsignaciones(boolean nuevoIngreso){
+    List<AsignaturasMatricula> asignaciones = listarAsignaciones();
+    return asignaciones.stream().filter(a -> a.getMatricula().isNuevoIngreso() == nuevoIngreso).collect(
+        Collectors.toList());
+  }
 }

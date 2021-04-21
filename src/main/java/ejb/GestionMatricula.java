@@ -1,6 +1,8 @@
 package ejb;
 
+import domain.AsignaturasMatricula;
 import exceptions.GrupoNoEncontradoException;
+import java.util.List;
 import javax.ejb.Local;
 
 import domain.Matricula;
@@ -24,5 +26,22 @@ public interface GestionMatricula {
   
   public void visualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException ;
 
+  /**
+   * Asigna grupos a los alumnos que no tengan
+   * @throws GrupoNoEncontradoException Si no existen grupos disponibles para una asignatura
+   */
   public void generarAsignaciones() throws GrupoNoEncontradoException;
+
+  /**
+   * Genera una lista con todas las asignaciones de grupo
+   * @return List con las asignaciones
+   */
+  public List<AsignaturasMatricula> listarAsignaciones();
+
+  /**
+   * Genera una lista con todas las asignaciones de grupo filtrando si es de nuevo ingreso o no
+   * @param nuevoIngreso boolean para filtrar si es de nuevo ingreso o no
+   * @return List con las asignaciones
+   */
+  public List<AsignaturasMatricula> listarAsignaciones(boolean nuevoIngreso);
 }
