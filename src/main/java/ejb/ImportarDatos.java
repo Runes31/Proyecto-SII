@@ -13,7 +13,6 @@ import com.opencsv.exceptions.CsvException;
 public interface ImportarDatos {
   
   /**
-   * Requisito 006 y Requisito 012
    * Importa los datos de los alumnos desde un fichero Excel o CSV
    * Además importa las preferecnias de los alumnos en la elección de grupos
    * @param fichero

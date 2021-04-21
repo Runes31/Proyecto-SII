@@ -67,5 +67,10 @@
       <artifactId>opencsv</artifactId>
       <version>5.3</version>
   	</dependency>
+  	<dependency>
+    	<groupId>es.uma.informatica.sii</groupId>
+    	<artifactId>anotaciones</artifactId>
+    	<version>0.0.1</version>
+	</dependency>
   </dependencies>
 </project>
