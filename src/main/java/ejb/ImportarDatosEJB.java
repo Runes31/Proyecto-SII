@@ -198,7 +198,7 @@ public class ImportarDatosEJB implements ImportarDatos{
   }
   
   
-  public void importarAsignaturanExcel(File fichero) {
+  public void importarAsignaturasExcel(File fichero) {
     try {
       FileInputStream file = new FileInputStream(fichero);
       try (XSSFWorkbook workbook = new XSSFWorkbook(file)) {

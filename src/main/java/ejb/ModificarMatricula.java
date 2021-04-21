@@ -1,7 +1,5 @@
 package ejb;
 
-
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +16,6 @@ public class ModificarMatricula implements GestionMatricula {
   private EntityManager em;
   @Override
   public void actualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException {
-  //busca el matricula si no esta lanaza una exception y si esta se modifica con el .merge
     Matricula p=em.find(Matricula.class, matricula);
     if(p==null) throw new MatriculaNoEncontradaException();
     em.merge(matricula);
@@ -31,11 +28,7 @@ public class ModificarMatricula implements GestionMatricula {
 	  
 	  String consulta = "Select * from Matricula";
 	  em.createQuery(consulta);
-	
-	 
 	  
   }
-
-	
 
 }

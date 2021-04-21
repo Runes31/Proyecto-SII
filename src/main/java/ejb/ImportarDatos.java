@@ -45,6 +45,6 @@ public interface ImportarDatos {
    * @throws FileNotFoundException 
    */
   
-  public void importarAsignaturanExcel(File fichero);
+  public void importarAsignaturasExcel(File fichero);
 
 }

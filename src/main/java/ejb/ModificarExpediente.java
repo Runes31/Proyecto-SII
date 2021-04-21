@@ -13,7 +13,6 @@ public class ModificarExpediente implements GestionExpediente {
   
   @PersistenceContext(name="Proyecto-SII")
   private EntityManager em;
-  
 
   @Override
   public void actualizarExpediente(Expediente expediente) throws ExpedienteNoEcontradoException {
