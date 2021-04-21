@@ -6,7 +6,6 @@ import domain.Encuesta;
 import domain.Expediente;
 import domain.Grupo;
 import domain.GruposPorAsignatura;
-import exceptions.ExpedienteNoEcontradoException;
 import exceptions.GrupoNoEncontradoException;
 
 
@@ -20,10 +19,8 @@ import javax.persistence.PersistenceContext;
 
 
 import domain.Matricula;
-import domain.Titulacion;
 import exceptions.MatriculaNoEncontradaException;
-import exceptions.ProyectoException;
-import exceptions.TitulacionNoEncontradaException;
+
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -91,6 +88,7 @@ public class GestionMatriculaEJB implements GestionMatricula {
     }
   }
 
+  @Override
   public List<Matricula> getAllMatriculas(){
     CriteriaBuilder cb = em.getCriteriaBuilder();
     CriteriaQuery<Matricula> cq = cb.createQuery(Matricula.class);
@@ -146,27 +144,6 @@ public class GestionMatriculaEJB implements GestionMatricula {
     em.merge(encuesta);
   }
 
-	@Override
-	public List<Matricula> visualizarMatricula(Titulacion titulacion,Grupo grupo, Expediente expediente) throws ProyectoException {
-		List<Matricula> matriculas;
-		Expediente t  =em.find(Expediente.class, expediente);
-	    if(t==null) throw new ExpedienteNoEcontradoException();
-		matriculas = getAllMatriculas().stream().filter(a -> a.getExpediente().equals(expediente)).collect(Collectors.toList());
-		
-		return matriculas;
-		
-		 
-		
-	}
 	
-	public List<Matricula> MatriculasExpediente(Expediente expediente){
-		Expediente t  =em.find(Expediente.class, expediente);
-	    if(t==null) throw new ExpedienteNoEcontradoException();
-	    visualizarMatricula();
-	}
-	/*
-	 * List<Matricula> matriculas = getAllMatriculas().stream().collect(Collectors.toList());
-	 * return matriculaas;
-	 */
 
 }
