@@ -10,7 +10,7 @@ public interface GestionExpediente {
    * Requisito 007
    * Actualizar un expediente a partir de los datos de entrada
    * @param expediente
-   * @throws expedienteNoEncontradoException
+   * @throws ExpedienteNoEcontradoException
    */
   public void actualizarExpediente(Expediente expediente) throws ExpedienteNoEcontradoException;
 

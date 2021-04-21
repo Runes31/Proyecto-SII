@@ -3,11 +3,13 @@ package domain;
 import domain.Matricula.MatriculaId;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @IdClass(MatriculaId.class)
@@ -29,6 +31,8 @@ public class Matricula{
   private Date fechaMatricula;
   private boolean nuevoIngreso;
   private String listadoAsignaturas;
+  @OneToMany(mappedBy = "matricula")
+  private List<AsignaturasMatricula> asignaturasMatriculas;
   @Id
   @ManyToOne
   private Expediente expediente;
@@ -97,6 +101,14 @@ public class Matricula{
 
   public void setExpediente(Expediente expediente) {
     this.expediente = expediente;
+  }
+
+  public List<AsignaturasMatricula> getAsignaturasMatriculas() {
+    return asignaturasMatriculas;
+  }
+
+  public void setAsignaturasMatriculas(List<AsignaturasMatricula> asignaturasMatriculas) {
+    this.asignaturasMatriculas = asignaturasMatriculas;
   }
 
   @Override
