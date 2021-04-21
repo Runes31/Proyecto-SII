@@ -1,5 +1,8 @@
 package ejb;
 
+import domain.Grupo;
+import exceptions.GrupoAsignaturaYaRelacionadoException;
+import exceptions.GrupoNoEncontradoException;
 import java.util.Iterator;
 
 import javax.ejb.Stateless;
@@ -39,14 +42,22 @@ public class ModificarAsignaturaEJB implements GestionAsignatura {
 		AsignaturasMatricula am = iterator.next();
 		em.remove(am);
 	}
-	  
 	  em.remove(asignatura);
-	  
-	  
-	 
   }
 
+  @Override
+  public void addGrupoAsignatura(Asignatura asignatura, Grupo grupo)
+      throws GrupoAsignaturaYaRelacionadoException, AsignaturaNoEncontradaException, GrupoNoEncontradoException {
+    if(em.find(Asignatura.class, asignatura) == null) throw new AsignaturaNoEncontradaException();
+    if(em.find(Grupo.class, grupo) == null) throw new GrupoNoEncontradoException();
 
-  
-  
+    if(asignatura.getGruposPorAsignatura().stream().anyMatch(gpa -> gpa.getGrupo().equals(grupo)))
+      throw new GrupoAsignaturaYaRelacionadoException();
+
+    GruposPorAsignatura gpa = new GruposPorAsignatura();
+    gpa.setAsignatura(asignatura);
+    gpa.setGrupo(grupo);
+
+    em.persist(gpa);
+  }
 }
