@@ -1,8 +1,12 @@
 package ejb;
 
+import domain.Asignatura;
 import domain.AsignaturasMatricula;
+import domain.Encuesta;
+import domain.GruposPorAsignatura;
 import exceptions.GrupoNoEncontradoException;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.Local;
 
 import domain.Matricula;
@@ -44,4 +48,27 @@ public interface GestionMatricula {
    * @return List con las asignaciones
    */
   public List<AsignaturasMatricula> listarAsignaciones(boolean nuevoIngreso);
+
+  /**
+   * Genera la lista de opciones que tiene un alumno para cada asignatura en la que se ha matriculado
+   * @param matricula Matricula del alumno en cuestión
+   * @return Map que de key tiene la asignatura y de value los posibles grupos
+   * @throws MatriculaNoEncontradaException Si no existe la matricula
+   */
+  public Map<Asignatura, List<GruposPorAsignatura>> generarEncuesta(Matricula matricula) throws MatriculaNoEncontradaException;
+
+  /**
+   * Obtiene las preferencias de un alumno
+   * @param matricula Matricula del alumno
+   * @return Encuesta con las preferencias que rellenó
+   * @throws MatriculaNoEncontradaException Si no existe la matricula
+   */
+  public Encuesta obtenerPreferencias(Matricula matricula) throws MatriculaNoEncontradaException;
+
+  /**
+   * Guarda las nuevas preferencias del alumno, independientemente de si ya había rellenado una
+   * encuesta antes o no
+   * @param encuesta Encuesta con las preferencias a guardar
+   */
+  public void guardarPreferencias(Encuesta encuesta);
 }

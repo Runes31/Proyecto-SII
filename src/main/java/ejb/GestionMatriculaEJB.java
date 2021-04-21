@@ -1,6 +1,5 @@
 package ejb;
 
-import domain.Alumno;
 import domain.Asignatura;
 import domain.AsignaturasMatricula;
 import domain.Encuesta;
@@ -8,9 +7,9 @@ import domain.Expediente;
 import domain.Grupo;
 import domain.GruposPorAsignatura;
 import exceptions.GrupoNoEncontradoException;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-import java.util.function.Function;
+import java.util.Map;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -118,5 +117,34 @@ public class GestionMatriculaEJB implements GestionMatricula {
     List<AsignaturasMatricula> asignaciones = listarAsignaciones();
     return asignaciones.stream().filter(a -> a.getMatricula().isNuevoIngreso() == nuevoIngreso).collect(
         Collectors.toList());
+  }
+
+  @Override
+  public Map<Asignatura, List<GruposPorAsignatura>> generarEncuesta(Matricula matricula) throws MatriculaNoEncontradaException {
+    if(em.find(Matricula.class, matricula) == null) throw new MatriculaNoEncontradaException();
+    Map<Asignatura, List<GruposPorAsignatura>> res = new HashMap<>();
+
+    matricula.getAsignaturasMatriculas().forEach(am -> {
+      res.put(am.getAsignatura(), am.getAsignatura().getGruposPorAsignatura());
+    });
+
+    return res;
+  }
+
+  @Override
+  public Encuesta obtenerPreferencias(Matricula matricula) throws MatriculaNoEncontradaException {
+    if(em.find(Matricula.class, matricula) == null) throw new MatriculaNoEncontradaException();
+    return matricula.getExpediente().getEncuestas().stream()
+        .max((e1, e2) -> e1.getFechaEnvio().compareTo(e2.getFechaEnvio())).orElse(null);
+  }
+
+  @Override
+  public void guardarPreferencias(Encuesta encuesta) {
+    /*
+     Independientemente de si existe o no la guardamos/actualizamos
+     Puede quitar preferencias por lo que nos da igual la diferencia que haya entre lo que tenemos
+     en la base de datos y lo nuevo que nos envia
+     */
+    em.merge(encuesta);
   }
 }
