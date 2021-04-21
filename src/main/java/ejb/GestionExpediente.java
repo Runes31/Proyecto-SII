@@ -7,7 +7,6 @@ import exceptions.ExpedienteNoEcontradoException;
 @Local
 public interface GestionExpediente {
   /**
-   * Requisito 007
    * Actualizar un expediente a partir de los datos de entrada
    * @param expediente
    * @throws ExpedienteNoEcontradoException

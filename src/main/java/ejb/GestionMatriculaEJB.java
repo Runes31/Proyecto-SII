@@ -29,9 +29,9 @@ public class GestionMatriculaEJB implements GestionMatricula {
   
   @PersistenceContext(name="Proyecto-SII")
   private EntityManager em;
+
   @Override
   public void actualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException {
-  //busca el matricula si no esta lanaza una exception y si esta se modifica con el .merge
     Matricula p=em.find(Matricula.class, matricula);
     if(p==null) throw new MatriculaNoEncontradaException();
     em.merge(matricula);
@@ -94,4 +94,12 @@ public class GestionMatriculaEJB implements GestionMatricula {
     return allQuery.getResultList();
   }
 
+  @Override
+  public void visualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException {
+    Matricula p=em.find(Matricula.class, matricula);
+    if(p==null) throw new MatriculaNoEncontradaException();
+
+    String consulta = "Select * from Matricula";
+    em.createQuery(consulta);
+  }
 }

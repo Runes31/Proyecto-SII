@@ -29,6 +29,9 @@ import domain.Expediente;
 import domain.Matricula;
 import domain.Optativa;
 import domain.Titulacion;
+import exceptions.AlumnoNoEncontradoException;
+import exceptions.AsignaturaNoEncontradaException;
+import exceptions.TitulacionNoEncontradaException;
 
 @Stateless
 public class ImportarDatosEJB implements ImportarDatos{
@@ -44,12 +47,12 @@ public class ImportarDatosEJB implements ImportarDatos{
       List<String[]> l = reader.readAll();
       for(int i = 0; i < l.size(); i++) {
         if(i == 0) {
-          str = Arrays.toString(l.get(i));
+          str = Arrays.toString(l.get(0));
           String[] aux = str.split(";");
           cursoAcademido = aux[1];
         }
         if(i == 2) {
-          str = Arrays.toString(l.get(i));
+          str = Arrays.toString(l.get(1));
           String[] aux = str.split(";");
           estadoMatricula = aux[1];
         }
@@ -103,18 +106,19 @@ public class ImportarDatosEJB implements ImportarDatos{
       XSSFSheet sheet = workbook.getSheetAt(0);
       
       Iterator<Row> rowIterator = sheet.iterator();
+      Alumno al = new Alumno();
+      Expediente exp = new Expediente();
+      Matricula m = new Matricula();
+      Row row = rowIterator.next();
+      Iterator<Cell> cellIterator = row.cellIterator();
+      cellIterator.next();
+      m.setCursoAcademico(cellIterator.next().toString());
+      row = rowIterator.next();
+      row = rowIterator.next();
+      cellIterator.next();
+      m.setEstado(cellIterator.next().toString());
+      row = rowIterator.next();
       while (rowIterator.hasNext()) {
-          Alumno al = new Alumno();
-          Expediente exp = new Expediente();
-          Matricula m = new Matricula();
-          Row row = rowIterator.next();
-          Iterator<Cell> cellIterator = row.cellIterator();
-          Cell cell = cellIterator.next();
-          m.setCursoAcademico(cellIterator.next().toString());
-          cell = cellIterator.next();
-          cell = cellIterator.next();
-          cell = cellIterator.next();
-          m.setEstado(cellIterator.next().toString());
           row = rowIterator.next();
           al.setDni(cellIterator.next().toString());
           String nombre = cellIterator.next().toString();
@@ -150,14 +154,15 @@ public class ImportarDatosEJB implements ImportarDatos{
           em.persist(exp);
          
       }
-      file.close(); workbook.close();
+      file.close(); 
+      workbook.close();
     } catch (Exception e) { e.printStackTrace(); }    
   }
   
   public void importarTitulacionCSV(File fichero) throws IOException, CsvException {
     try (CSVReader reader = new CSVReader(new FileReader(fichero))) {
       List<String[]> l = reader.readAll();
-      for(int i = 0; i < l.size(); i++) {
+      for(int i = 1; i < l.size(); i++) {
         Titulacion t = new Titulacion();
         String str = Arrays.toString(l.get(i));
         String[] aux = str.split(";");
@@ -177,13 +182,14 @@ public class ImportarDatosEJB implements ImportarDatos{
       XSSFSheet sheet = workbook.getSheetAt(0);
       
       Iterator<Row> rowIterator = sheet.iterator();
+      Row row = rowIterator.next();
       while (rowIterator.hasNext()) {
         Titulacion t = new Titulacion();
-        Row row = rowIterator.next();
+        row = rowIterator.next();
         Iterator<Cell> cellIterator = row.cellIterator();
         t.setCodigo(cellIterator.next().toString());
         t.setNombre(cellIterator.next().toString());
-        t.setCodigo(cellIterator.next().toString());  
+        t.setCreditos(Integer.valueOf(cellIterator.next().toString()));  
         
         em.persist(t);
       }
@@ -192,72 +198,70 @@ public class ImportarDatosEJB implements ImportarDatos{
   }
   
   
-  public void importarAsignaturanExcel(File fichero) {
+  public void importarAsignaturasExcel(File fichero) {
     try {
       FileInputStream file = new FileInputStream(fichero);
-      XSSFWorkbook workbook = new XSSFWorkbook(file);
-      for(int i = 0; i < workbook.getNumberOfSheets(); i++) {
-        if(i == 0) {
+      try (XSSFWorkbook workbook = new XSSFWorkbook(file)) {
+        for(int i = 2; i < workbook.getNumberOfSheets(); i++) {
           XSSFSheet sheet = workbook.getSheetAt(i);
           Iterator<Row> rowIterator = sheet.iterator();
-          while (rowIterator.hasNext()) {
-            Optativa opt = new Optativa();
-            Row row = rowIterator.next();
-            Iterator<Cell> cellIterator = row.cellIterator();
-            asig.setOfertada(Boolean.parseBoolean(cellIterator.next().toString()));
-            asig.setCodigo(cellIterator.next().toString());
-            asig.setReferencia(cellIterator.next().toString());
-            asig.setNombre(cellIterator.next().toString());
-            asig.setCurso(Integer.valueOf(cellIterator.next().toString()));
-            asig.setCreditos(Integer.valueOf(cellIterator.next().toString()));
-            asig.setCuatrimestre(cellIterator.next().toString());
-            asig.setIdiomas(cellIterator.next().toString());
-           
-            em.persist(asig);
-          }
-        }
-        if(i == 1) {
-          XSSFSheet sheet = workbook.getSheetAt(i);
-          Iterator<Row> rowIterator = sheet.iterator();
+          Row row = rowIterator.next();
           while (rowIterator.hasNext()) {
             Asignatura asig = new Asignatura();
-            Row row = rowIterator.next();
+            row = rowIterator.next();
             Iterator<Cell> cellIterator = row.cellIterator();
+            Titulacion titulacion = new Titulacion();
+            titulacion.setCodigo(cellIterator.next().toString());
+            titulacion = em.find(Titulacion.class, titulacion);
+            if(titulacion == null) throw new TitulacionNoEncontradaException();
+            asig.setTitulacion(titulacion);
             asig.setOfertada(Boolean.parseBoolean(cellIterator.next().toString()));
             asig.setCodigo(cellIterator.next().toString());
-            asig.setReferencia(cellIterator.next().toString());
+            String referencia = cellIterator.next().toString();
+            asig.setReferencia(referencia);
             asig.setNombre(cellIterator.next().toString());
             asig.setCurso(Integer.valueOf(cellIterator.next().toString()));
             asig.setCreditos(Integer.valueOf(cellIterator.next().toString()));
-            asig.setCuatrimestre(cellIterator.next().toString());
+            cellIterator.next();
+            cellIterator.next();
+            asig.setCuatrimestre(cellIterator.next().toString()); 
+            cellIterator.next();
             asig.setIdiomas(cellIterator.next().toString());
-           
-            em.persist(asig);
+            
+            XSSFSheet sheet0 = workbook.getSheetAt(0);
+            Iterator<Row> rowIterator0 = sheet0.iterator();
+            Row row0 = rowIterator0.next();
+            int j = 0;
+            while(rowIterator0.hasNext() && j == 0) {
+              row0 = rowIterator0.next();
+              Iterator<Cell> cellIterator0 = row0.cellIterator();
+              if(referencia.equals(cellIterator0.next().toString())) {
+                Optativa optativa = (Optativa) asig;
+                optativa.setPlazas(Integer.valueOf(cellIterator0.next().toString()));
+                j++;
+                em.persist(optativa);
+              }
+            }
+              
+            XSSFSheet sheet1 = workbook.getSheetAt(1);
+            Iterator<Row> rowIterator1 = sheet1.iterator();
+            Row row1 = rowIterator1.next();
+            while(rowIterator1.hasNext() && j == 0) {
+              row1 = rowIterator1.next();
+              Iterator<Cell> cellIterator1 = row1.cellIterator();
+              if(referencia.equals(cellIterator1.next().toString())) {
+                Optativa optativa = (Optativa) asig;
+                optativa.setPlazas(Integer.valueOf(cellIterator1.next().toString()));
+                optativa.setMencion(cellIterator1.next().toString());
+                j++;
+                em.persist(optativa);
+              }
+            }
+            if(j == 0) { em.persist(asig); }
           }
         }
-        if(i > 1) {
-          XSSFSheet sheet = workbook.getSheetAt(i);
-          Iterator<Row> rowIterator = sheet.iterator();
-          while (rowIterator.hasNext()) {
-            Asignatura asig = new Asignatura();
-            Row row = rowIterator.next();
-            Iterator<Cell> cellIterator = row.cellIterator();
-            asig.setOfertada(Boolean.parseBoolean(cellIterator.next().toString()));
-            asig.setCodigo(cellIterator.next().toString());
-            asig.setReferencia(cellIterator.next().toString());
-            asig.setNombre(cellIterator.next().toString());
-            asig.setCurso(Integer.valueOf(cellIterator.next().toString()));
-            asig.setCreditos(Integer.valueOf(cellIterator.next().toString()));
-            asig.setCuatrimestre(cellIterator.next().toString());
-            asig.setIdiomas(cellIterator.next().toString());
-           
-            em.persist(asig);
-          }
-        }
-      }
       file.close(); workbook.close();
+      }
     } catch (Exception e) { e.printStackTrace(); }    
   }
-
-  
 }
