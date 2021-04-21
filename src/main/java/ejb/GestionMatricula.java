@@ -1,6 +1,6 @@
 package ejb;
 
-
+import exceptions.GrupoNoEncontradoException;
 import javax.ejb.Local;
 
 import domain.Matricula;
@@ -17,11 +17,12 @@ public interface GestionMatricula {
   public void actualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException ;
   
   /**
-   * Visualizar todos los datos de la matrícula solicita como entrada
+   * Visualizar todos los datos de la matrï¿½cula solicita como entrada
    * @param matricula
    * @throws MatriculaNoEncontradaException
    */
   
   public void visualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException ;
-  
+
+  public void generarAsignaciones() throws GrupoNoEncontradoException;
 }
