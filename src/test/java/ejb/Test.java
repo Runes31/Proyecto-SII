@@ -15,7 +15,6 @@ import javax.persistence.Persistence;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
 public class Test {
 
@@ -36,34 +35,7 @@ private static final Logger LOG = Logger.getLogger(Test.class.getCanonicalName()
     ctx = ejbContainer.getContext();
   }
   
-  @Before
-  public void setup() throws NamingException  {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Proecto-SII");
-    EntityManager em = emf.createEntityManager();
-    em.getTransaction().begin();
-    //TODO: Crear base de batos con usando las importaciones
-    em.getTransaction().commit();
-  }
-
-  @Test
-  public void testComprobarImportaciones() {
-    //TODO: Comprobar que las importaciones son correctas    
-  }
-  
-  @Test
-  public void testModificarAlumno() {
-    //TODO: Comprobar que se puede modificar un alumno    
-  }
-  
-  @Test
-  public void testModificarAsignatura() {
-    //TODO: Comprobar que se puede modificar una asignatura
-  }
-  
-  @Test
-  public void testModificarExpediente() {
-    //TODO: Comprobar que se puede modificar un expediente
-  }
+    
     
   @AfterClass
   public static void tearDownClass() {
