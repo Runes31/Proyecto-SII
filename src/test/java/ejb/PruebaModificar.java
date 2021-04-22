@@ -8,7 +8,8 @@ import javax.persistence.Persistence;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ImportarDatosTest {
+
+public class PruebaModificar {
   
   @Before
   public void setup() throws NamingException  {
@@ -18,20 +19,20 @@ public class ImportarDatosTest {
     //TODO: Crear base de batos con usando las importaciones
     em.getTransaction().commit();
   }
-
+  
   @Test
-  public void testImportarAlumnos() {
-    //TODO: Comprobar que las importaciones son correctas    
+  public void testModificarAlumno() {
+    //TODO: Comprobar que se puede modificar un alumno    
   }
   
   @Test
-  public void testImportarTitulaciones() {
-    //TODO: Comprobar que las importaciones son correctas    
+  public void testModificarAsignatura() {
+    //TODO: Comprobar que se puede modificar una asignatura
   }
   
   @Test
-  public void testImportarAsignaturas() {
-    //TODO: Comprobar que las importaciones son correctas    
+  public void testModificarExpediente() {
+    //TODO: Comprobar que se puede modificar un expediente
   }
 
 }
