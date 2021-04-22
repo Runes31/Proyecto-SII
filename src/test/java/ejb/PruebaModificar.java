@@ -1,11 +1,16 @@
 package ejb;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Logger;
 
 import javax.naming.NamingException;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.opencsv.exceptions.CsvException;
 
 
 public class PruebaModificar {
@@ -14,7 +19,7 @@ public class PruebaModificar {
 
   
   @Before
-  public void setup() throws NamingException  {
+  public void setup() throws NamingException, FileNotFoundException, IOException, CsvException, ParseException  {
     BaseDatos.inicializaBaseDatos("Proyecto-SII");
   }
   

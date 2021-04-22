@@ -155,8 +155,7 @@ public class ImportarDatosEJB implements ImportarDatos{
           em.persist(exp);
          
       }
-      file.close(); 
-      workbook.close();
+      file.close();
     } catch (Exception e) { e.printStackTrace(); }    
   }
   

@@ -1,5 +1,8 @@
 package ejb;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Logger;
 
 import javax.naming.NamingException;
@@ -7,13 +10,15 @@ import javax.naming.NamingException;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.opencsv.exceptions.CsvException;
+
 public class PruebaImportarDatos {
   
   private static final Logger LOG = Logger.getLogger(PruebaImportarDatos.class.getCanonicalName());
 
   
   @Before
-  public void setup() throws NamingException  {
+  public void setup() throws NamingException, FileNotFoundException, IOException, CsvException, ParseException  {
     BaseDatos.inicializaBaseDatos("Proyecto-SII");
   }
 
