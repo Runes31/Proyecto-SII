@@ -1,16 +1,30 @@
 package ejb;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
+import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
+
+import com.opencsv.exceptions.CsvException;
+
+import domain.Asignatura;
+import exceptions.AsignaturaNoEncontradaException;
 
 
 @RunWith(Suite.class)
@@ -34,7 +48,7 @@ public class SuiteTest {
     ctx = ejbContainer.getContext();
   }
   
-      
+        
   @AfterClass
   public static void tearDownClass() {
     if (ejbContainer != null) {
