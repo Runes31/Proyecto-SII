@@ -194,7 +194,7 @@ public class ImportarDatosEJB implements ImportarDatos{
         
         em.persist(t);
       }
-      file.close(); workbook.close();
+      file.close();
     } catch (Exception e) { e.printStackTrace(); }    
   }
   
@@ -261,7 +261,7 @@ public class ImportarDatosEJB implements ImportarDatos{
             if(j == 0) { em.persist(asig); }
           }
         }
-      file.close(); workbook.close();
+      file.close();
       }
     } catch (Exception e) { e.printStackTrace(); }    
   }
