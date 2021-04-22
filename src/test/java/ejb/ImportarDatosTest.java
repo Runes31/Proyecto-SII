@@ -14,7 +14,7 @@ public class ImportarDatosTest {
   
   @Before
   public void setup() throws NamingException  {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Proecto-SII");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Proyecto-SII");
     EntityManager em = emf.createEntityManager();
     em.getTransaction().begin();
     //TODO: Crear base de batos con usando las importaciones
