@@ -19,8 +19,8 @@ public class BaseDatos {
     EntityManager em = emf.createEntityManager();
     
     ImportarDatosEJB importarDatos = new ImportarDatosEJB();
-    File file = new File("\\Proyecto-SII\\DATOS\\alumnos.xlsx");
-    importarDatos.importarAlumnosExcel(file);
+    File file = new File("D:\\Universidad - Informática\\Tercero\\Sistemas de Información para Internet\\Trabajo\\Tarea 1\\ProyectoSII\\Proyecto-SII\\DATOS\\Oferta asignaturas.xlsx");
+    importarDatos.importarAsignaturasExcel(file);
     
     em.close();
     emf.close();

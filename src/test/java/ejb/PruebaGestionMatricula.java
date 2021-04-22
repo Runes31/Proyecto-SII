@@ -1,6 +1,5 @@
 package ejb;
 
-import java.util.logging.Logger;
 
 //import static org.junit.Assert.assertThrows;
 
@@ -13,9 +12,6 @@ import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class PruebaGestionMatricula {
   
-  private static final Logger LOG = Logger.getLogger(PruebaGestionMatricula.class.getCanonicalName());
-
-
   //private GestionMatricula gestionMatricula;
   
   @Before

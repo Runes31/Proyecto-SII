@@ -3,7 +3,6 @@ package ejb;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.logging.Logger;
 
 import javax.naming.NamingException;
 
@@ -14,9 +13,6 @@ import com.opencsv.exceptions.CsvException;
 
 
 public class PruebaModificar {
-  
-  private static final Logger LOG = Logger.getLogger(PruebaModificar.class.getCanonicalName());
-
   
   @Before
   public void setup() throws NamingException, FileNotFoundException, IOException, CsvException, ParseException  {

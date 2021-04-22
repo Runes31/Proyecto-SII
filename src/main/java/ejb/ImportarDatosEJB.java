@@ -212,7 +212,7 @@ public class ImportarDatosEJB implements ImportarDatos{
             Iterator<Cell> cellIterator = row.cellIterator();
             Titulacion titulacion = new Titulacion();
             titulacion.setCodigo(cellIterator.next().toString());
-            titulacion = em.find(Titulacion.class, titulacion);
+            titulacion = em.find(Titulacion.class, titulacion.getCodigo());
             if(titulacion == null) throw new TitulacionNoEncontradaException();
             asig.setTitulacion(titulacion);
             asig.setOfertada(Boolean.parseBoolean(cellIterator.next().toString()));
