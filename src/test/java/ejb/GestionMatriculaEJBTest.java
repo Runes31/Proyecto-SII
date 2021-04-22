@@ -1,20 +1,12 @@
 package ejb;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThrows;
 
-import domain.Asignatura;
-import domain.AsignaturasMatricula;
-import domain.Expediente;
-import domain.Matricula;
-import es.uma.informatica.sii.anotaciones.Requisitos;
-import exceptions.GrupoNoEncontradoException;
-import exceptions.MatriculaNoEncontradaException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.ejb.embeddable.EJBContainer;
 import org.junit.Before;
 import org.junit.Test;
+
+import es.uma.informatica.sii.anotaciones.Requisitos;
+import exceptions.GrupoNoEncontradoException;
 
 public class GestionMatriculaEJBTest {
 

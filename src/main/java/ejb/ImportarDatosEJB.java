@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.Arrays;
 import java.util.Date;
 import java.text.ParseException;
@@ -29,13 +30,13 @@ import domain.Expediente;
 import domain.Matricula;
 import domain.Optativa;
 import domain.Titulacion;
-import exceptions.AlumnoNoEncontradoException;
-import exceptions.AsignaturaNoEncontradaException;
 import exceptions.TitulacionNoEncontradaException;
 
 @Stateless
 public class ImportarDatosEJB implements ImportarDatos{
-
+  
+  private static final Logger LOG = Logger.getLogger(ImportarDatosEJB.class.getCanonicalName());
+  
   @PersistenceContext(name="Proyecto-SII")
   private EntityManager em;
   

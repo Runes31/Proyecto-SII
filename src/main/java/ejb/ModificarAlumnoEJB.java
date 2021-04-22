@@ -1,16 +1,18 @@
 package ejb;
 
+import java.util.logging.Logger;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import domain.Alumno;
-import domain.Expediente;
 import exceptions.AlumnoNoEncontradoException;
-import exceptions.ExpedienteNoEcontradoException;
 
 @Stateless
-public class ModificarAlumno implements GestionAlumno {
+public class ModificarAlumnoEJB implements GestionAlumno {
+  
+  private static final Logger LOG = Logger.getLogger(ModificarAlumnoEJB.class.getCanonicalName());
   
   @PersistenceContext(name="Proyecto-SII")
   private EntityManager em;

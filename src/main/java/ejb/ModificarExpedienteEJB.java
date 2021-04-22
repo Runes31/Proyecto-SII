@@ -1,5 +1,7 @@
 package ejb;
 
+import java.util.logging.Logger;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,7 +11,9 @@ import domain.Expediente;
 import exceptions.ExpedienteNoEcontradoException;
 
 @Stateless
-public class ModificarExpediente implements GestionExpediente {
+public class ModificarExpedienteEJB implements GestionExpediente {
+  
+  private static final Logger LOG = Logger.getLogger(ModificarExpedienteEJB.class.getCanonicalName());
   
   @PersistenceContext(name="Proyecto-SII")
   private EntityManager em;

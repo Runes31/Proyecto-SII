@@ -12,6 +12,7 @@ import exceptions.GrupoNoEncontradoException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -30,9 +31,11 @@ import javax.persistence.criteria.Root;
 @Stateless
 public class GestionMatriculaEJB implements GestionMatricula {
   
+  private static final Logger LOG = Logger.getLogger(GestionMatriculaEJB.class.getCanonicalName());
+  
   @PersistenceContext(name="Proyecto-SII")
   private EntityManager em;
-
+  
   @Override
   public void actualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException {
     Matricula p=em.find(Matricula.class, matricula);

@@ -1,7 +1,5 @@
 package ejb;
 
-import static org.junit.Assert.*;
-
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

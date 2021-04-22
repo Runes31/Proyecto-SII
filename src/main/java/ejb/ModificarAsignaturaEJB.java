@@ -4,6 +4,7 @@ import domain.Grupo;
 import exceptions.GrupoAsignaturaYaRelacionadoException;
 import exceptions.GrupoNoEncontradoException;
 import java.util.Iterator;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,6 +18,8 @@ import exceptions.AsignaturaNoEncontradaException;
 
 @Stateless
 public class ModificarAsignaturaEJB implements GestionAsignatura {
+  
+  private static final Logger LOG = Logger.getLogger(ModificarAsignaturaEJB.class.getCanonicalName());
 
   @PersistenceContext(name="Proyecto-SII")
   private EntityManager em;
