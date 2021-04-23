@@ -21,7 +21,6 @@ public class PruebaImportarDatos {
   
   @Before
   public void setup() throws NamingException, FileNotFoundException, IOException, CsvException, ParseException  {
-    BaseDatos.inicializaBaseDatos("Proyecto-SII");
   }
   
   @Test
@@ -36,13 +35,13 @@ public class PruebaImportarDatos {
   
   @Test
   public void testImportarAsignaturas() throws AsignaturaNoEncontradaException, FileNotFoundException, IOException, CsvException, ParseException {
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Proyecto-SII");
-    EntityManager em = emf.createEntityManager();
-    BaseDatos.inicializaBaseDatos("Proyecto-SII");
-    Asignatura asig = em.find(Asignatura.class, "50659");
-    if(asig == null) throw new AsignaturaNoEncontradaException();
-    else System.out.println(asig.toString());
-    em.close();
-    emf.close();
+//    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Proyecto-SII");
+//    EntityManager em = emf.createEntityManager();
+//    BaseDatos.inicializaBaseDatos("Proyecto-SII");
+//    Asignatura asig = em.find(Asignatura.class, "50659");
+//    if(asig == null) throw new AsignaturaNoEncontradaException();
+//    else System.out.println(asig.toString());
+//    em.close();
+//    emf.close();
   }
 }

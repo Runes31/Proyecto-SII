@@ -1,23 +1,16 @@
 package ejb;
 
-
-//import static org.junit.Assert.assertThrows;
-
-
+import es.uma.informatica.sii.anotaciones.Requisitos;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.uma.informatica.sii.anotaciones.Requisitos;
-//import exceptions.GrupoNoEncontradoException;
-
 public class PruebaGestionMatricula {
   
-  //private GestionMatricula gestionMatricula;
+  private GestionMatricula gestionMatricula;
   
   @Before
   public void setUp() throws Exception  {
-    BaseDatos.inicializaBaseDatos("Proyecto-SII");
-    //gestionMatricula = new GestionMatriculaEJB();
+    gestionMatricula = (GestionMatricula) SuiteTest.ctx.lookup("java:global/classes/GestionMatriculaEJB");
   }
 
   @Test
