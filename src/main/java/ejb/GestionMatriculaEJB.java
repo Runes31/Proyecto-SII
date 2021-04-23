@@ -39,7 +39,7 @@ public class GestionMatriculaEJB implements GestionMatricula {
   
   @Override
   public void actualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException {
-    Matricula p=em.find(Matricula.class, matricula);
+    Matricula p=em.find(Matricula.class, matricula.getCursoAcademico());
     if(p==null) throw new MatriculaNoEncontradaException();
     em.merge(matricula);
   }

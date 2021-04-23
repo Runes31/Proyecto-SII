@@ -40,7 +40,7 @@ public class ModificarAsignaturaEJB implements GestionAsignatura {
 
   @Override
   public void borrarAsignatura(Asignatura asignatura) throws AsignaturaNoEncontradaException {
-	  Asignatura asig = em.find(Asignatura.class, asignatura);
+	  Asignatura asig = em.find(Asignatura.class, asignatura.getReferencia());
 	  if (asig == null) throw new AsignaturaNoEncontradaException();
 	  
 	  for (Iterator<GruposPorAsignatura> iterator = asig.getGruposPorAsignatura().iterator(); iterator.hasNext();) {

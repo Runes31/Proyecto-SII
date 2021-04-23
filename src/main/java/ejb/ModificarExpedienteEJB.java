@@ -27,7 +27,7 @@ public class ModificarExpedienteEJB implements GestionExpediente {
   @Override
   public void actualizarExpediente(Expediente expediente) throws ExpedienteNoEcontradoException {
     //busca el expediente si no esta lanaza una exception y si esta se modifica con el .merge
-    Expediente p=em.find(Expediente.class, expediente);
+    Expediente p=em.find(Expediente.class, expediente.getNumExpediente());
     if(p==null) throw new ExpedienteNoEcontradoException();
     em.merge(expediente);
     
