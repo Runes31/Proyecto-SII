@@ -4,6 +4,7 @@ import domain.Asignatura;
 import domain.AsignaturasMatricula;
 import domain.Encuesta;
 import domain.GruposPorAsignatura;
+import exceptions.AsignaturaNoEncontradaException;
 import exceptions.GrupoNoEncontradoException;
 
 
@@ -72,4 +73,12 @@ public interface GestionMatricula {
    * @param encuesta Encuesta con las preferencias a guardar
    */
   public void guardarPreferencias(Encuesta encuesta);
+
+  /**
+   * Encuentra una matricula por su pk
+   * @param curso academico
+   * @return Objeto tipo Matricula
+   * @throws MatriculaaNoEncontradaException
+   */
+  public Matricula findMatricula(String cursoAcademico) throws MatriculaNoEncontradaException;
 }

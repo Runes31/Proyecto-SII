@@ -3,9 +3,14 @@ package ejb;
 import domain.Grupo;
 import exceptions.GrupoAsignaturaYaRelacionadoException;
 import exceptions.GrupoNoEncontradoException;
+
+import java.util.List;
+
 import javax.ejb.Local;
 
+import domain.Alumno;
 import domain.Asignatura;
+import exceptions.AlumnoNoEncontradoException;
 import exceptions.AsignaturaNoEncontradaException;
 
 
@@ -37,4 +42,15 @@ public interface GestionAsignatura {
    */
   public void addGrupoAsignatura(Asignatura asignatura, Grupo grupo)
       throws GrupoAsignaturaYaRelacionadoException, AsignaturaNoEncontradaException, GrupoNoEncontradoException;
+
+
+  /**
+   * Encuentra una asignatura por su pk
+   * @param referencia
+   * @return Objeto tipo Asignatura
+   * @throws AsignaturaNoEncontradaException
+   */
+  public Asignatura findAsignatura(String referencia) throws AsignaturaNoEncontradaException;
+  
+  public List<Asignatura> getAllAsignatura();
 }

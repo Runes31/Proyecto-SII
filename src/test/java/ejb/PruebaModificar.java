@@ -5,8 +5,13 @@ import static org.junit.Assert.fail;
 
 import com.opencsv.exceptions.CsvException;
 import domain.Alumno;
+import domain.Asignatura;
+import domain.Expediente;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 import exceptions.AlumnoNoEncontradoException;
+import exceptions.AsignaturaNoEncontradaException;
+import exceptions.ExpedienteNoEcontradoException;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
@@ -20,10 +25,14 @@ import org.junit.Test;
 public class PruebaModificar {
 
   GestionAlumno ga;
+  GestionAsignatura gasi;
+  GestionExpediente ge;
 
   @Before
   public void setup() throws NamingException, FileNotFoundException, IOException, CsvException, ParseException  {
     ga = (GestionAlumno) SuiteTest.ctx.lookup("java:global/classes/ModificarAlumnoEJB");
+    gasi = (GestionAsignatura) SuiteTest.ctx.lookup("java:global/classes/ModificarAsignaturaEJB");
+    ge = (GestionExpediente) SuiteTest.ctx.lookup("java:global/classes/ModificarExpedienteEJB");
   }
   
   @Test
@@ -53,13 +62,61 @@ public class PruebaModificar {
   }
   
   @Test
+  @Requisitos({"003"})
   public void testModificarAsignatura() {
-    //Comprobar que se puede modificar una asignatura
+    Asignatura asig = null;
+    asig = gasi.getAllAsignatura().stream().findFirst().orElse(null);
+    if(asig == null) fail ("No hay asignaturas");
+    String codigo = "000";
+    String referencia = "ABD0";
+    
+    asig.setReferencia(referencia);
+    asig.setCodigo(codigo);
+    
+    try {
+    	gasi.actualizarAsignatura(asig);
+    }catch(AsignaturaNoEncontradaException e) {
+    	fail("Error al actualizar la asignatura");
+    }
+    
+    Asignatura modificada = null;
+    try {
+    	modificada = gasi.findAsignatura(asig.getReferencia());
+    }catch(AsignaturaNoEncontradaException e) {
+    	fail("Asignatura no encontrada");
+    }
+    
+    assertEquals(codigo, modificada.getCodigo());
+    assertEquals(referencia,modificada.getReferencia());
+    
+    
   }
   
   @Test
+  @Requisitos({"007"})
   public void testModificarExpediente() {
-    //Comprobar que se puede modificar un expediente
+    Expediente e = null;
+    e = ge.getAllExpediente().stream().findFirst().orElse(null);
+    if(e == null) fail ("No hay expedientes");
+    int numeroExpediente = 12;
+    
+    e.setNumExpediente(numeroExpediente);
+    
+    try {
+    	ge.actualizarExpediente(e);
+    }catch(ExpedienteNoEcontradoException ex) {
+    	fail("Error al actualizar el expediente");
+    }
+    
+    Expediente modificada = null;
+    try {
+    	modificada = ge.findExpediente(e.getNumExpediente());
+    }catch(ExpedienteNoEcontradoException ex) {
+    	fail("Expediente no encontrado");
+    }
+    
+    assertEquals(numeroExpediente, modificada.getNumExpediente());
+    
   }
 
 }

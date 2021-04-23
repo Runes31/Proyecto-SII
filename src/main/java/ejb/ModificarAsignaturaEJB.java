@@ -4,15 +4,22 @@ import domain.Grupo;
 import exceptions.GrupoAsignaturaYaRelacionadoException;
 import exceptions.GrupoNoEncontradoException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
+import domain.Alumno;
 import domain.Asignatura;
 import domain.AsignaturasMatricula;
 import domain.GruposPorAsignatura;
+import exceptions.AlumnoNoEncontradoException;
 import exceptions.AsignaturaNoEncontradaException;
 
 
@@ -63,4 +70,21 @@ public class ModificarAsignaturaEJB implements GestionAsignatura {
 
     em.persist(gpa);
   }
+  
+  @Override
+  public Asignatura findAsignatura(String referencia) throws AsignaturaNoEncontradaException {
+    Asignatura a = em.find(Asignatura.class, referencia);
+    if(a == null) throw new AsignaturaNoEncontradaException();
+    return a;
+  }
+
+	@Override
+	public List<Asignatura> getAllAsignatura() {
+		 CriteriaBuilder cb = em.getCriteriaBuilder();
+		 CriteriaQuery<Asignatura> cq = cb.createQuery(Asignatura.class);
+		 Root<Asignatura> rootEntry = cq.from(Asignatura.class);
+		 CriteriaQuery<Asignatura> all = cq.select(rootEntry);
+		 TypedQuery<Asignatura> allQuery = em.createQuery(all);
+		 return allQuery.getResultList();
+	}
 }

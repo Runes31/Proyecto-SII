@@ -6,6 +6,7 @@ import domain.Encuesta;
 import domain.Expediente;
 import domain.Grupo;
 import domain.GruposPorAsignatura;
+import exceptions.AsignaturaNoEncontradaException;
 import exceptions.GrupoNoEncontradoException;
 
 
@@ -145,6 +146,13 @@ public class GestionMatriculaEJB implements GestionMatricula {
      en la base de datos y lo nuevo que nos envia
      */
     em.merge(encuesta);
+  }
+  
+  @Override
+  public Matricula findMatricula(String cursoAcademico) throws MatriculaNoEncontradaException {
+    Matricula m = em.find(Matricula.class, cursoAcademico);
+    if(m == null) throw new MatriculaNoEncontradaException();
+    return m;
   }
 
 	
