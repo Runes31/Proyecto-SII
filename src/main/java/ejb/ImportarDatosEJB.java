@@ -67,20 +67,20 @@ public class ImportarDatosEJB implements ImportarDatos{
           al.setProvincia(aux[12]);
           al.setCodigoPostal(aux[13]);
           
-          Expediente exp = new Expediente(Integer.valueOf(aux[4]), true, Double.parseDouble(aux[17]));   
-          exp.setCreditosSuperados(Integer.valueOf(aux[18]));
-          exp.setCreditosFB(Integer.valueOf(aux[19]));
-          exp.setCreditosOB(Integer.valueOf(aux[20]));
-          exp.setCreditosOP(Integer.valueOf(aux[21]));
-          exp.setCreditosCF(Integer.valueOf(aux[22]));
-          exp.setCreditosPE(Integer.valueOf(aux[23]));
-          exp.setCreditosTF(Integer.valueOf(aux[24].substring(0,aux[24].length()-1)));
+          Expediente exp = new Expediente((int) Double.parseDouble(aux[4]), true, Double.parseDouble(aux[17]));   
+          exp.setCreditosSuperados((int) Double.parseDouble(aux[18]));
+          exp.setCreditosFB((int) Double.parseDouble(aux[19]));
+          exp.setCreditosOB((int) Double.parseDouble(aux[20]));
+          exp.setCreditosOP((int) Double.parseDouble(aux[21]));
+          exp.setCreditosCF((int) Double.parseDouble(aux[22]));
+          exp.setCreditosPE((int) Double.parseDouble(aux[23]));
+          exp.setCreditosTF((int) Double.parseDouble(aux[24].substring(0,aux[24].length()-1)));
           exp.setAlumno(al);          
           
           Matricula m = new Matricula();
           m.setCursoAcademico(cursoAcademido);
           m.setEstado(estadoMatricula);
-          m.setNumArchivo(Integer.valueOf(aux[5]));
+          m.setNumArchivo((int) Double.parseDouble(aux[5]));
           m.setTurnoPreferente(aux[15]);
           String fM = aux[14];
           Date fechaMatricula = new SimpleDateFormat("dd/MM/yyyy").parse(fM);
@@ -89,9 +89,9 @@ public class ImportarDatosEJB implements ImportarDatos{
           m.setListadoAsignaturas(aux[16]);
           m.setExpediente(exp);
           
-          em.persist(al);
-          em.persist(m);
-          em.persist(exp);
+          em.merge(al);
+          em.merge(m);
+          em.merge(exp);
         }
         
       }
@@ -107,53 +107,61 @@ public class ImportarDatosEJB implements ImportarDatos{
       XSSFSheet sheet = workbook.getSheetAt(0);
       
       Iterator<Row> rowIterator = sheet.iterator();
-      Alumno al = new Alumno();
-      Expediente exp = new Expediente();
-      Matricula m = new Matricula();
       Row row = rowIterator.next();
       Iterator<Cell> cellIterator = row.cellIterator();
       cellIterator.next();
-      m.setCursoAcademico(cellIterator.next().toString());
+      String curso = cellIterator.next().toString();
       row = rowIterator.next();
       row = rowIterator.next();
+      cellIterator = row.cellIterator();
       cellIterator.next();
-      m.setEstado(cellIterator.next().toString());
+      String estado = cellIterator.next().toString();
       row = rowIterator.next();
       while (rowIterator.hasNext()) {
-          row = rowIterator.next();
-          al.setDni(cellIterator.next().toString());
-          String nombre = cellIterator.next().toString();
-          String apellido1 = cellIterator.next().toString();
-          String apellido2 = cellIterator.next().toString();
-          String nombreCompleto = nombre + " " + apellido1 + " " + apellido2;
-          al.setNombre(nombreCompleto);
-          exp.setNumExpediente(Integer.valueOf(cellIterator.next().toString()));
-          m.setNumArchivo(Integer.valueOf(cellIterator.next().toString()));
-          al.setEmailInstitucional(cellIterator.next().toString());
-          al.setEmailPersonal(cellIterator.next().toString());
-          al.setTelefono(cellIterator.next().toString());
-          al.setMovil(cellIterator.next().toString());
-          al.setDireccion(cellIterator.next().toString());
-          al.setLocalidad(cellIterator.next().toString());
-          al.setProvincia(cellIterator.next().toString());
-          al.setCodigoPostal(cellIterator.next().toString());
-          String fM = cellIterator.next().toString();
-          Date fechaMatricula = new SimpleDateFormat("dd/MM/yyyy").parse(fM);
-          m.setFechaMatricula(fechaMatricula);
-          m.setTurnoPreferente(cellIterator.next().toString());
-          m.setListadoAsignaturas(cellIterator.next().toString());
-          exp.setCreditosSuperados(Integer.valueOf(cellIterator.next().toString()));
-          exp.setCreditosFB(Integer.valueOf(cellIterator.next().toString()));
-          exp.setCreditosOB(Integer.valueOf(cellIterator.next().toString()));
-          exp.setCreditosOP(Integer.valueOf(cellIterator.next().toString()));
-          exp.setCreditosCF(Integer.valueOf(cellIterator.next().toString()));
-          exp.setCreditosPE(Integer.valueOf(cellIterator.next().toString()));
-          exp.setCreditosTF(Integer.valueOf(cellIterator.next().toString()));
-          
-          em.persist(al);
-          em.persist(m);
-          em.persist(exp);
-         
+        Alumno al = new Alumno();
+        Expediente exp = new Expediente();
+        Matricula m = new Matricula();
+        row = rowIterator.next();
+        cellIterator = row.cellIterator();
+        al.setDni(cellIterator.next().toString());
+        String nombre = cellIterator.next().toString();
+        String apellido1 = cellIterator.next().toString();
+        String apellido2 = cellIterator.next().toString();
+        String nombreCompleto = nombre + " " + apellido1 + " " + apellido2;
+        al.setNombre(nombreCompleto);
+        exp.setNumExpediente((int) Double.parseDouble(cellIterator.next().toString()));
+        m.setNumArchivo((int) Double.parseDouble(cellIterator.next().toString()));
+        al.setEmailInstitucional(cellIterator.next().toString());
+        al.setEmailPersonal(cellIterator.next().toString());
+        al.setTelefono(cellIterator.next().toString());
+        al.setMovil(cellIterator.next().toString());
+        al.setDireccion(cellIterator.next().toString());
+        al.setLocalidad(cellIterator.next().toString());
+        al.setProvincia(cellIterator.next().toString());
+        al.setCodigoPostal(cellIterator.next().toString());
+        String fM = cellIterator.next().toString();
+        Date fechaMatricula = new SimpleDateFormat("dd-MMMM-yyyy").parse(fM);
+        m.setFechaMatricula(fechaMatricula);
+        m.setTurnoPreferente(cellIterator.next().toString());
+        m.setEstado(estado);
+        m.setCursoAcademico(curso);
+        m.setListadoAsignaturas(cellIterator.next().toString());
+        exp.setCreditosSuperados((int) Double.parseDouble(cellIterator.next().toString()));
+        exp.setCreditosFB((int) Double.parseDouble(cellIterator.next().toString()));
+        exp.setCreditosOB((int) Double.parseDouble(cellIterator.next().toString()));
+        exp.setCreditosOP((int) Double.parseDouble(cellIterator.next().toString()));
+        exp.setCreditosCF((int) Double.parseDouble(cellIterator.next().toString()));
+        exp.setCreditosPE((int) Double.parseDouble(cellIterator.next().toString()));
+        exp.setCreditosTF((int) Double.parseDouble(cellIterator.next().toString()));
+
+        em.persist(al);
+        exp.setAlumno(al);
+        // Hardcodeamos la gente a informatica porque en el excel no viene la titulacion y es necesario...
+        exp.setTitulacion(em.find(Titulacion.class, "1041.0"));
+        em.persist(exp);
+        m.setExpediente(exp);
+        em.persist(m);
+
       }
       file.close();
     } catch (Exception e) { e.printStackTrace(); }    
@@ -170,7 +178,7 @@ public class ImportarDatosEJB implements ImportarDatos{
         t.setNombre(aux[1]);
         t.setCodigo(aux[2]);          
         
-        em.persist(t);
+        em.merge(t);
       }
     }
   }
@@ -189,9 +197,9 @@ public class ImportarDatosEJB implements ImportarDatos{
         Iterator<Cell> cellIterator = row.cellIterator();
         t.setCodigo(cellIterator.next().toString());
         t.setNombre(cellIterator.next().toString());
-        t.setCreditos(Integer.valueOf(cellIterator.next().toString()));  
-        
-        em.persist(t);
+        t.setCreditos((int) Double.parseDouble(cellIterator.next().toString()));
+
+        em.merge(t);
       }
       file.close();
     } catch (Exception e) { e.printStackTrace(); }    
@@ -212,34 +220,47 @@ public class ImportarDatosEJB implements ImportarDatos{
             Iterator<Cell> cellIterator = row.cellIterator();
             Titulacion titulacion = new Titulacion();
             titulacion.setCodigo(cellIterator.next().toString());
+            String codigo = titulacion.getCodigo();
+            if(codigo.equals("")) continue;
             titulacion = em.find(Titulacion.class, titulacion.getCodigo());
-            if(titulacion == null) throw new TitulacionNoEncontradaException();
+            if(titulacion == null) throw new TitulacionNoEncontradaException("No se ha encontrado la titulación con código " + codigo);
             asig.setTitulacion(titulacion);
             asig.setOfertada(Boolean.parseBoolean(cellIterator.next().toString()));
             asig.setCodigo(cellIterator.next().toString());
             String referencia = cellIterator.next().toString();
             asig.setReferencia(referencia);
             asig.setNombre(cellIterator.next().toString());
-            asig.setCurso(Integer.valueOf(cellIterator.next().toString()));
-            asig.setCreditos(Integer.valueOf(cellIterator.next().toString()));
+            asig.setCurso((int) Double.parseDouble(cellIterator.next().toString()));
+            asig.setCreditos((int) Double.parseDouble(cellIterator.next().toString()));
             cellIterator.next();
             cellIterator.next();
             asig.setCuatrimestre(cellIterator.next().toString()); 
             cellIterator.next();
-            asig.setIdiomas(cellIterator.next().toString());
+            // Esta columna puede no estar definida
+            if(cellIterator.hasNext())
+              asig.setIdiomas(cellIterator.next().toString());
             
             XSSFSheet sheet0 = workbook.getSheetAt(0);
             Iterator<Row> rowIterator0 = sheet0.iterator();
             Row row0 = rowIterator0.next();
             int j = 0;
+            Optativa optativa = new Optativa();
+            optativa.setReferencia(referencia);
+            optativa.setCodigo(asig.getCodigo());
+            optativa.setCreditos(asig.getCreditos());
+            optativa.setOfertada(asig.isOfertada());
+            optativa.setTitulacion(asig.getTitulacion());
+            optativa.setNombre(asig.getNombre());
+            optativa.setCurso(asig.getCurso());
+            optativa.setCuatrimestre(asig.getCuatrimestre());
+            optativa.setIdiomas(asig.getIdiomas());
             while(rowIterator0.hasNext() && j == 0) {
               row0 = rowIterator0.next();
               Iterator<Cell> cellIterator0 = row0.cellIterator();
               if(referencia.equals(cellIterator0.next().toString())) {
-                Optativa optativa = (Optativa) asig;
-                optativa.setPlazas(Integer.valueOf(cellIterator0.next().toString()));
+                optativa.setPlazas((int) Double.parseDouble(cellIterator0.next().toString()));
                 j++;
-                em.persist(optativa);
+                em.merge(optativa);
               }
             }
               
@@ -250,14 +271,13 @@ public class ImportarDatosEJB implements ImportarDatos{
               row1 = rowIterator1.next();
               Iterator<Cell> cellIterator1 = row1.cellIterator();
               if(referencia.equals(cellIterator1.next().toString())) {
-                Optativa optativa = (Optativa) asig;
-                optativa.setPlazas(Integer.valueOf(cellIterator1.next().toString()));
+                optativa.setPlazas((int) Double.parseDouble(cellIterator1.next().toString()));
                 optativa.setMencion(cellIterator1.next().toString());
                 j++;
-                em.persist(optativa);
+                em.merge(optativa);
               }
             }
-            if(j == 0) { em.persist(asig); }
+            if(j == 0) { em.merge(asig); }
           }
         }
       file.close();
