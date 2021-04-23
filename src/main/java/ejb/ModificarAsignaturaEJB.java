@@ -33,7 +33,7 @@ public class ModificarAsignaturaEJB implements GestionAsignatura {
   
   @Override
   public void actualizarAsignatura(Asignatura asignatura) throws AsignaturaNoEncontradaException {
-    Asignatura p = em.find(Asignatura.class, asignatura);
+    Asignatura p = em.find(Asignatura.class, asignatura.getReferencia());
     if (p == null) throw new AsignaturaNoEncontradaException();
     em.merge(asignatura);
   }

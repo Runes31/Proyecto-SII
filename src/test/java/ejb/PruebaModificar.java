@@ -7,10 +7,12 @@ import com.opencsv.exceptions.CsvException;
 import domain.Alumno;
 import domain.Asignatura;
 import domain.Expediente;
+import domain.Matricula;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 import exceptions.AlumnoNoEncontradoException;
 import exceptions.AsignaturaNoEncontradaException;
 import exceptions.ExpedienteNoEcontradoException;
+import exceptions.MatriculaNoEncontradaException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,11 +29,13 @@ public class PruebaModificar {
   GestionAlumno ga;
   GestionAsignatura gasi;
   GestionExpediente ge;
+  GestionMatricula gestionMatricula;
 
   @Before
   public void setup() throws NamingException, FileNotFoundException, IOException, CsvException, ParseException  {
     ga = (GestionAlumno) SuiteTest.ctx.lookup("java:global/classes/ModificarAlumnoEJB");
     gasi = (GestionAsignatura) SuiteTest.ctx.lookup("java:global/classes/ModificarAsignaturaEJB");
+    gestionMatricula = (GestionMatricula) SuiteTest.ctx.lookup("java:global/classes/GestionMatriculaEJB");
     ge = (GestionExpediente) SuiteTest.ctx.lookup("java:global/classes/ModificarExpedienteEJB");
   }
   
@@ -68,9 +72,9 @@ public class PruebaModificar {
     asig = gasi.getAllAsignatura().stream().findFirst().orElse(null);
     if(asig == null) fail ("No hay asignaturas");
     String codigo = "000";
-    String referencia = "ABD0";
+    String nombre = "ABD";
     
-    asig.setReferencia(referencia);
+    asig.setNombre(nombre);
     asig.setCodigo(codigo);
     
     try {
@@ -87,7 +91,7 @@ public class PruebaModificar {
     }
     
     assertEquals(codigo, modificada.getCodigo());
-    assertEquals(referencia,modificada.getReferencia());
+    assertEquals(nombre,modificada.getNombre());
     
     
   }
@@ -98,9 +102,9 @@ public class PruebaModificar {
     Expediente e = null;
     e = ge.getAllExpediente().stream().findFirst().orElse(null);
     if(e == null) fail ("No hay expedientes");
-    int numeroExpediente = 12;
+    int creditosSup = 6;
     
-    e.setNumExpediente(numeroExpediente);
+    e.setCreditosSuperados(creditosSup);
     
     try {
     	ge.actualizarExpediente(e);
@@ -115,7 +119,34 @@ public class PruebaModificar {
     	fail("Expediente no encontrado");
     }
     
-    assertEquals(numeroExpediente, modificada.getNumExpediente());
+    assertEquals(creditosSup,modificada.getCreditosSuperados());
+    
+  }
+  
+  @Test
+  @Requisitos({"008"})
+  public void testModificarMatricula() {
+    Matricula m = null;
+    m = gestionMatricula.getAllMatriculas().stream().findFirst().orElse(null);
+    if(m == null) fail ("No hay matriculas");
+    int numArchivo = 10;
+    
+    m.setNumArchivo(numArchivo);
+    
+    try {
+    	gestionMatricula.actualizarMatricula(m);
+    }catch(MatriculaNoEncontradaException ex) {
+    	fail("Error al actualizar la Matricula");
+    }
+    
+    Matricula modificada = null;
+    try {
+    	modificada = gestionMatricula.findMatricula(m.getCursoAcademico());
+    }catch(MatriculaNoEncontradaException ex) {
+    	fail("Matricula no encontrada");
+    }
+    
+    assertEquals(numArchivo,modificada.getNumArchivo());
     
   }
 

@@ -39,30 +39,5 @@ public class PruebaGestionMatricula {
     //assertThrows(GrupoNoEncontradoException.class, () -> gestionMatricula.generarAsignaciones());
   }
   
-  @Test
-  @Requisitos({"008"})
-  public void testModificarMatricula() {
-    Matricula m = null;
-    m = gestionMatricula.getAllMatriculas().stream().findFirst().orElse(null);
-    if(m == null) fail ("No hay matriculas");
-    String cursoAcademico = "20/21";
-    
-    m.setCursoAcademico(cursoAcademico);
-    
-    try {
-    	gestionMatricula.actualizarMatricula(m);
-    }catch(MatriculaNoEncontradaException ex) {
-    	fail("Error al actualizar el Matricula");
-    }
-    
-    Matricula modificada = null;
-    try {
-    	modificada = gestionMatricula.findMatricula(m.getCursoAcademico());
-    }catch(MatriculaNoEncontradaException ex) {
-    	fail("Matricula no encontrada");
-    }
-    
-    assertEquals(cursoAcademico, modificada.getCursoAcademico());
-    
-  }
+  
 }
