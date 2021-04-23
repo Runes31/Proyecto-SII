@@ -14,9 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn (name="disc", discriminatorType = DiscriminatorType.CHAR)
-@DiscriminatorValue("A")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Asignatura {
   
   @Id
