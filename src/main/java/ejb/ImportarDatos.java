@@ -45,5 +45,7 @@ public interface ImportarDatos {
    */
   
   public void importarAsignaturasExcel(File fichero);
+  
+  public void importarEncuestaExcel(File fichero);
 
 }

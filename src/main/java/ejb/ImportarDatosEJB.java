@@ -26,10 +26,12 @@ import com.opencsv.exceptions.CsvException;
 
 import domain.Alumno;
 import domain.Asignatura;
+import domain.Encuesta;
 import domain.Expediente;
 import domain.Matricula;
 import domain.Optativa;
 import domain.Titulacion;
+import exceptions.ExpedienteNoEncontradoException;
 import exceptions.TitulacionNoEncontradaException;
 
 @Stateless
@@ -223,7 +225,7 @@ public class ImportarDatosEJB implements ImportarDatos{
             String codigo = titulacion.getCodigo();
             if(codigo.equals("")) continue;
             titulacion = em.find(Titulacion.class, titulacion.getCodigo());
-            if(titulacion == null) throw new TitulacionNoEncontradaException("No se ha encontrado la titulación con código " + codigo);
+            if(titulacion == null) throw new TitulacionNoEncontradaException("No se ha encontrado la titulaciÃ³n con cÃ³digo " + codigo);
             asig.setTitulacion(titulacion);
             asig.setOfertada(Boolean.parseBoolean(cellIterator.next().toString()));
             asig.setCodigo(cellIterator.next().toString());
@@ -284,4 +286,31 @@ public class ImportarDatosEJB implements ImportarDatos{
       }
     } catch (Exception e) { e.printStackTrace(); }    
   }
+  
+  @Override
+  public void importarEncuestaExcel(File fichero) {
+	  try {
+	      FileInputStream file = new FileInputStream(fichero);
+	      XSSFWorkbook workbook = new XSSFWorkbook(file);
+	      XSSFSheet sheet = workbook.getSheetAt(0);
+	      
+	      Iterator<Row> rowIterator = sheet.iterator();
+	      Row row = rowIterator.next();
+	      while (rowIterator.hasNext()) {
+	    	Encuesta e = new Encuesta();
+	        row = rowIterator.next();
+	        Iterator<Cell> cellIterator = row.cellIterator();
+	        int numExpediente = Integer.valueOf(cellIterator.next().toString());
+	        Expediente exp = em.find(Expediente.class, numExpediente);
+	        if(exp == null) throw new ExpedienteNoEncontradoException();
+	        e.setExpediente(exp);
+	        e.setGruposPorAsignaturas(null);
+
+	        em.merge(e);
+	      }
+	      file.close();
+	    } catch (Exception e) { e.printStackTrace(); }    
+	  
+  }
+  
 }
