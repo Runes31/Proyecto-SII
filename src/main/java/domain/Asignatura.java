@@ -49,12 +49,7 @@ public class Asignatura {
   private Titulacion titulacion;
   @OneToMany(mappedBy = "asignatura")
   private List<GruposPorAsignatura> gruposPorAsignatura;
-  @OneToMany(mappedBy = "asignatura")
-  private List<AsignaturasMatricula> asignaturasMatricula;
 
-	
-
-	
 	public Asignatura() { }
 
   public String getReferencia() {
@@ -153,86 +148,77 @@ public class Asignatura {
 		this.gruposPorAsignatura = gruposPorAsignatura;
 	}
 	
-	public List<AsignaturasMatricula> getAsignaturasMatricula() {
-		return asignaturasMatricula;
-	}
-
-	public void setAsignaturasMatricula(List<AsignaturasMatricula> asignaturasMatricula) {
-		this.asignaturasMatricula = asignaturasMatricula;
-	}
-
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Asignatura other = (Asignatura) obj;
+    if (caracter == null) {
+      if (other.caracter != null)
+        return false;
+    } else if (!caracter.equals(other.caracter))
+      return false;
+    if (codigo == null) {
+      if (other.codigo != null)
+        return false;
+    } else if (!codigo.equals(other.codigo))
+      return false;
+    if (creditos != other.creditos)
+      return false;
+    if (cuatrimestre == null) {
+      if (other.cuatrimestre != null)
+        return false;
+    } else if (!cuatrimestre.equals(other.cuatrimestre))
+      return false;
+    if (curso != other.curso)
+      return false;
+    if (duracion != other.duracion)
+      return false;
+    if (idiomas == null) {
+      if (other.idiomas != null)
+        return false;
+    } else if (!idiomas.equals(other.idiomas))
+      return false;
+    if (nombre == null) {
+      if (other.nombre != null)
+        return false;
+    } else if (!nombre.equals(other.nombre))
+      return false;
+    if (ofertada != other.ofertada)
+      return false;
+    if (referencia == null) {
+      if (other.referencia != null)
+        return false;
+    } else if (!referencia.equals(other.referencia))
+      return false;
+    return true;
+  }
 
   @Override
-public boolean equals(Object obj) {
-	if (this == obj)
-		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Asignatura other = (Asignatura) obj;
-	if (caracter == null) {
-		if (other.caracter != null)
-			return false;
-	} else if (!caracter.equals(other.caracter))
-		return false;
-	if (codigo == null) {
-		if (other.codigo != null)
-			return false;
-	} else if (!codigo.equals(other.codigo))
-		return false;
-	if (creditos != other.creditos)
-		return false;
-	if (cuatrimestre == null) {
-		if (other.cuatrimestre != null)
-			return false;
-	} else if (!cuatrimestre.equals(other.cuatrimestre))
-		return false;
-	if (curso != other.curso)
-		return false;
-	if (duracion != other.duracion)
-		return false;
-	if (idiomas == null) {
-		if (other.idiomas != null)
-			return false;
-	} else if (!idiomas.equals(other.idiomas))
-		return false;
-	if (nombre == null) {
-		if (other.nombre != null)
-			return false;
-	} else if (!nombre.equals(other.nombre))
-		return false;
-	if (ofertada != other.ofertada)
-		return false;
-	if (referencia == null) {
-		if (other.referencia != null)
-			return false;
-	} else if (!referencia.equals(other.referencia))
-		return false;
-	return true;
-}
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((caracter == null) ? 0 : caracter.hashCode());
+    result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+    result = prime * result + creditos;
+    result = prime * result + ((cuatrimestre == null) ? 0 : cuatrimestre.hashCode());
+    result = prime * result + curso;
+    result = prime * result + duracion;
+    result = prime * result + ((idiomas == null) ? 0 : idiomas.hashCode());
+    result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+    result = prime * result + (ofertada ? 1231 : 1237);
+    result = prime * result + ((referencia == null) ? 0 : referencia.hashCode());
+    return result;
+  }
 
   @Override
-public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((caracter == null) ? 0 : caracter.hashCode());
-	result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-	result = prime * result + creditos;
-	result = prime * result + ((cuatrimestre == null) ? 0 : cuatrimestre.hashCode());
-	result = prime * result + curso;
-	result = prime * result + duracion;
-	result = prime * result + ((idiomas == null) ? 0 : idiomas.hashCode());
-	result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-	result = prime * result + (ofertada ? 1231 : 1237);
-	result = prime * result + ((referencia == null) ? 0 : referencia.hashCode());
-	return result;
-}
-
-  @Override
-public String toString() {
-	return "Asignatura [referencia=" + referencia + ", codigo=" + codigo + ", creditos=" + creditos + ", ofertada="
-			+ ofertada + ", nombre=" + nombre + ", curso=" + curso + ", caracter=" + caracter + ", duracion=" + duracion
-			+ ", cuatrimestre=" + cuatrimestre + ", idiomas=" + idiomas + "]";
-}
+  public String toString() {
+    return "Asignatura [referencia=" + referencia + ", codigo=" + codigo + ", creditos=" + creditos + ", ofertada="
+        + ofertada + ", nombre=" + nombre + ", curso=" + curso + ", caracter=" + caracter + ", duracion=" + duracion
+        + ", cuatrimestre=" + cuatrimestre + ", idiomas=" + idiomas + "]";
+  }
 }
