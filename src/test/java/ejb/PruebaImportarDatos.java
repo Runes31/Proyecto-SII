@@ -17,8 +17,10 @@ import org.junit.Test;
 
 import com.opencsv.exceptions.CsvException;
 
+
 import domain.Alumno;
 import domain.Asignatura;
+import domain.Titulacion;
 import exceptions.AlumnoNoEncontradoException;
 import exceptions.AsignaturaNoEncontradaException;
 
@@ -57,14 +59,8 @@ public class PruebaImportarDatos {
   }*/
   
   @Test
-  @Requisitos({"012"})
-  public void testImportarTitulaciones() {
-    //Comprobar que las importaciones son correctas    
-  }
-  
-  @Test
-  @Requisitos({"015"})
-  public void testImportarAsignaturas() throws AsignaturaNoEncontradaException, FileNotFoundException, IOException, CsvException, ParseException {
+  @Requisitos({"015","012"})
+  public void testImportarAsignaturasTitulaciones() throws AsignaturaNoEncontradaException, FileNotFoundException, IOException, CsvException, ParseException {
 	  Asignatura asig = null;
 	  asig = gasi.getAllAsignatura().stream().findFirst().orElse(null);
 	  if(asig == null) fail("No hay asignaturas");
@@ -74,11 +70,13 @@ public class PruebaImportarDatos {
 	  asig.setReferencia(referencia);
 	  Asignatura asig2 = null;
 	  try {
-		asig = gasi.findAsignatura(asig.getReferencia());
+		asig2 = gasi.findAsignatura(asig.getReferencia());
 	  } catch (AsignaturaNoEncontradaException e) {
 	  		fail("Asignatura no encontrado");
 	  }
 	  assertEquals(codigo, asig2.getCodigo());
 	  assertEquals(referencia, asig2.getReferencia());
+	  
+	  Titulacion t = null;
   }
 }
