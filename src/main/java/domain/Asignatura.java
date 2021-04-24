@@ -1,21 +1,33 @@
 package domain;
 
+import domain.Asignatura.AsignaturaId;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@IdClass(AsignaturaId.class)
 public class Asignatura {
+
+  public static class AsignaturaId implements Serializable {
+    private String referencia;
+    private String titulacion;
+
+    public AsignaturaId(){}
+
+    public AsignaturaId(String referencia, String titulacion) {
+      this.referencia = referencia;
+      this.titulacion = titulacion;
+    }
+  }
   
   @Id
   private String referencia;
@@ -32,8 +44,8 @@ public class Asignatura {
   private int duracion;
   private String cuatrimestre;
   private String idiomas;
+  @Id
   @ManyToOne(optional = false)
-  @JoinColumn(nullable = false)
   private Titulacion titulacion;
   @OneToMany(mappedBy = "asignatura")
   private List<GruposPorAsignatura> gruposPorAsignatura;
@@ -159,11 +171,6 @@ public boolean equals(Object obj) {
 	if (getClass() != obj.getClass())
 		return false;
 	Asignatura other = (Asignatura) obj;
-	if (asignaturasMatricula == null) {
-		if (other.asignaturasMatricula != null)
-			return false;
-	} else if (!asignaturasMatricula.equals(other.asignaturasMatricula))
-		return false;
 	if (caracter == null) {
 		if (other.caracter != null)
 			return false;
@@ -185,11 +192,6 @@ public boolean equals(Object obj) {
 		return false;
 	if (duracion != other.duracion)
 		return false;
-	if (gruposPorAsignatura == null) {
-		if (other.gruposPorAsignatura != null)
-			return false;
-	} else if (!gruposPorAsignatura.equals(other.gruposPorAsignatura))
-		return false;
 	if (idiomas == null) {
 		if (other.idiomas != null)
 			return false;
@@ -207,11 +209,6 @@ public boolean equals(Object obj) {
 			return false;
 	} else if (!referencia.equals(other.referencia))
 		return false;
-	if (titulacion == null) {
-		if (other.titulacion != null)
-			return false;
-	} else if (!titulacion.equals(other.titulacion))
-		return false;
 	return true;
 }
 
@@ -219,19 +216,16 @@ public boolean equals(Object obj) {
 public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + ((asignaturasMatricula == null) ? 0 : asignaturasMatricula.hashCode());
 	result = prime * result + ((caracter == null) ? 0 : caracter.hashCode());
 	result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 	result = prime * result + creditos;
 	result = prime * result + ((cuatrimestre == null) ? 0 : cuatrimestre.hashCode());
 	result = prime * result + curso;
 	result = prime * result + duracion;
-	result = prime * result + ((gruposPorAsignatura == null) ? 0 : gruposPorAsignatura.hashCode());
 	result = prime * result + ((idiomas == null) ? 0 : idiomas.hashCode());
 	result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 	result = prime * result + (ofertada ? 1231 : 1237);
 	result = prime * result + ((referencia == null) ? 0 : referencia.hashCode());
-	result = prime * result + ((titulacion == null) ? 0 : titulacion.hashCode());
 	return result;
 }
 
@@ -239,7 +233,6 @@ public int hashCode() {
 public String toString() {
 	return "Asignatura [referencia=" + referencia + ", codigo=" + codigo + ", creditos=" + creditos + ", ofertada="
 			+ ofertada + ", nombre=" + nombre + ", curso=" + curso + ", caracter=" + caracter + ", duracion=" + duracion
-			+ ", cuatrimestre=" + cuatrimestre + ", idiomas=" + idiomas + ", titulacion=" + titulacion
-			+ ", gruposPorAsignatura=" + gruposPorAsignatura + ", asignaturasMatricula=" + asignaturasMatricula + "]";
+			+ ", cuatrimestre=" + cuatrimestre + ", idiomas=" + idiomas + "]";
 }
 }

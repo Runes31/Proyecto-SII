@@ -80,13 +80,12 @@ public class Centro {
     }
     Centro centro = (Centro) o;
     return id == centro.id && tlfConsejeria == centro.tlfConsejeria && nombre.equals(centro.nombre)
-        && direccion.equals(centro.direccion) && Objects
-        .equals(titulaciones, centro.titulaciones);
+        && direccion.equals(centro.direccion);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, nombre, direccion, tlfConsejeria, titulaciones);
+    return Objects.hash(id, nombre, direccion, tlfConsejeria);
   }
 
   @Override
@@ -96,7 +95,6 @@ public class Centro {
         ", nombre='" + nombre + '\'' +
         ", direccion='" + direccion + '\'' +
         ", TLFconsejeria=" + tlfConsejeria +
-        ", titulaciones=" + titulaciones +
         '}';
   }
 

@@ -1,5 +1,6 @@
 package domain;
 
+import domain.Asignatura.AsignaturaId;
 import domain.AsignaturasMatricula.AsignaturasMatriculaId;
 import domain.Matricula.MatriculaId;
 import java.io.Serializable;
@@ -15,7 +16,7 @@ public class AsignaturasMatricula {
 
   public static class AsignaturasMatriculaId implements Serializable {
     private MatriculaId matricula;
-    private String asignatura;
+    private AsignaturaId asignatura;
   }
 
   @Id

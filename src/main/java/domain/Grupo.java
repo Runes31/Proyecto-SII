@@ -33,8 +33,6 @@ public class Grupo {
   private Titulacion titulacion;
   @OneToMany(mappedBy = "grupo")
   private List<GruposPorAsignatura> gruposPorAsignatura;
-  @OneToMany(mappedBy = "grupo")
-  private List<Clase> clases;
 
   public Grupo() { }
 
@@ -147,14 +145,6 @@ public class Grupo {
     this.gruposPorAsignatura = gruposPorAsignatura;
   }
 
-  public List<Clase> getClases() {
-    return clases;
-  }
-
-  public void setClases(List<Clase> clases) {
-    this.clases = clases;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -166,19 +156,14 @@ public class Grupo {
     Grupo grupo1 = (Grupo) o;
     return id == grupo1.id && ingles == grupo1.ingles && visible == grupo1.visible
         && asignar == grupo1.asignar && plazas == grupo1.plazas && curso.equals(grupo1.curso)
-        && letra
-        .equals(grupo1.letra) && turno.equals(grupo1.turno) && Objects
-        .equals(grupo, grupo1.grupo) && Objects.equals(grupos, grupo1.grupos)
-        && Objects.equals(titulacion, grupo1.titulacion) && Objects
-        .equals(gruposPorAsignatura, grupo1.gruposPorAsignatura) && Objects
-        .equals(clases, grupo1.clases);
+        && letra .equals(grupo1.letra) && turno.equals(grupo1.turno)
+        && Objects.equals(titulacion, grupo1.titulacion);
   }
 
   @Override
   public int hashCode() {
     return Objects
-        .hash(id, curso, letra, turno, ingles, visible, asignar, plazas, grupo, grupos, titulacion,
-            gruposPorAsignatura, clases);
+        .hash(id, curso, letra, turno, ingles, visible, asignar, plazas,titulacion);
   }
 
   @Override
@@ -192,11 +177,7 @@ public class Grupo {
         ", visible=" + visible +
         ", asignar=" + asignar +
         ", plazas=" + plazas +
-        ", grupo=" + grupo +
-        ", grupos=" + grupos +
         ", titulacion=" + titulacion +
-        ", gruposPorAsignatura=" + gruposPorAsignatura +
-        ", clases=" + clases +
         '}';
   }
 

@@ -155,15 +155,14 @@ public class Alumno {
         .equals(telefono, alumno.telefono) && Objects.equals(movil, alumno.movil)
         && direccion.equals(alumno.direccion) && localidad.equals(alumno.localidad)
         && Objects.equals(provincia, alumno.provincia) && Objects
-        .equals(codigoPostal, alumno.codigoPostal) && Objects
-        .equals(expedientes, alumno.expedientes);
+        .equals(codigoPostal, alumno.codigoPostal);
   }
 
   @Override
   public int hashCode() {
     return Objects
         .hash(id, dni, nombre, emailInstitucional, emailPersonal, telefono, movil, direccion,
-            localidad, provincia, codigoPostal, expedientes);
+            localidad, provincia, codigoPostal);
   }
 
   @Override
@@ -180,7 +179,6 @@ public class Alumno {
         ", localidad='" + localidad + '\'' +
         ", provincia='" + provincia + '\'' +
         ", codigoPostal='" + codigoPostal + '\'' +
-        ", expedientes=" + expedientes +
         '}';
   }
 }

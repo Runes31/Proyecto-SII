@@ -93,15 +93,12 @@ public class Titulacion {
       return false;
     }
     Titulacion that = (Titulacion) o;
-    return creditos == that.creditos && codigo.equals(that.codigo) && nombre.equals(that.nombre)
-        && Objects.equals(centros, that.centros) && Objects
-        .equals(asignaturas, that.asignaturas) && Objects
-        .equals(expedientes, that.expedientes) && Objects.equals(grupos, that.grupos);
+    return creditos == that.creditos && codigo.equals(that.codigo) && nombre.equals(that.nombre) ;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(codigo, nombre, creditos, centros, asignaturas, expedientes, grupos);
+    return Objects.hash(codigo, nombre, creditos);
   }
 
   @Override
@@ -110,10 +107,6 @@ public class Titulacion {
         "codigo='" + codigo + '\'' +
         ", nombre='" + nombre + '\'' +
         ", creditos=" + creditos +
-        ", centros=" + centros +
-        ", asignaturas=" + asignaturas +
-        ", expedientes=" + expedientes +
-        ", grupos=" + grupos +
         '}';
   }
 }

@@ -1,6 +1,8 @@
 package domain;
 
+import domain.Asignatura.AsignaturaId;
 import domain.GruposPorAsignatura.GruposPorAsignaturaId;
+import domain.Matricula.MatriculaId;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -18,8 +20,16 @@ public class GruposPorAsignatura {
 
   public static class GruposPorAsignaturaId implements Serializable {
     private String cursoAcademico;
-    private String asignatura;
+    private AsignaturaId asignatura;
     private int grupo;
+
+    public GruposPorAsignaturaId(){}
+
+    public GruposPorAsignaturaId(String cursoAcademico, AsignaturaId asignatura, int grupo) {
+      this.cursoAcademico = cursoAcademico;
+      this.asignatura = asignatura;
+      this.grupo = grupo;
+    }
   }
 
   @Id
@@ -98,13 +108,13 @@ public class GruposPorAsignatura {
     }
     GruposPorAsignatura that = (GruposPorAsignatura) o;
     return oferta == that.oferta && cursoAcademico.equals(that.cursoAcademico) && Objects
-        .equals(clases, that.clases) && Objects.equals(encuestas, that.encuestas)
+        .equals(clases, that.clases)
         && asignatura.equals(that.asignatura) && grupo.equals(that.grupo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cursoAcademico, oferta, clases, encuestas, asignatura, grupo);
+    return Objects.hash(cursoAcademico, oferta, clases, asignatura, grupo);
   }
 
   @Override
@@ -113,7 +123,6 @@ public class GruposPorAsignatura {
         "cursoAcademico='" + cursoAcademico + '\'' +
         ", oferta=" + oferta +
         ", clases=" + clases +
-        ", encuestas=" + encuestas +
         ", asignatura=" + asignatura +
         ", grupo=" + grupo +
         '}';

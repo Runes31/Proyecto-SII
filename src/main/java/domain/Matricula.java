@@ -18,6 +18,12 @@ public class Matricula{
   public static class MatriculaId implements Serializable {
     private String cursoAcademico;
     private int expediente;
+
+    public MatriculaId(){}
+    public MatriculaId(String c, int e){
+      cursoAcademico = c;
+      expediente = e;
+    }
   }
 
   @Id

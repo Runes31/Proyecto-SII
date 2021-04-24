@@ -1,14 +1,13 @@
 package domain;
 
 import domain.Clase.ClaseId;
+import domain.GruposPorAsignatura.GruposPorAsignaturaId;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,7 +19,7 @@ public class Clase {
   public static class ClaseId implements Serializable {
     private Date dia;
     private Date horaIni;
-    private int grupo;
+    private GruposPorAsignaturaId gruposPorAsignaturas;
   }
 
   @Id
@@ -31,16 +30,9 @@ public class Clase {
   private Date horaIni;
   @Temporal(TemporalType.TIME)
   private Date horaFin;
-  @ManyToOne(optional = false)
-  @JoinColumns({
-      @JoinColumn(name = "gruposPorAsignaturas_curso_fk", referencedColumnName = "CURSOACADEMICO", nullable = false),
-      @JoinColumn(name = "gruposPorAsignaturas_asignatura_fk", referencedColumnName = "ASIGNATURA_REFERENCIA", nullable = false),
-      @JoinColumn(name = "gruposPorAsignaturas_grupo_fk", referencedColumnName = "GRUPO_ID", nullable = false)
-  })
-  private GruposPorAsignatura gruposPorAsignaturas;
   @Id
-  @ManyToOne
-  private Grupo grupo;
+  @ManyToOne(optional = false)
+  private GruposPorAsignatura gruposPorAsignaturas;
 
   public Clase() {
     
@@ -84,14 +76,6 @@ public class Clase {
     this.gruposPorAsignaturas = gruposPorAsignaturas;
   }
 
-  public Grupo getGrupo() {
-    return grupo;
-  }
-
-  public void setGrupo(Grupo grupo) {
-    this.grupo = grupo;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -102,13 +86,12 @@ public class Clase {
     }
     Clase clase = (Clase) o;
     return dia.equals(clase.dia) && horaIni.equals(clase.horaIni) && Objects
-        .equals(horaFin, clase.horaFin) && Objects
-        .equals(gruposPorAsignaturas, clase.gruposPorAsignaturas) && grupo.equals(clase.grupo);
+        .equals(horaFin, clase.horaFin) && gruposPorAsignaturas.equals(clase.getGruposPorAsignaturas());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dia, horaIni, horaFin, gruposPorAsignaturas, grupo);
+    return Objects.hash(dia, horaIni, horaFin, gruposPorAsignaturas);
   }
 
   @Override
@@ -118,7 +101,6 @@ public class Clase {
         ", horaIni=" + horaIni +
         ", horaFin=" + horaFin +
         ", gruposPorAsignaturas=" + gruposPorAsignaturas +
-        ", grupo=" + grupo +
         '}';
   }
 }

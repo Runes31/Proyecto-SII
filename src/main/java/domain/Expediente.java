@@ -181,8 +181,7 @@ public class Expediente {
 				&& creditosOB == that.creditosOB && creditosOP == that.creditosOP
 				&& creditosCF == that.creditosCF && creditosPE == that.creditosPE
 				&& creditosTF == that.creditosTF && titulacion.equals(that.titulacion) && Objects
-				.equals(alumno, that.alumno) && Objects.equals(encuestas, that.encuestas)
-				&& Objects.equals(matriculas, that.matriculas);
+				.equals(alumno, that.alumno);
 	}
 
 	@Override
@@ -190,8 +189,7 @@ public class Expediente {
 		return Objects
 				.hash(numExpediente, activo, notaMediaProvisional, creditosSuperados, creditosFB,
 						creditosOB,
-						creditosOP, creditosCF, creditosPE, creditosTF, titulacion, alumno, encuestas,
-						matriculas);
+						creditosOP, creditosCF, creditosPE, creditosTF, titulacion, alumno);
 	}
 
 	@Override
@@ -209,8 +207,6 @@ public class Expediente {
 				", creditosTF=" + creditosTF +
 				", titulacion=" + titulacion +
 				", alumno=" + alumno +
-				", encuestas=" + encuestas +
-				", matriculas=" + matriculas +
 				'}';
 	}
 }
