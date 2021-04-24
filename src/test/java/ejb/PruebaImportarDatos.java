@@ -66,8 +66,8 @@ public class PruebaImportarDatos {
 	  if(asig == null) fail("No hay asignaturas");
 	  String codigo = "101";
 	  asig.setCodigo(codigo);
-	  String referencia = "50658";
-	  asig.setReferencia(referencia);
+	  String nombre = "Cálculo para la Computación";
+	  asig.setNombre(nombre);
 	  Asignatura asig2 = null;
 	  try {
 		asig2 = gasi.findAsignatura(asig.getReferencia());
@@ -75,8 +75,9 @@ public class PruebaImportarDatos {
 	  		fail("Asignatura no encontrada");
 	  }
 	  assertEquals(codigo, asig2.getCodigo());
-	  assertEquals(referencia, asig2.getReferencia());
-	  
-	  Titulacion t = null;
+	  assertEquals("", asig2.getReferencia());
+	  assertEquals(nombre, asig2.getNombre());	  
+	  Titulacion t = null;	    
+	   
   }
 }
