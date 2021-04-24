@@ -1,12 +1,14 @@
 package ejb;
 
+import domain.Asignatura;
+import domain.Asignatura.AsignaturaId;
 import domain.Grupo;
+import domain.GruposPorAsignatura;
+import exceptions.AsignaturaNoEncontradaException;
 import exceptions.GrupoAsignaturaYaRelacionadoException;
 import exceptions.GrupoNoEncontradoException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,13 +16,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-
-import domain.Alumno;
-import domain.Asignatura;
-import domain.AsignaturasMatricula;
-import domain.GruposPorAsignatura;
-import exceptions.AlumnoNoEncontradoException;
-import exceptions.AsignaturaNoEncontradaException;
 
 
 @Stateless
@@ -33,47 +28,41 @@ public class ModificarAsignaturaEJB implements GestionAsignatura {
   
   @Override
   public void actualizarAsignatura(Asignatura asignatura) throws AsignaturaNoEncontradaException {
-    Asignatura p = em.find(Asignatura.class, asignatura.getReferencia());
+    Asignatura p = em.find(Asignatura.class, new AsignaturaId(asignatura.getReferencia(), asignatura.getTitulacion().getCodigo()));
     if (p == null) throw new AsignaturaNoEncontradaException();
     em.merge(asignatura);
   }
 
   @Override
   public void borrarAsignatura(Asignatura asignatura) throws AsignaturaNoEncontradaException {
-	  Asignatura asig = em.find(Asignatura.class, asignatura.getReferencia());
+	  Asignatura asig = em.find(Asignatura.class, new AsignaturaId(asignatura.getReferencia(), asignatura.getTitulacion().getCodigo()));
 	  if (asig == null) throw new AsignaturaNoEncontradaException();
-	  
-	  for (Iterator<GruposPorAsignatura> iterator = asig.getGruposPorAsignatura().iterator(); iterator.hasNext();) {
-		GruposPorAsignatura ga = iterator.next();
-		em.remove(ga);
-	}
-	  
-	  for (Iterator<AsignaturasMatricula> iterator = asig.getAsignaturasMatricula().iterator(); iterator.hasNext();) {
-		AsignaturasMatricula am = iterator.next();
-		em.remove(am);
-	}
-	  em.remove(asignatura);
+	  asignatura.setOfertada(false);
+	  em.merge(asignatura);
   }
 
   @Override
   public void addGrupoAsignatura(Asignatura asignatura, Grupo grupo)
       throws GrupoAsignaturaYaRelacionadoException, AsignaturaNoEncontradaException, GrupoNoEncontradoException {
-    if(em.find(Asignatura.class, asignatura) == null) throw new AsignaturaNoEncontradaException();
-    if(em.find(Grupo.class, grupo) == null) throw new GrupoNoEncontradoException();
+    Asignatura a = em.find(Asignatura.class, new AsignaturaId(asignatura.getReferencia(), asignatura.getTitulacion().getCodigo()));
+    if(a == null)
+      throw new AsignaturaNoEncontradaException();
+    Grupo g = em.find(Grupo.class, grupo.getId());
+    if(g == null) throw new GrupoNoEncontradoException();
 
-    if(asignatura.getGruposPorAsignatura().stream().anyMatch(gpa -> gpa.getGrupo().equals(grupo)))
+    if(a.getGruposPorAsignatura().stream().anyMatch(gpa -> gpa.getGrupo().equals(g)))
       throw new GrupoAsignaturaYaRelacionadoException();
 
     GruposPorAsignatura gpa = new GruposPorAsignatura();
-    gpa.setAsignatura(asignatura);
-    gpa.setGrupo(grupo);
+    gpa.setAsignatura(a);
+    gpa.setGrupo(g);
 
     em.persist(gpa);
   }
   
   @Override
-  public Asignatura findAsignatura(String referencia) throws AsignaturaNoEncontradaException {
-    Asignatura a = em.find(Asignatura.class, referencia);
+  public Asignatura findAsignatura(String referencia, String codigo) throws AsignaturaNoEncontradaException {
+    Asignatura a = em.find(Asignatura.class, new AsignaturaId(referencia, codigo));
     if(a == null) throw new AsignaturaNoEncontradaException();
     return a;
   }

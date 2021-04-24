@@ -1,15 +1,18 @@
 package ejb;
 
 import domain.Asignatura;
+import domain.Asignatura.AsignaturaId;
 import domain.AsignaturasMatricula;
 import domain.Encuesta;
 import domain.Expediente;
 import domain.Grupo;
 import domain.GruposPorAsignatura;
+import domain.Matricula;
+import domain.Matricula.MatriculaId;
 import exceptions.AsignaturaNoEncontradaException;
 import exceptions.GrupoNoEncontradoException;
-
-
+import exceptions.MatriculaNoEncontradaException;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,12 +21,6 @@ import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-
-import domain.Matricula;
-import exceptions.MatriculaNoEncontradaException;
-
-
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -39,20 +36,21 @@ public class GestionMatriculaEJB implements GestionMatricula {
   
   @Override
   public void actualizarMatricula(Matricula matricula) throws MatriculaNoEncontradaException {
-    Matricula p=em.find(Matricula.class, matricula.getCursoAcademico());
+    Matricula p=em.find(Matricula.class,
+        new MatriculaId(matricula.getCursoAcademico(), matricula.getExpediente().getNumExpediente()));
     if(p==null) throw new MatriculaNoEncontradaException();
     em.merge(matricula);
   }
 
   @Override
-  public void generarAsignaciones() throws GrupoNoEncontradoException {
+  public void generarAsignaciones() {
     // Consideramos las matriculas activas solo
-    List<Matricula> allMatriculas = getAllMatriculas().stream().filter(m -> m.getEstado().equalsIgnoreCase("activo")).collect(
+    List<Matricula> allMatriculas = getAllMatriculas().stream().filter(m -> m.getEstado().equalsIgnoreCase("activa")).collect(
         Collectors.toList());
 
     // Prioridad fecha de matriculacion para alumnos de nuevo ingreso
     List<Matricula> primerIngreso = allMatriculas.stream().filter(Matricula::isNuevoIngreso)
-        .sorted((m1, m2) -> m1.getFechaMatricula().compareTo(m2.getFechaMatricula()))
+        .sorted(Comparator.comparing(Matricula::getFechaMatricula))
         .collect(Collectors.toList());
     generarAsignaciones(primerIngreso);
 
@@ -64,11 +62,12 @@ public class GestionMatriculaEJB implements GestionMatricula {
 
   }
 
-  private void generarAsignaciones(List<Matricula> matriculas) throws GrupoNoEncontradoException {
+  private void generarAsignaciones(List<Matricula> matriculas) {
     for(Matricula matricula: matriculas){
       Expediente exp = matricula.getExpediente();
       // Consideramos la última encuesta que rellenó solo
-      Encuesta prefs = exp.getEncuestas().stream().max((e1, e2) -> e1.getFechaEnvio().compareTo(e2.getFechaEnvio())).orElse(null);
+      Encuesta prefs = exp.getEncuestas().stream().max(
+          Comparator.comparing(Encuesta::getFechaEnvio)).orElse(null);
 
       for(AsignaturasMatricula am: matricula.getAsignaturasMatriculas()){
         // Si ya tiene un grupo asignado para esa asignatura respetamos la asignacion
@@ -83,12 +82,12 @@ public class GestionMatriculaEJB implements GestionMatricula {
         // Si no tiene preferencias le asignamos un grupo random
         if(grupo == null){
           List<GruposPorAsignatura> gpa = am.getAsignatura().getGruposPorAsignatura();
-          if(gpa.isEmpty()) throw new GrupoNoEncontradoException("No hay grupo para la asignatura " + am);
-          grupo = gpa.get((int) (Math.random()*gpa.size())).getGrupo();
+          if(gpa.isEmpty()) grupo = null;
+          else grupo = gpa.get((int) (Math.random()*gpa.size())).getGrupo();
         }
         am.setGrupo(grupo);
         em.merge(am);
-      };
+      }
     }
   }
 
@@ -109,33 +108,38 @@ public class GestionMatriculaEJB implements GestionMatricula {
     Root<AsignaturasMatricula> rootEntry = cq.from(AsignaturasMatricula.class);
     CriteriaQuery<AsignaturasMatricula> all = cq.select(rootEntry);
     TypedQuery<AsignaturasMatricula> allQuery = em.createQuery(all);
-    return allQuery.getResultList();
+    return allQuery.getResultList().stream().filter(am -> am.getGrupo() != null).collect(Collectors.toList());
   }
 
   @Override
   public List<AsignaturasMatricula> listarAsignaciones(boolean nuevoIngreso){
     List<AsignaturasMatricula> asignaciones = listarAsignaciones();
-    return asignaciones.stream().filter(a -> a.getMatricula().isNuevoIngreso() == nuevoIngreso).collect(
+    return asignaciones.stream().filter(a -> a.getGrupo() != null && a.getMatricula().isNuevoIngreso() == nuevoIngreso).collect(
         Collectors.toList());
   }
 
   @Override
-  public Map<Asignatura, List<GruposPorAsignatura>> generarEncuesta(Matricula matricula) throws MatriculaNoEncontradaException {
-    if(em.find(Matricula.class, matricula) == null) throw new MatriculaNoEncontradaException();
-    Map<Asignatura, List<GruposPorAsignatura>> res = new HashMap<>();
+  public void asignarGrupo(Matricula m, Asignatura a, Grupo g)
+      throws MatriculaNoEncontradaException, AsignaturaNoEncontradaException, GrupoNoEncontradoException {
+    findMatricula(m.getCursoAcademico(), m.getExpediente().getNumExpediente());
+    if(em.find(Asignatura.class, new AsignaturaId(a.getReferencia(), a.getTitulacion().getCodigo())) == null) throw new AsignaturaNoEncontradaException();
+    if(em.find(Grupo.class, g.getId()) == null) throw new GrupoNoEncontradoException();
 
-    matricula.getAsignaturasMatriculas().forEach(am -> {
-      res.put(am.getAsignatura(), am.getAsignatura().getGruposPorAsignatura());
-    });
-
-    return res;
+    AsignaturasMatricula am = new AsignaturasMatricula();
+    am.setMatricula(m);
+    am.setAsignatura(a);
+    am.setGrupo(g);
+    em.merge(am);
   }
 
   @Override
   public Encuesta obtenerPreferencias(Matricula matricula) throws MatriculaNoEncontradaException {
-    if(em.find(Matricula.class, matricula) == null) throw new MatriculaNoEncontradaException();
-    return matricula.getExpediente().getEncuestas().stream()
-        .max((e1, e2) -> e1.getFechaEnvio().compareTo(e2.getFechaEnvio())).orElse(null);
+    Matricula m = em.find(Matricula.class,
+        new MatriculaId(matricula.getCursoAcademico(), matricula.getExpediente().getNumExpediente()));
+    if(m == null)
+      throw new MatriculaNoEncontradaException();
+    return m.getExpediente().getEncuestas().stream()
+        .max(Comparator.comparing(Encuesta::getFechaEnvio)).orElse(null);
   }
 
   @Override
@@ -149,8 +153,9 @@ public class GestionMatriculaEJB implements GestionMatricula {
   }
   
   @Override
-  public Matricula findMatricula(String cursoAcademico) throws MatriculaNoEncontradaException {
-    Matricula m = em.find(Matricula.class, cursoAcademico);
+  public Matricula findMatricula(String cursoAcademico, int expediente) throws MatriculaNoEncontradaException {
+    MatriculaId pk = new MatriculaId(cursoAcademico, expediente);
+    Matricula m = em.find(Matricula.class, pk);
     if(m == null) throw new MatriculaNoEncontradaException();
     return m;
   }

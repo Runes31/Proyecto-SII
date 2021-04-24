@@ -1,31 +1,31 @@
 package ejb;
 
-import java.util.List;
-
-import javax.ejb.Local;
-
-
 import domain.Expediente;
-import exceptions.ExpedienteNoEcontradoException;
+import exceptions.ExpedienteNoEncontradoException;
+import java.util.List;
+import javax.ejb.Local;
 
 @Local
 public interface GestionExpediente {
   /**
    * Actualizar un expediente a partir de los datos de entrada
    * @param expediente
-   * @throws ExpedienteNoEcontradoException
+   * @throws ExpedienteNoEncontradoException
    */
-  public void actualizarExpediente(Expediente expediente) throws ExpedienteNoEcontradoException;
+  void actualizarExpediente(Expediente expediente) throws ExpedienteNoEncontradoException;
   
   /**
    * Encuentra un expediente por su pk
-   * @param expedediente
+   * @param n
    * @return Objeto tipo Expediente
    * @throws ExpedienteNoEncontradoException
    */
-  public Expediente findExpediente(int n) throws ExpedienteNoEcontradoException;
-  
-  public List<Expediente> getAllExpediente();
+  Expediente findExpediente(int n) throws ExpedienteNoEncontradoException;
 
-  }
+  /**
+   * Genera una lista con todos los expedientes
+   * @return
+   */
+  List<Expediente> getAllExpediente();
 
+}

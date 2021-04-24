@@ -1,15 +1,12 @@
 package ejb;
 
-import domain.Matricula;
+import domain.Alumno;
+import exceptions.AlumnoNoEncontradoException;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import domain.Alumno;
-import exceptions.AlumnoNoEncontradoException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

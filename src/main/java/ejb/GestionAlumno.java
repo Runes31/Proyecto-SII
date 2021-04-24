@@ -1,9 +1,9 @@
 package ejb;
 
-import java.util.List;
-import javax.ejb.Local;
 import domain.Alumno;
 import exceptions.AlumnoNoEncontradoException;
+import java.util.List;
+import javax.ejb.Local;
 
 @Local
 public interface GestionAlumno {
@@ -12,7 +12,7 @@ public interface GestionAlumno {
    * @param alumno
    * @throws AlumnoNoEncontradoException
    */
-  public void actualizarAlumno(Alumno alumno) throws AlumnoNoEncontradoException;
+  void actualizarAlumno(Alumno alumno) throws AlumnoNoEncontradoException;
 
   /**
    * Encuentra a un alumno por su pk
@@ -20,11 +20,11 @@ public interface GestionAlumno {
    * @return Objeto tipo Alumno
    * @throws AlumnoNoEncontradoException
    */
-  public Alumno findAlumno(int id) throws AlumnoNoEncontradoException;
+  Alumno findAlumno(int id) throws AlumnoNoEncontradoException;
 
   /**
    * Genera una lista con todos los alumnos
    * @return List con los alumnos
    */
-  public List<Alumno> getAllAlumnos();
+  List<Alumno> getAllAlumnos();
 }
