@@ -1,12 +1,20 @@
 package ejb;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import domain.Encuesta;
+import domain.Expediente;
+import exceptions.MatriculaNoEncontradaException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.naming.NamingException;
 
 import org.junit.Before;
@@ -35,46 +43,47 @@ public class PruebaImportarDatos {
 	  ga = (GestionAlumno) SuiteTest.ctx.lookup("java:global/classes/ModificarAlumnoEJB");
 	  gasi = (GestionAsignatura) SuiteTest.ctx.lookup("java:global/classes/ModificarAsignaturaEJB");
 	  gestionMatricula = (GestionMatricula) SuiteTest.ctx.lookup("java:global/classes/GestionMatriculaEJB");
+    ge = (GestionExpediente) SuiteTest.ctx.lookup("java:global/classes/ModificarExpedienteEJB");
   }
-  
+
   @Test
   @Requisitos({"006"})
-  public void testImportarAlumnos() {
-	  Alumno a = null;
-	  a = ga.getAllAlumnos().stream().findFirst().orElse(null);
-	  if(a == null) fail("No hay alumnos");
-	  String dni = "95115697E";
-	  a.setDni(dni);
-	  String nombre = "Carmelita EnrÃ­quez Navarro";
-	  a.setNombre(nombre);
-	  Alumno a2 = null;
-	  try {
-		a2 = ga.findAlumno(a.getId());
-	  } catch (AlumnoNoEncontradoException e) {
-	  		fail("Alumno no encontrado");
-	  }
-	  assertEquals(dni, a2.getDni());
-	  assertEquals(nombre, a2.getNombre());
+  public void testImportarAlumnosExcel(){
+    Alumno alumno = ga.getAllAlumnos().stream().filter(a -> a.getDni().equals("95115697E")).findFirst().orElse(null);
+    assertNotNull(alumno);
+    if(!alumno.getNombre().contains("Carmelita")) fail();
   }
-  
-  @Test
-  @Requisitos({"015","012"})
-  public void testImportarAsignaturas() throws AsignaturaNoEncontradaException, FileNotFoundException, IOException, CsvException, ParseException {
-	  Asignatura asig = null;
-	  asig = gasi.getAllAsignatura().stream().findFirst().orElse(null);
-	  if(asig == null) fail("No hay alumnos");
-	  String codigo = "101.0";
-	  asig.setCodigo(codigo);
-	  String nombre = "CÃ­lculo para la Computación";
-	  asig.setNombre(nombre);
-	  Asignatura asig2 = null;
-	  try {
-		asig2 = gasi.findAsignatura(asig.getReferencia());
-	  } catch (AsignaturaNoEncontradaException e) {
-	  		fail("Asignatura no encontrada");
-	  }
-	  assertEquals(codigo, asig2.getCodigo());
-	  assertEquals(nombre, asig2.getNombre());
 
+  @Test
+  @Requisitos({"015"})
+  public void testImportarTitulacionExcel(){
+    assertEquals(5, gasi.getAllAsignatura().stream().map(Asignatura::getTitulacion).distinct().count());
+  }
+
+  @Test
+  @Requisitos({"014"})
+  public void testImportarAsignaturasExcel(){
+    try {
+      Asignatura asignatura = gasi.findAsignatura("51046.0", "1041.0");
+      assertEquals("413.0", asignatura.getCodigo());
+    } catch (AsignaturaNoEncontradaException e) {
+      fail();
+      e.printStackTrace();
+    }
+  }
+
+  @Test
+  @Requisitos({"012"})
+  public void testImportarEncuestaExcel() throws ParseException {
+    Expediente e = ge.getAllExpediente().stream().filter(exp -> !exp.getEncuestas().isEmpty()).findFirst().orElse(null);
+    assertNotNull(e);
+    assertTrue(e.getEncuestas().get(0).getFechaEnvio().compareTo(new SimpleDateFormat("dd-MM-yyyy").parse("19-10-2020")) >= 0);
+  }
+
+  @Test
+  @Requisitos({"15"})
+  public void testImportarGruposExcel(){
+    assertTrue(ge.getAllExpediente().stream().map(Expediente::getTitulacion).map(Titulacion::getGrupos).flatMap(
+        List::stream).anyMatch(g -> g.getCurso().equals("1.0") && g.getLetra().equals("a")));
   }
 }

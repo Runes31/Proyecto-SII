@@ -32,5 +32,7 @@ public class BaseDatos {
     File file = new File("DATOS/Oferta_asignaturas.xlsx");
     importarDatos.importarAsignaturasExcel(file);
     importarDatos.importarAlumnosExcel(new File("DATOS/alumnos.xlsx"));
+    importarDatos.importarGruposExcel(new File("DATOS/grupos.xlsx"));
+    importarDatos.importarEncuestaExcel(new File("DATOS/Encuesta.xlsx"));
   }
 }

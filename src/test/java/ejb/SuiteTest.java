@@ -20,7 +20,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 
 @RunWith(Suite.class)
-@SuiteClasses({PruebaGestionMatricula.class,PruebaImportarDatos.class,PruebaModificar.class})
+@SuiteClasses({PruebaGestionMatricula.class,PruebaImportarDatos.class,PruebaModificar.class,
+    PruebaModificarAlumnoEJB.class, PruebaModificarAsignaturaEJB.class, PruebaModificarExpedienteEJB.class})
 public class SuiteTest {
   
   private static final Logger LOG = Logger.getLogger(SuiteTest.class.getCanonicalName());

@@ -11,7 +11,7 @@ import domain.Matricula;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 import exceptions.AlumnoNoEncontradoException;
 import exceptions.AsignaturaNoEncontradaException;
-import exceptions.ExpedienteNoEcontradoException;
+import exceptions.ExpedienteNoEncontradoException;
 import exceptions.MatriculaNoEncontradaException;
 
 import java.io.FileNotFoundException;
@@ -83,7 +83,7 @@ public class PruebaModificar {
     
     Asignatura modificada = null;
     try {
-    	modificada = gasi.findAsignatura(asig.getReferencia());
+    	modificada = gasi.findAsignatura(asig.getReferencia(), asig.getTitulacion().getCodigo());
     }catch(AsignaturaNoEncontradaException e) {
     	fail("Asignatura no encontrada");
     }
@@ -106,14 +106,14 @@ public class PruebaModificar {
     
     try {
     	ge.actualizarExpediente(e);
-    }catch(ExpedienteNoEcontradoException ex) {
+    }catch(ExpedienteNoEncontradoException ex) {
     	fail("Error al actualizar el expediente");
     }
     
     Expediente modificada = null;
     try {
     	modificada = ge.findExpediente(e.getNumExpediente());
-    }catch(ExpedienteNoEcontradoException ex) {
+    }catch(ExpedienteNoEncontradoException ex) {
     	fail("Expediente no encontrado");
     }
     
@@ -139,7 +139,7 @@ public class PruebaModificar {
     
     Matricula modificada = null;
     try {
-    	modificada = gestionMatricula.findMatricula(m.getCursoAcademico());
+    	modificada = gestionMatricula.findMatricula(m.getCursoAcademico(), m.getExpediente().getNumExpediente());
     }catch(MatriculaNoEncontradaException ex) {
     	fail("Matricula no encontrada");
     }
