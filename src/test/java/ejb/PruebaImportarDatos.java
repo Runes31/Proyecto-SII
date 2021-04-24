@@ -64,15 +64,15 @@ public class PruebaImportarDatos {
 	  Asignatura asig = null;
 	  asig = gasi.getAllAsignatura().stream().findFirst().orElse(null);
 	  if(asig == null) fail("No hay asignaturas");
-	  String codigo = "106";
+	  String codigo = "101";
 	  asig.setCodigo(codigo);
-	  String referencia = "50659";
+	  String referencia = "50658";
 	  asig.setReferencia(referencia);
 	  Asignatura asig2 = null;
 	  try {
 		asig2 = gasi.findAsignatura(asig.getReferencia());
 	  } catch (AsignaturaNoEncontradaException e) {
-	  		fail("Asignatura no encontrado");
+	  		fail("Asignatura no encontrada");
 	  }
 	  assertEquals(codigo, asig2.getCodigo());
 	  assertEquals(referencia, asig2.getReferencia());
