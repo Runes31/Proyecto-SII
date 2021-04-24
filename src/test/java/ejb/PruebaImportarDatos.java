@@ -45,7 +45,7 @@ public class PruebaImportarDatos {
 	  if(a == null) fail("No hay alumnos");
 	  String dni = "95115697E";
 	  a.setDni(dni);
-	  String nombre = "Carmelita Enriquez Navarro";
+	  String nombre = "Carmelita EnrÃƒÂ­quez Navarro";
 	  a.setNombre(nombre);
 	  Alumno a2 = null;
 	  try {
@@ -59,33 +59,18 @@ public class PruebaImportarDatos {
   
   @Test
   @Requisitos({"015","012"})
-  public void testImportarAsignaturasTitulaciones() throws AsignaturaNoEncontradaException, FileNotFoundException, IOException, CsvException, ParseException {
+  public void testImportarAsignaturas() throws AsignaturaNoEncontradaException, FileNotFoundException, IOException, CsvException, ParseException {
 	  Asignatura asig = null;
-	  Titulacion t = new Titulacion();
-	  t.setNombre("Grado en Ingeniería Informática");
-	  t.setCodigo("1041");
-	  t.setCreditos(240);
 	  asig = gasi.getAllAsignatura().stream().findFirst().orElse(null);
 	  if(asig == null) fail("No hay asignaturas");
-	  String codigo = "101";
-	  asig.setCodigo(codigo);
-	  int creditos = 6;
-	  asig.setCreditos(creditos);
-	  String referencia = "50658";
-	  asig.setReferencia(referencia);
-	  asig.setOfertada(true);
-	  String nombre = "Cálculo para la Computación";
-	  asig.setNombre(nombre);
-	  asig.setTitulacion(t);
 	  
-	  Asignatura asig2 = null;
 	  try {
-		asig2 = gasi.findAsignatura(asig.getReferencia());
+		asig = gasi.findAsignatura("53412");
 	  } catch (AsignaturaNoEncontradaException e) {
 	  		fail("Asignatura no encontrada");
 	  }
-	  assertEquals(codigo, asig2.getCodigo());
-	  assertEquals(nombre, asig2.getNombre());	  
+	  assertEquals("921.0", asig.getCodigo());
+	  assertEquals("Almacenes de Datos", asig.getNombre());	 
 	  
 
   }
