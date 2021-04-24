@@ -8,15 +8,13 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import javax.naming.NamingException;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.opencsv.exceptions.CsvException;
 
+import es.uma.informatica.sii.anotaciones.*;
 
 import domain.Alumno;
 import domain.Asignatura;
@@ -38,7 +36,7 @@ public class PruebaImportarDatos {
 	  gestionMatricula = (GestionMatricula) SuiteTest.ctx.lookup("java:global/classes/GestionMatriculaEJB");
   }
   
-  /*@Test
+  @Test
   @Requisitos({"006"})
   public void testImportarAlumnos() {
 	  Alumno a = null;
@@ -56,7 +54,7 @@ public class PruebaImportarDatos {
 	  }
 	  assertEquals(dni, a2.getDni());
 	  assertEquals(nombre, a2.getNombre());
-  }*/
+  }
   
   @Test
   @Requisitos({"015","012"})
