@@ -62,16 +62,19 @@ public class PruebaImportarDatos {
   public void testImportarAsignaturas() throws AsignaturaNoEncontradaException, FileNotFoundException, IOException, CsvException, ParseException {
 	  Asignatura asig = null;
 	  asig = gasi.getAllAsignatura().stream().findFirst().orElse(null);
-	  if(asig == null) fail("No hay asignaturas");
-	  
+	  if(asig == null) fail("No hay alumnos");
+	  String codigo = "101.0";
+	  asig.setCodigo(codigo);
+	  String nombre = "CÃ­lculo para la Computación";
+	  asig.setNombre(nombre);
+	  Asignatura asig2 = null;
 	  try {
-		asig = gasi.findAsignatura("53412");
+		asig2 = gasi.findAsignatura(asig.getReferencia());
 	  } catch (AsignaturaNoEncontradaException e) {
 	  		fail("Asignatura no encontrada");
 	  }
-	  assertEquals("921.0", asig.getCodigo());
-	  assertEquals("Almacenes de Datos", asig.getNombre());	 
-	  
+	  assertEquals(codigo, asig2.getCodigo());
+	  assertEquals(nombre, asig2.getNombre());
 
   }
 }
