@@ -19,6 +19,7 @@ import es.uma.informatica.sii.anotaciones.*;
 import domain.Alumno;
 import domain.Asignatura;
 import domain.Titulacion;
+import es.uma.informatica.sii.anotaciones.Requisitos;
 import exceptions.AlumnoNoEncontradoException;
 import exceptions.AsignaturaNoEncontradaException;
 
