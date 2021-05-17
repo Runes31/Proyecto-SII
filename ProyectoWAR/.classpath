@@ -35,5 +35,24 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Efrain/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/5.1.0/glassfish-embedded-all-5.1.0.jar" sourcepath="C:/Users/Efrain/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/5.1.0/glassfish-embedded-all-5.1.0-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
+			<attribute name="maven.groupId" value="org.glassfish.main.extras"/>
+			<attribute name="maven.artifactId" value="glassfish-embedded-all"/>
+			<attribute name="maven.version" value="5.1.0"/>
+			<attribute name="maven.scope" value="test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Efrain/.m2/repository/javax/javaee-api/8.0/javaee-api-8.0.jar" sourcepath="C:/Users/Efrain/.m2/repository/javax/javaee-api/8.0/javaee-api-8.0-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="javax"/>
+			<attribute name="maven.artifactId" value="javaee-api"/>
+			<attribute name="maven.version" value="8.0"/>
+			<attribute name="maven.scope" value="provided"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

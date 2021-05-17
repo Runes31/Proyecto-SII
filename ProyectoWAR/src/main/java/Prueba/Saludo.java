@@ -10,5 +10,3 @@ public class Saludo {
     return "Hola mundo";
   }
 }
-
-}
