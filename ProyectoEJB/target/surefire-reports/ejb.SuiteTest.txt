@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: ejb.SuiteTest
 -------------------------------------------------------------------------------
-Tests run: 29, Failures: 17, Errors: 6, Skipped: 0, Time elapsed: 130.989 sec <<< FAILURE!
-guardarPreferencias(ejb.PruebaGestionMatricula)  Time elapsed: 0.096 sec  <<< ERROR!
+Tests run: 29, Failures: 17, Errors: 6, Skipped: 0, Time elapsed: 134.032 sec <<< FAILURE!
+guardarPreferencias(ejb.PruebaGestionMatricula)  Time elapsed: 0.11 sec  <<< ERROR!
 javax.ejb.EJBException: Transaction aborted
 	at com.sun.ejb.containers.EJBContainerTransactionManager.completeNewTx(EJBContainerTransactionManager.java:705)
 	at com.sun.ejb.containers.EJBContainerTransactionManager.postInvokeTx(EJBContainerTransactionManager.java:483)
@@ -11,7 +11,7 @@ javax.ejb.EJBException: Transaction aborted
 	at com.sun.ejb.containers.BaseContainer.postInvoke(BaseContainer.java:2054)
 	at com.sun.ejb.containers.EJBLocalObjectInvocationHandler.invoke(EJBLocalObjectInvocationHandler.java:196)
 	at com.sun.ejb.containers.EJBLocalObjectInvocationHandlerDelegate.invoke(EJBLocalObjectInvocationHandlerDelegate.java:64)
-	at com.sun.proxy.$Proxy170.guardarPreferencias(Unknown Source)
+	at com.sun.proxy.$Proxy173.guardarPreferencias(Unknown Source)
 	at ejb.PruebaGestionMatricula.guardarPreferencias(PruebaGestionMatricula.java:110)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -69,7 +69,7 @@ INSERT INTO ENCUESTA (FECHAENVIO, EXPEDIENTE_NUMEXPEDIENTE) VALUES (?, ?) [23502
 Error Code: 23502
 Call: INSERT INTO ENCUESTA (FECHAENVIO, EXPEDIENTE_NUMEXPEDIENTE) VALUES (?, ?)
 	bind => [2 parameters bound]
-Query: InsertObjectQuery(Encuesta{fechaEnvio=Mon May 17 16:35:22 CEST 2021, expediente=null, gruposPorAsignaturas={[]}})
+Query: InsertObjectQuery(Encuesta{fechaEnvio=Mon May 17 17:42:45 CEST 2021, expediente=null, gruposPorAsignaturas={[]}})
 	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl$1.handleException(EntityManagerSetupImpl.java:787)
 	at org.eclipse.persistence.transaction.AbstractSynchronizationListener.handleException(AbstractSynchronizationListener.java:277)
 	at org.eclipse.persistence.transaction.AbstractSynchronizationListener.beforeCompletion(AbstractSynchronizationListener.java:172)
@@ -83,7 +83,7 @@ INSERT INTO ENCUESTA (FECHAENVIO, EXPEDIENTE_NUMEXPEDIENTE) VALUES (?, ?) [23502
 Error Code: 23502
 Call: INSERT INTO ENCUESTA (FECHAENVIO, EXPEDIENTE_NUMEXPEDIENTE) VALUES (?, ?)
 	bind => [2 parameters bound]
-Query: InsertObjectQuery(Encuesta{fechaEnvio=Mon May 17 16:35:22 CEST 2021, expediente=null, gruposPorAsignaturas={[]}})
+Query: InsertObjectQuery(Encuesta{fechaEnvio=Mon May 17 17:42:45 CEST 2021, expediente=null, gruposPorAsignaturas={[]}})
 	at org.eclipse.persistence.exceptions.DatabaseException.sqlException(DatabaseException.java:333)
 	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.executeDirectNoSelect(DatabaseAccessor.java:908)
 	at org.eclipse.persistence.internal.databaseaccess.DatabaseAccessor.executeNoSelect(DatabaseAccessor.java:970)
@@ -236,7 +236,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-findMatricula(ejb.PruebaGestionMatricula)  Time elapsed: 0.001 sec  <<< ERROR!
+findMatricula(ejb.PruebaGestionMatricula)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.ArrayIndexOutOfBoundsException: Array index out of range: 0
 	at java.base/java.util.Vector.get(Vector.java:749)
 	at ejb.PruebaGestionMatricula.findMatricula(PruebaGestionMatricula.java:125)
@@ -334,7 +334,7 @@ java.lang.AssertionError: Matricula no encontrada
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testImportarGruposExcel(ejb.PruebaImportarDatos)  Time elapsed: 0 sec  <<< FAILURE!
+testImportarGruposExcel(ejb.PruebaImportarDatos)  Time elapsed: 0.001 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
@@ -385,7 +385,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testImportarTitulacionExcel(ejb.PruebaImportarDatos)  Time elapsed: 0 sec  <<< FAILURE!
+testImportarTitulacionExcel(ejb.PruebaImportarDatos)  Time elapsed: 0.001 sec  <<< FAILURE!
 java.lang.AssertionError: expected:<5> but was:<0>
 	at org.junit.Assert.fail(Assert.java:89)
 	at org.junit.Assert.failNotEquals(Assert.java:835)
@@ -437,7 +437,7 @@ java.lang.AssertionError: expected:<5> but was:<0>
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testImportarAlumnosExcel(ejb.PruebaImportarDatos)  Time elapsed: 0.005 sec  <<< FAILURE!
+testImportarAlumnosExcel(ejb.PruebaImportarDatos)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
@@ -489,7 +489,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testImportarEncuestaExcel(ejb.PruebaImportarDatos)  Time elapsed: 0.006 sec  <<< FAILURE!
+testImportarEncuestaExcel(ejb.PruebaImportarDatos)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
@@ -541,7 +541,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testImportarAsignaturasExcel(ejb.PruebaImportarDatos)  Time elapsed: 0.002 sec  <<< FAILURE!
+testImportarAsignaturasExcel(ejb.PruebaImportarDatos)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.fail(Assert.java:96)
@@ -591,7 +591,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testModificarAsignatura(ejb.PruebaModificar)  Time elapsed: 0.006 sec  <<< FAILURE!
+testModificarAsignatura(ejb.PruebaModificar)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: No hay asignaturas
 	at org.junit.Assert.fail(Assert.java:89)
 	at ejb.PruebaModificar.testModificarAsignatura(PruebaModificar.java:71)
@@ -640,7 +640,7 @@ java.lang.AssertionError: No hay asignaturas
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testModificarExpediente(ejb.PruebaModificar)  Time elapsed: 0.003 sec  <<< FAILURE!
+testModificarExpediente(ejb.PruebaModificar)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: No hay expedientes
 	at org.junit.Assert.fail(Assert.java:89)
 	at ejb.PruebaModificar.testModificarExpediente(PruebaModificar.java:102)
@@ -689,7 +689,7 @@ java.lang.AssertionError: No hay expedientes
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testModificarAlumno(ejb.PruebaModificar)  Time elapsed: 0.001 sec  <<< FAILURE!
+testModificarAlumno(ejb.PruebaModificar)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: No hay alumnos
 	at org.junit.Assert.fail(Assert.java:89)
 	at ejb.PruebaModificar.testModificarAlumno(PruebaModificar.java:45)
@@ -738,7 +738,7 @@ java.lang.AssertionError: No hay alumnos
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-testModificarMatricula(ejb.PruebaModificar)  Time elapsed: 0.002 sec  <<< FAILURE!
+testModificarMatricula(ejb.PruebaModificar)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: No hay matriculas
 	at org.junit.Assert.fail(Assert.java:89)
 	at ejb.PruebaModificar.testModificarMatricula(PruebaModificar.java:129)
@@ -787,7 +787,7 @@ java.lang.AssertionError: No hay matriculas
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-findAlumno(ejb.PruebaModificarAlumnoEJB)  Time elapsed: 0.001 sec  <<< FAILURE!
+findAlumno(ejb.PruebaModificarAlumnoEJB)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.fail(Assert.java:96)
@@ -837,7 +837,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-getAllAlumnos(ejb.PruebaModificarAlumnoEJB)  Time elapsed: 0.001 sec  <<< FAILURE!
+getAllAlumnos(ejb.PruebaModificarAlumnoEJB)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
@@ -888,7 +888,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-findAsignatura(ejb.PruebaModificarAsignaturaEJB)  Time elapsed: 0.002 sec  <<< ERROR!
+findAsignatura(ejb.PruebaModificarAsignaturaEJB)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.ArrayIndexOutOfBoundsException: Array index out of range: 0
 	at java.base/java.util.Vector.get(Vector.java:749)
 	at ejb.PruebaModificarAsignaturaEJB.findAsignatura(PruebaModificarAsignaturaEJB.java:78)
@@ -937,7 +937,7 @@ java.lang.ArrayIndexOutOfBoundsException: Array index out of range: 0
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-borrarAsignatura(ejb.PruebaModificarAsignaturaEJB)  Time elapsed: 0.01 sec  <<< ERROR!
+borrarAsignatura(ejb.PruebaModificarAsignaturaEJB)  Time elapsed: 0.019 sec  <<< ERROR!
 javax.ejb.EJBException
 	at com.sun.ejb.containers.EJBContainerTransactionManager.processSystemException(EJBContainerTransactionManager.java:728)
 	at com.sun.ejb.containers.EJBContainerTransactionManager.completeNewTx(EJBContainerTransactionManager.java:678)
@@ -947,7 +947,7 @@ javax.ejb.EJBException
 	at com.sun.ejb.containers.BaseContainer.postInvoke(BaseContainer.java:2054)
 	at com.sun.ejb.containers.EJBLocalObjectInvocationHandler.invoke(EJBLocalObjectInvocationHandler.java:196)
 	at com.sun.ejb.containers.EJBLocalObjectInvocationHandlerDelegate.invoke(EJBLocalObjectInvocationHandlerDelegate.java:64)
-	at com.sun.proxy.$Proxy171.borrarAsignatura(Unknown Source)
+	at com.sun.proxy.$Proxy170.borrarAsignatura(Unknown Source)
 	at ejb.PruebaModificarAsignaturaEJB.borrarAsignatura(PruebaModificarAsignaturaEJB.java:32)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -1026,7 +1026,7 @@ Caused by: java.lang.NullPointerException
 	at com.sun.ejb.containers.EJBLocalObjectInvocationHandler.invoke(EJBLocalObjectInvocationHandler.java:188)
 	... 47 more
 
-addGrupoAsignatura(ejb.PruebaModificarAsignaturaEJB)  Time elapsed: 0.001 sec  <<< FAILURE!
+addGrupoAsignatura(ejb.PruebaModificarAsignaturaEJB)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
@@ -1078,7 +1078,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-addGrupoAsignaturaYaRelacionado(ejb.PruebaModificarAsignaturaEJB)  Time elapsed: 0.002 sec  <<< FAILURE!
+addGrupoAsignaturaYaRelacionado(ejb.PruebaModificarAsignaturaEJB)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
@@ -1130,7 +1130,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-getAllAsignatura(ejb.PruebaModificarAsignaturaEJB)  Time elapsed: 0.004 sec  <<< FAILURE!
+getAllAsignatura(ejb.PruebaModificarAsignaturaEJB)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
@@ -1181,7 +1181,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-getAllExpediente(ejb.PruebaModificarExpedienteEJB)  Time elapsed: 0.001 sec  <<< FAILURE!
+getAllExpediente(ejb.PruebaModificarExpedienteEJB)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
@@ -1232,7 +1232,7 @@ java.lang.AssertionError
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-findExpediente(ejb.PruebaModificarExpedienteEJB)  Time elapsed: 0.002 sec  <<< ERROR!
+findExpediente(ejb.PruebaModificarExpedienteEJB)  Time elapsed: 0 sec  <<< ERROR!
 java.lang.ArrayIndexOutOfBoundsException: Array index out of range: 0
 	at java.base/java.util.Vector.get(Vector.java:749)
 	at ejb.PruebaModificarExpedienteEJB.findExpediente(PruebaModificarExpedienteEJB.java:27)
