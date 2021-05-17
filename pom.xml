@@ -12,5 +12,6 @@
   
   <modules>
   	<module>ProyectoEJB</module>
+  	<module>ProyectoWAR</module>
   </modules>
 </project>
