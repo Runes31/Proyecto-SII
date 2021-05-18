@@ -9,18 +9,11 @@
   
   <dependencies>
 		<dependency>
-			<groupId>es.uma.informatica.sii</groupId>
-			<artifactId>AgendaWeb-ear</artifactId>
-			<version>1.0-SNAPSHOT</version>
-			<scope>test</scope>
+	  		<groupId>es.uma.informatica.sii</groupId>
+			<artifactId>ProyectoEAR</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 			<type>ear</type>
-		</dependency>
-		<dependency>
-			<groupId>es.uma.informatica.sii</groupId>
-			<artifactId>AgendaWeb-jpa</artifactId>
-			<version>1.0-SNAPSHOT</version>
-			<scope>test</scope>
-		</dependency>
+	  	</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
