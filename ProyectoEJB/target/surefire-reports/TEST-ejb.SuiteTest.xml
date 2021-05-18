@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="ejb.SuiteTest" time="165.547" errors="1" skipped="0">
+<testsuite tests="1" failures="0" name="ejb.SuiteTest" time="160.871" errors="1" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="14.0.1+7"/>
@@ -26,6 +26,7 @@
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
     <property name="classworlds.conf" value="D:\Universidad - Informática\Tercero\Sistemas de Información para Internet\Prácticas\Programas Extras\Maven\apache-maven-3.6.3\bin\..\bin\m2.conf"/>
+    <property name="skip" value="true"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk-14.0.1\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk-13.0.2/bin/server;C:/Program Files/Java/jdk-13.0.2/bin;C:\Program Files (x86)\VMware\VMware Player\bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\MinGW\bin;C:\Program Files\MATLAB\R2020b\bin;C:\Program Files\Java\jdk-14.0.1\bin;D:\Universidad - Informática\Tercero\Sistemas de Información para Internet\Prácticas\Programas Extras\Maven\apache-maven-3.6.3\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\Efrain\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\Efrain\AppData\Local\Programs\Python\Python38-32\;C:\Users\Efrain\AppData\Local\Microsoft\WindowsApps;C:\MinGW\bin;C:\Users\Efrain\AppData\Local\Microsoft\WindowsApps;C:\Users\Efrain\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Efrain\AppData\Local\GitHubDesktop\bin;C:\Users\Efrain\Desktop;;."/>
     <property name="maven.conf" value="D:\Universidad - Informática\Tercero\Sistemas de Información para Internet\Prácticas\Programas Extras\Maven\apache-maven-3.6.3\bin\../conf"/>
@@ -43,7 +44,7 @@
     <property name="java.class.path" value="D:\Universidad - Informática\Tercero\Sistemas de Información para Internet\Prácticas\Programas Extras\Maven\apache-maven-3.6.3\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="14"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher package"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher package -Dskip test"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-14.0.1"/>
     <property name="user.language" value="es"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -60,12 +61,14 @@
     <property name="sun.stdout.encoding" value="cp850"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="ejb.SuiteTest" name="ejb.SuiteTest" time="165.547">
-    <error message="Exception [EclipseLink-7060] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.ValidationException
-Exception Description: Cannot acquire data source [java:jboss/datasources/sii].
-Internal Exception: javax.naming.NamingException: Lookup failed for &apos;java:jboss/datasources/sii&apos; in SerialContext[myEnv={java.naming.factory.initial=com.sun.enterprise.naming.impl.SerialInitContextFactory, java.naming.factory.url.pkgs=com.sun.enterprise.naming, java.naming.factory.state=com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl} [Root exception is javax.naming.NamingException: Invocation exception: Got null ComponentInvocation ]" type="javax.persistence.PersistenceException">javax.persistence.PersistenceException: Exception [EclipseLink-7060] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.ValidationException
-Exception Description: Cannot acquire data source [java:jboss/datasources/sii].
-Internal Exception: javax.naming.NamingException: Lookup failed for &apos;java:jboss/datasources/sii&apos; in SerialContext[myEnv={java.naming.factory.initial=com.sun.enterprise.naming.impl.SerialInitContextFactory, java.naming.factory.url.pkgs=com.sun.enterprise.naming, java.naming.factory.state=com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl} [Root exception is javax.naming.NamingException: Invocation exception: Got null ComponentInvocation ]
+  <testcase classname="ejb.SuiteTest" name="ejb.SuiteTest" time="160.871">
+    <error message="Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Nombre de usuario ó password incorrecto
+Wrong user name or password [28000-200]
+Error Code: 28000" type="javax.persistence.PersistenceException">javax.persistence.PersistenceException: Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Nombre de usuario ó password incorrecto
+Wrong user name or password [28000-200]
+Error Code: 28000
 	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:857)
 	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getAbstractSession(EntityManagerFactoryDelegate.java:222)
 	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryDelegate.getDatabaseSession(EntityManagerFactoryDelegate.java:200)
@@ -100,51 +103,58 @@ Internal Exception: javax.naming.NamingException: Lookup failed for &apos;java:j
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: Exception [EclipseLink-7060] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.ValidationException
-Exception Description: Cannot acquire data source [java:jboss/datasources/sii].
-Internal Exception: javax.naming.NamingException: Lookup failed for &apos;java:jboss/datasources/sii&apos; in SerialContext[myEnv={java.naming.factory.initial=com.sun.enterprise.naming.impl.SerialInitContextFactory, java.naming.factory.url.pkgs=com.sun.enterprise.naming, java.naming.factory.state=com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl} [Root exception is javax.naming.NamingException: Invocation exception: Got null ComponentInvocation ]
-	at org.eclipse.persistence.exceptions.ValidationException.cannotAcquireDataSource(ValidationException.java:525)
-	at org.eclipse.persistence.sessions.JNDIConnector.connect(JNDIConnector.java:124)
+Caused by: Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Nombre de usuario ó password incorrecto
+Wrong user name or password [28000-200]
+Error Code: 28000
+	at org.eclipse.persistence.exceptions.DatabaseException.sqlException(DatabaseException.java:333)
+	at org.eclipse.persistence.exceptions.DatabaseException.sqlException(DatabaseException.java:328)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:140)
 	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:172)
 	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.setOrDetectDatasource(DatabaseSessionImpl.java:225)
 	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:809)
 	at org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider.login(EntityManagerFactoryProvider.java:256)
 	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.deploy(EntityManagerSetupImpl.java:772)
 	... 33 more
-Caused by: javax.naming.NamingException: Lookup failed for &apos;java:jboss/datasources/sii&apos; in SerialContext[myEnv={java.naming.factory.initial=com.sun.enterprise.naming.impl.SerialInitContextFactory, java.naming.factory.url.pkgs=com.sun.enterprise.naming, java.naming.factory.state=com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl} [Root exception is javax.naming.NamingException: Invocation exception: Got null ComponentInvocation ]
-	at com.sun.enterprise.naming.impl.SerialContext.lookup(SerialContext.java:467)
-	at com.sun.enterprise.naming.impl.SerialContext.lookup(SerialContext.java:414)
-	at com.sun.enterprise.naming.impl.SerialContext.lookup(SerialContext.java:598)
-	at java.naming/javax.naming.InitialContext.lookup(InitialContext.java:413)
-	at java.naming/javax.naming.InitialContext.lookup(InitialContext.java:413)
-	at org.eclipse.persistence.sessions.JNDIConnector.connect(JNDIConnector.java:118)
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Nombre de usuario ó password incorrecto
+Wrong user name or password [28000-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:461)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.get(DbException.java:170)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:357)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:176)
+	at org.h2.engine.Engine.createSession(Engine.java:166)
+	at org.h2.engine.Engine.createSession(Engine.java:29)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
+	at org.h2.jdbc.JdbcConnection.&lt;init&gt;(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.&lt;init&gt;(JdbcConnection.java:152)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:100)
 	... 38 more
-Caused by: javax.naming.NamingException: Invocation exception: Got null ComponentInvocation 
-	at com.sun.enterprise.naming.impl.GlassfishNamingManagerImpl.getComponentId(GlassfishNamingManagerImpl.java:818)
-	at com.sun.enterprise.naming.impl.GlassfishNamingManagerImpl.lookup(GlassfishNamingManagerImpl.java:690)
-	at com.sun.enterprise.naming.impl.JavaURLContext.lookup(JavaURLContext.java:143)
-	at com.sun.enterprise.naming.impl.SerialContext.lookup(SerialContext.java:447)
-	... 43 more
 </error>
     <system-out>PlainTextActionReporterSUCCESSNo monitoring data to report.
 JdbcRuntimeExtension,  getAllSystemRAResourcesAndPools = [GlassFishConfigBean.org.glassfish.jdbc.config.JdbcResource, GlassFishConfigBean.org.glassfish.jdbc.config.JdbcResource, GlassFishConfigBean.org.glassfish.jdbc.config.JdbcResource, GlassFishConfigBean.org.glassfish.jdbc.config.JdbcConnectionPool, GlassFishConfigBean.org.glassfish.jdbc.config.JdbcConnectionPool, GlassFishConfigBean.org.glassfish.jdbc.config.JdbcConnectionPool]
 JdbcRuntimeExtension,  getAllSystemRAResourcesAndPools = [GlassFishConfigBean.org.glassfish.jdbc.config.JdbcResource, GlassFishConfigBean.org.glassfish.jdbc.config.JdbcResource, GlassFishConfigBean.org.glassfish.jdbc.config.JdbcResource, GlassFishConfigBean.org.glassfish.jdbc.config.JdbcConnectionPool, GlassFishConfigBean.org.glassfish.jdbc.config.JdbcConnectionPool, GlassFishConfigBean.org.glassfish.jdbc.config.JdbcConnectionPool]
 </system-out>
-    <system-err>may. 17, 2021 6:07:11 P. M. org.glassfish.ejb.embedded.EJBContainerProviderImpl getValidFile
+    <system-err>may. 18, 2021 3:51:28 P. M. org.glassfish.ejb.embedded.EJBContainerProviderImpl getValidFile
 WARNING: EJB6008:Specified or calculated application server instance [C:\Users\Efrain\.m2\repository\org\glassfish\main\extras\glassfish-embedded-all\domains\domain1] does not exist.
-may. 17, 2021 6:07:11 P. M. org.glassfish.ejb.embedded.EJBContainerProviderImpl createContainer
-INFO: [EJBContainerProviderImpl] Using config file location: file:/C:/Users/Efrain/AppData/Local/Temp/domain17985243487801334202xml
-may. 17, 2021 6:07:11 P. M. org.glassfish.ejb.embedded.EJBContainerProviderImpl createContainer
+may. 18, 2021 3:51:28 P. M. org.glassfish.ejb.embedded.EJBContainerProviderImpl createContainer
+INFO: [EJBContainerProviderImpl] Using config file location: file:/C:/Users/Efrain/AppData/Local/Temp/domain17072987842707857704xml
+may. 18, 2021 3:51:29 P. M. org.glassfish.ejb.embedded.EJBContainerProviderImpl createContainer
 INFO: [EJBContainerProviderImpl] Using runtime class: class com.sun.enterprise.glassfish.bootstrap.StaticGlassFishRuntime
-may. 17, 2021 6:07:17 P. M. com.sun.enterprise.v3.server.CommonClassLoaderServiceImpl findDerbyClient
+may. 18, 2021 3:51:30 P. M. com.sun.enterprise.v3.server.CommonClassLoaderServiceImpl findDerbyClient
 INFO: Cannot find javadb client jar file, derby jdbc driver will not be available by default.
-may. 17, 2021 6:07:22 P. M. org.glassfish.resourcebase.resources.api.ResourcesBinder deployResource
+may. 18, 2021 3:51:30 P. M. org.glassfish.resourcebase.resources.api.ResourcesBinder deployResource
 SEVERE: Cannot bind resource [java:jboss/datasources/sii] to naming manager. Following exception occurred [javax.naming.NamingException: java:comp namespace cannot be modified].
-may. 17, 2021 6:07:22 P. M. org.hibernate.validator.internal.util.Version &lt;clinit&gt;
+may. 18, 2021 3:51:31 P. M. org.hibernate.validator.internal.util.Version &lt;clinit&gt;
 INFO: HV000001: Hibernate Validator null
-may. 17, 2021 6:07:22 P. M. org.glassfish.security.services.impl.authorization.AuthorizationServiceImpl initialize
+may. 18, 2021 3:51:31 P. M. org.glassfish.security.services.impl.authorization.AuthorizationServiceImpl initialize
 INFO: Authorization Service has successfully initialized.
-may. 17, 2021 6:07:22 P. M. com.sun.enterprise.security.ssl.impl.SecuritySupportImpl checkCertificateDates
+may. 18, 2021 3:51:32 P. M. com.sun.enterprise.security.ssl.impl.SecuritySupportImpl checkCertificateDates
 SEVERE: The SSL certificate has expired: [
 [
   Version: V3
@@ -182,7 +192,7 @@ KeyIdentifier [
 0070: 04 90 F3 2C C5 FA E4 A2   DC 16 17 4A 02 A7 ED 94  ...,.......J....
 
 ]
-may. 17, 2021 6:07:23 P. M. com.sun.enterprise.security.ssl.impl.SecuritySupportImpl checkCertificateDates
+may. 18, 2021 3:51:32 P. M. com.sun.enterprise.security.ssl.impl.SecuritySupportImpl checkCertificateDates
 SEVERE: The SSL certificate has expired: [
 [
   Version: V3
@@ -220,187 +230,187 @@ KeyIdentifier [
 0070: 04 90 F3 2C C5 FA E4 A2   DC 16 17 4A 02 A7 ED 94  ...,.......J....
 
 ]
-may. 17, 2021 6:07:23 P. M. com.sun.enterprise.v3.server.AppServerStartup postStartupJob
-INFO: Undefined Product Name - define product and version info in config/branding  0.0.0  (0) startup time : Embedded (9.904ms), startup services(1.131ms), total(11.035ms)
-may. 17, 2021 6:07:23 P. M. com.sun.jts.CosTransactions.DefaultTransactionService setServerName
+may. 18, 2021 3:51:32 P. M. com.sun.enterprise.v3.server.AppServerStartup postStartupJob
+INFO: Undefined Product Name - define product and version info in config/branding  0.0.0  (0) startup time : Embedded (1.249ms), startup services(1.833ms), total(3.082ms)
+may. 18, 2021 3:51:32 P. M. com.sun.jts.CosTransactions.DefaultTransactionService setServerName
 INFO: JTS5014: Recoverable JTS instance, serverId = [100]
-may. 17, 2021 6:07:23 P. M. org.glassfish.admin.mbeanserver.JMXStartupService$JMXConnectorsStarterThread run
+may. 18, 2021 3:51:32 P. M. org.glassfish.admin.mbeanserver.JMXStartupService$JMXConnectorsStarterThread run
 INFO: JMXStartupService has disabled JMXConnector system
-may. 17, 2021 6:07:23 P. M. com.sun.enterprise.connectors.jms.util.JmsRaUtil getInstalledMqVersion
-WARNING: Check for a new version of MQ installation failed : C:\Users\Efrain\AppData\Local\Temp\gfembed1411701393434160490tmp\lib\install\applications\jmsra\..\imqjmsra.rar:C:\Users\Efrain\AppData\Local\Temp\gfembed1411701393434160490tmp\lib\install\applications\jmsra\imqjmsra.rar
-may. 17, 2021 6:07:24 P. M. org.glassfish.deployment.common.GenericAnnotationDetector scanArchive
+may. 18, 2021 3:51:32 P. M. com.sun.enterprise.connectors.jms.util.JmsRaUtil getInstalledMqVersion
+WARNING: Check for a new version of MQ installation failed : C:\Users\Efrain\AppData\Local\Temp\gfembed1483536951362777227tmp\lib\install\applications\jmsra\..\imqjmsra.rar:C:\Users\Efrain\AppData\Local\Temp\gfembed1483536951362777227tmp\lib\install\applications\jmsra\imqjmsra.rar
+may. 18, 2021 3:51:34 P. M. org.glassfish.deployment.common.GenericAnnotationDetector scanArchive
 WARNING: NCLS-DEPLOYMENT-00009
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.EJBContainerProviderImpl skipJar
 INFO: ... skipping entry with a Manifest file with a special attribute: glassfish-embedded-all-5.1.0.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.deployment.common.GenericAnnotationDetector scanArchive
+may. 18, 2021 3:51:35 P. M. org.glassfish.deployment.common.GenericAnnotationDetector scanArchive
 WARNING: NCLS-DEPLOYMENT-00009
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
 INFO: [DeploymentElement] adding EJB module to ScatteredArchive classes
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive bcpkix-jdk15on-1.68.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
 INFO: [DeploymentElement] adding library to ScatteredArchive batik-gui-util-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-svg-dom-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive fontbox-2.0.22.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive test-classes
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-css-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
 INFO: [DeploymentElement] adding library to ScatteredArchive SparseBitSet-1.2.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-svggen-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-codec-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive jakarta.persistence-2.2.3.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive commons-csv-1.6.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive commons-collections-3.2.2.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive graphics2d-0.30.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-all-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-slideshow-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive commons-logging-1.2.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-script-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive xml-apis-ext-1.3.04.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive protobuf-java-3.6.1.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive jcl-over-slf4j-1.7.30.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-squiggle-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive commons-text-1.9.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-rasterizer-ext-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-rasterizer-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive commons-beanutils-1.9.4.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-dom-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-svgrasterizer-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive hamcrest-core-1.3.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive activation-1.1.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive commons-compress-1.20.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive javax.mail-1.6.0.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive commons-math3-3.6.1.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive xmlbeans-4.0.0.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive xmlgraphics-commons-2.4.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-gvt-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive xmlsec-2.2.1.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive xml-apis-1.4.01.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-bridge-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive stax2-api-4.2.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-ext-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-i18n-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive commons-codec-1.15.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive xalan-2.7.2.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive poi-ooxml-5.0.0.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive bcprov-jdk15on-1.68.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive anotaciones-0.0.1.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive commons-lang3-3.11.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive javaee-api-8.0.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive eclipselink-2.7.6.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive woodstox-core-5.2.1.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive h2-1.4.200.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-constants-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-anim-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-shared-resources-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive commons-io-1.3.1.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-parser-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive poi-ooxml-lite-5.0.0.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-squiggle-ext-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive slf4j-api-1.7.30.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-extension-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-xml-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive jakarta.xml.bind-api-2.3.2.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive pdfbox-2.0.22.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive opencsv-5.3.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive mysql-connector-java-8.0.19.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive curvesapi-1.06.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive poi-5.0.0.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-awt-util-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-ttf2svg-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-svgbrowser-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-util-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-svgpp-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive batik-transcoder-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive commons-collections4-4.4.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive serializer-2.7.2.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
-INFO: [DeploymentElement] adding library to ScatteredArchive junit-4.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
 INFO: [DeploymentElement] adding library to ScatteredArchive jakarta.activation-api-1.2.1.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive opencsv-5.3.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive mysql-connector-java-8.0.19.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive javaee-api-8.0.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-i18n-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive commons-compress-1.20.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive commons-codec-1.15.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-anim-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-constants-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive xalan-2.7.2.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive h2-1.4.200.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive commons-lang3-3.11.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive commons-logging-1.2.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive poi-ooxml-5.0.0.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive xmlsec-2.2.1.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive commons-beanutils-1.9.4.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-squiggle-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive graphics2d-0.30.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive hamcrest-core-1.3.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-svgpp-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-codec-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive serializer-2.7.2.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive commons-math3-3.6.1.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-shared-resources-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive xmlgraphics-commons-2.4.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive curvesapi-1.06.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-ext-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive jakarta.persistence-2.2.3.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive fontbox-2.0.22.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
 INFO: [DeploymentElement] adding library to ScatteredArchive commonj.sdo-2.1.1.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive activation-1.1.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive bcprov-jdk15on-1.68.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-extension-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive protobuf-java-3.6.1.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive poi-5.0.0.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive jakarta.xml.bind-api-2.3.2.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive xml-apis-ext-1.3.04.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-rasterizer-ext-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive jcl-over-slf4j-1.7.30.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-css-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-svgrasterizer-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive woodstox-core-5.2.1.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
 INFO: [DeploymentElement] adding library to ScatteredArchive batik-swing-1.13.jar
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.EJBContainerImpl deploy
-INFO: [EJBContainerImpl] Deploying app: org.glassfish.embeddable.archive.ScatteredArchive@2bba7bd9
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.EJBContainerImpl deploy
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive commons-csv-1.6.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive javax.mail-1.6.0.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive xmlbeans-4.0.0.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-svggen-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-script-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-awt-util-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive commons-io-1.3.1.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive stax2-api-4.2.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-svgbrowser-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive bcpkix-jdk15on-1.68.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-svg-dom-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-squiggle-ext-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-slideshow-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-rasterizer-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive commons-text-1.9.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive poi-ooxml-lite-5.0.0.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive junit-4.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-bridge-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-dom-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-util-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-all-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-gvt-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-parser-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-ttf2svg-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive anotaciones-0.0.1.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive test-classes
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive slf4j-api-1.7.30.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive eclipselink-2.7.6.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-transcoder-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive commons-collections4-4.4.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive commons-collections-3.2.2.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive pdfbox-2.0.22.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive xml-apis-1.4.01.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.DeploymentElement getOrCreateApplication
+INFO: [DeploymentElement] adding library to ScatteredArchive batik-xml-1.13.jar
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.EJBContainerImpl deploy
+INFO: [EJBContainerImpl] Deploying app: org.glassfish.embeddable.archive.ScatteredArchive@645494c5
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.EJBContainerImpl deploy
 INFO: [EJBContainerImpl] GlassFish status: STARTED
-may. 17, 2021 6:07:25 P. M. org.glassfish.ejb.embedded.EJBContainerImpl deploy
+may. 18, 2021 3:51:35 P. M. org.glassfish.ejb.embedded.EJBContainerImpl deploy
 INFO: [EJBContainerImpl] Deploying as a ScatteredArchive
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/10/org/h2/util/NetUtils2.class of size 876
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -418,7 +428,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/BC11XDHPrivateKey.class of size 1340
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -436,7 +446,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/BC11XDHPublicKey.class of size 1421
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -454,7 +464,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X25519.class of size 400
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -472,7 +482,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X25519UwithSHA256CKDF.class of size 711
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -490,7 +500,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X25519UwithSHA256KDF.class of size 699
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -508,7 +518,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X25519withSHA256CKDF.class of size 709
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -526,7 +536,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X25519withSHA256KDF.class of size 697
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -544,7 +554,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X25519withSHA384CKDF.class of size 709
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -562,7 +572,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X25519withSHA512CKDF.class of size 709
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -580,7 +590,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X448.class of size 396
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -598,7 +608,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X448UwithSHA512CKDF.class of size 707
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -616,7 +626,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X448UwithSHA512KDF.class of size 695
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -634,7 +644,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X448withSHA256CKDF.class of size 705
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -652,7 +662,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X448withSHA384CKDF.class of size 705
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -670,7 +680,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X448withSHA512CKDF.class of size 705
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -688,7 +698,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$X448withSHA512KDF.class of size 693
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -706,7 +716,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi$XDH.class of size 394
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -724,7 +734,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyAgreementSpi.class of size 7752
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -742,7 +752,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$Ed25519.class of size 401
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -760,7 +770,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$Ed448.class of size 397
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -778,7 +788,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$EdDSA.class of size 396
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -796,7 +806,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$X25519.class of size 399
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -814,7 +824,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$X448.class of size 395
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -832,7 +842,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$XDH.class of size 392
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -850,7 +860,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi.class of size 8190
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -868,7 +878,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$Ed25519.class of size 532
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -886,7 +896,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$Ed448.class of size 526
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -904,7 +914,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$EdDSA.class of size 448
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -922,7 +932,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$X25519.class of size 529
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -940,7 +950,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$X448.class of size 523
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -958,7 +968,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$XDH.class of size 445
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -976,7 +986,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/11/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi.class of size 6608
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -994,7 +1004,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/BC11XDHPrivateKey.class of size 1340
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1012,7 +1022,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/BC11XDHPublicKey.class of size 1421
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1030,7 +1040,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/BC15EdDSAPrivateKey.class of size 1348
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1048,7 +1058,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/BC15EdDSAPublicKey.class of size 1570
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1066,7 +1076,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$Ed25519.class of size 401
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1084,7 +1094,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$Ed448.class of size 397
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1102,7 +1112,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$EdDSA.class of size 396
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1120,7 +1130,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$X25519.class of size 399
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1138,7 +1148,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$X448.class of size 395
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1156,7 +1166,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi$XDH.class of size 392
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1174,7 +1184,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:37 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyFactorySpi.class of size 8197
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1192,7 +1202,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:38 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$Ed25519.class of size 532
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1210,7 +1220,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:38 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$Ed448.class of size 526
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1228,7 +1238,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:38 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$EdDSA.class of size 448
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1246,7 +1256,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:38 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$X25519.class of size 529
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1264,7 +1274,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:38 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$X448.class of size 523
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1282,7 +1292,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:38 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi$XDH.class of size 445
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1300,7 +1310,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:38 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/KeyPairGeneratorSpi.class of size 6593
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1318,7 +1328,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:38 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/SignatureSpi$Ed25519.class of size 393
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1336,7 +1346,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:38 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/SignatureSpi$Ed448.class of size 389
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1354,7 +1364,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:38 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/SignatureSpi$EdDSA.class of size 385
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1372,7 +1382,7 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:08:38 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
+may. 18, 2021 3:52:43 P. M. org.glassfish.hk2.classmodel.reflect.Parser$5 on
 SEVERE: Exception while visiting META-INF/versions/15/org/bouncycastle/jcajce/provider/asymmetric/edec/SignatureSpi.class of size 4986
 java.lang.IllegalArgumentException
 	at org.glassfish.hk2.external.org.objectweb.asm.ClassReader.&lt;init&gt;(ClassReader.java:160)
@@ -1390,21 +1400,21 @@ java.lang.IllegalArgumentException
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 
-may. 17, 2021 6:09:14 P. M. com.sun.enterprise.security.SecurityLifecycle &lt;init&gt;
+may. 18, 2021 3:53:18 P. M. com.sun.enterprise.security.SecurityLifecycle &lt;init&gt;
 INFO: Java security manager is disabled.
-may. 17, 2021 6:09:14 P. M. com.sun.enterprise.security.SecurityLifecycle onInitialization
+may. 18, 2021 3:53:18 P. M. com.sun.enterprise.security.SecurityLifecycle onInitialization
 INFO: Entering Security Startup Service.
-may. 17, 2021 6:09:14 P. M. com.sun.enterprise.security.PolicyLoader loadPolicy
+may. 18, 2021 3:53:18 P. M. com.sun.enterprise.security.PolicyLoader loadPolicy
 INFO: Loading policy provider com.sun.enterprise.security.jacc.provider.SimplePolicyProvider.
-may. 17, 2021 6:09:14 P. M. com.sun.enterprise.security.auth.realm.Realm doInstantiate
+may. 18, 2021 3:53:18 P. M. com.sun.enterprise.security.auth.realm.Realm doInstantiate
 INFO: Realm [admin-realm] of classtype [com.sun.enterprise.security.auth.realm.file.FileRealm] successfully created.
-may. 17, 2021 6:09:14 P. M. com.sun.enterprise.security.auth.realm.Realm doInstantiate
+may. 18, 2021 3:53:18 P. M. com.sun.enterprise.security.auth.realm.Realm doInstantiate
 INFO: Realm [file] of classtype [com.sun.enterprise.security.auth.realm.file.FileRealm] successfully created.
-may. 17, 2021 6:09:14 P. M. com.sun.enterprise.security.auth.realm.Realm doInstantiate
+may. 18, 2021 3:53:18 P. M. com.sun.enterprise.security.auth.realm.Realm doInstantiate
 INFO: Realm [certificate] of classtype [com.sun.enterprise.security.auth.realm.certificate.CertificateRealm] successfully created.
-may. 17, 2021 6:09:14 P. M. com.sun.enterprise.security.SecurityLifecycle onInitialization
+may. 18, 2021 3:53:18 P. M. com.sun.enterprise.security.SecurityLifecycle onInitialization
 INFO: Security Service(s) started successfully.
-may. 17, 2021 6:09:27 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:33 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.BC11XDHPrivateKey class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -1474,7 +1484,7 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:27 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:33 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.BC11XDHPrivateKey class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 0
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.readUnsignedShort(ClassReader.java:3364)
@@ -1545,7 +1555,7 @@ java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 0
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:28 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:34 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$XDH class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -1615,78 +1625,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:28 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:34 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$XDH class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
-java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 0
-	at org.eclipse.persistence.internal.libraries.asm.ClassReader.readUnsignedShort(ClassReader.java:3364)
-	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:199)
-	at org.eclipse.persistence.internal.libraries.asm.EclipseLinkClassReader.&lt;init&gt;(EclipseLinkClassReader.java:32)
-	at org.eclipse.persistence.internal.libraries.asm.EclipseLinkClassReader.&lt;init&gt;(EclipseLinkClassReader.java:28)
-	at org.eclipse.persistence.internal.libraries.asm.EclipseLinkClassReader.&lt;init&gt;(EclipseLinkClassReader.java:24)
-	at org.eclipse.persistence.internal.jpa.metadata.accessors.objects.MetadataAsmFactory.buildClassMetadata(MetadataAsmFactory.java:123)
-	at org.eclipse.persistence.internal.jpa.metadata.accessors.objects.MetadataAsmFactory.getMetadataClass(MetadataAsmFactory.java:177)
-	at org.eclipse.persistence.internal.jpa.metadata.MetadataProcessor.initPersistenceUnitClasses(MetadataProcessor.java:367)
-	at org.eclipse.persistence.internal.jpa.metadata.MetadataProcessor.processEntityMappings(MetadataProcessor.java:563)
-	at org.eclipse.persistence.internal.jpa.deployment.PersistenceUnitProcessor.processORMetadata(PersistenceUnitProcessor.java:625)
-	at org.eclipse.persistence.internal.jpa.EntityManagerSetupImpl.predeploy(EntityManagerSetupImpl.java:2006)
-	at org.eclipse.persistence.jpa.PersistenceProvider.createContainerEntityManagerFactoryImpl(PersistenceProvider.java:350)
-	at org.eclipse.persistence.jpa.PersistenceProvider.createContainerEntityManagerFactory(PersistenceProvider.java:316)
-	at org.glassfish.persistence.jpa.PersistenceUnitLoader.loadPU(PersistenceUnitLoader.java:175)
-	at org.glassfish.persistence.jpa.PersistenceUnitLoader.&lt;init&gt;(PersistenceUnitLoader.java:83)
-	at org.glassfish.persistence.jpa.JPADeployer$1.visitPUD(JPADeployer.java:199)
-	at org.glassfish.persistence.jpa.JPADeployer$PersistenceUnitDescriptorIterator.iteratePUDs(JPADeployer.java:486)
-	at org.glassfish.persistence.jpa.JPADeployer.createEMFs(JPADeployer.java:206)
-	at org.glassfish.persistence.jpa.JPADeployer.prepare(JPADeployer.java:144)
-	at com.sun.enterprise.v3.server.ApplicationLifecycle.prepareModule(ApplicationLifecycle.java:901)
-	at com.sun.enterprise.v3.server.ApplicationLifecycle.deploy(ApplicationLifecycle.java:410)
-	at com.sun.enterprise.v3.server.ApplicationLifecycle.deploy(ApplicationLifecycle.java:195)
-	at org.glassfish.deployment.admin.DeployCommand.execute(DeployCommand.java:467)
-	at com.sun.enterprise.v3.admin.CommandRunnerImpl$2$1.run(CommandRunnerImpl.java:516)
-	at com.sun.enterprise.v3.admin.CommandRunnerImpl$2$1.run(CommandRunnerImpl.java:512)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
-	at java.base/javax.security.auth.Subject.doAs(Subject.java:363)
-	at com.sun.enterprise.v3.admin.CommandRunnerImpl$2.execute(CommandRunnerImpl.java:511)
-	at com.sun.enterprise.v3.admin.CommandRunnerImpl$3.run(CommandRunnerImpl.java:542)
-	at com.sun.enterprise.v3.admin.CommandRunnerImpl$3.run(CommandRunnerImpl.java:534)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
-	at java.base/javax.security.auth.Subject.doAs(Subject.java:363)
-	at com.sun.enterprise.v3.admin.CommandRunnerImpl.doCommand(CommandRunnerImpl.java:533)
-	at com.sun.enterprise.v3.admin.CommandRunnerImpl.doCommand(CommandRunnerImpl.java:1441)
-	at com.sun.enterprise.v3.admin.CommandRunnerImpl.access$1300(CommandRunnerImpl.java:86)
-	at com.sun.enterprise.v3.admin.CommandRunnerImpl$ExecutionContext.execute(CommandRunnerImpl.java:1823)
-	at com.sun.enterprise.v3.admin.CommandRunnerImpl$ExecutionContext.execute(CommandRunnerImpl.java:1699)
-	at com.sun.enterprise.admin.cli.embeddable.DeployerImpl.deploy(DeployerImpl.java:109)
-	at com.sun.enterprise.admin.cli.embeddable.DeployerImpl.deploy(DeployerImpl.java:85)
-	at org.glassfish.ejb.embedded.EJBContainerImpl.deploy(EJBContainerImpl.java:114)
-	at org.glassfish.ejb.embedded.EJBContainerProviderImpl.createEJBContainer(EJBContainerProviderImpl.java:110)
-	at javax.ejb.embeddable.EJBContainer.createEJBContainer(EJBContainer.java:103)
-	at ejb.SuiteTest.setUpClass(SuiteTest.java:41)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at org.junit.internal.runners.statements.RunBefores.invokeMethod(RunBefores.java:33)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
-	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
-	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
-	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:28 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:35 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.BC15EdDSAPrivateKey class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -1756,11 +1699,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:28 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:35 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.BC15EdDSAPrivateKey class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:28 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:35 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.SignatureSpi$Ed448 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -1830,11 +1773,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:28 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:35 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.SignatureSpi$Ed448 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:28 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:35 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$Ed448 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -1904,11 +1847,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:28 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:35 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$Ed448 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:29 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:35 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$X25519 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -1978,11 +1921,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:29 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:35 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$X25519 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:29 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:36 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.SignatureSpi$Ed25519 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2052,11 +1995,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:29 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:36 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.SignatureSpi$Ed25519 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:29 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:36 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$Ed25519 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2126,11 +2069,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:29 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:36 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$Ed25519 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:29 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:36 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$EdDSA class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2200,11 +2143,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:29 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:36 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$EdDSA class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:30 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:37 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.SignatureSpi$EdDSA class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2274,11 +2217,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:30 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:37 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.SignatureSpi$EdDSA class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:30 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:37 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.BC15EdDSAPublicKey class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2348,11 +2291,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:30 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:37 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.BC15EdDSAPublicKey class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:30 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:37 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.BC11XDHPublicKey class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2422,11 +2365,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:30 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:37 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.BC11XDHPublicKey class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:30 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:38 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$XDH class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2496,11 +2439,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:30 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:38 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$XDH class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:31 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:38 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$Ed448 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2570,11 +2513,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:31 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:38 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$Ed448 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:31 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:38 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$X448 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2644,11 +2587,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:31 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:38 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$X448 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:32 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:39 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2718,7 +2661,7 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:32 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:39 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 0
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.readUnsignedShort(ClassReader.java:3364)
@@ -2789,7 +2732,7 @@ java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 0
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:32 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:40 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2859,11 +2802,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:32 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:40 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:32 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:40 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.SignatureSpi class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -2933,11 +2876,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:32 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:40 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.SignatureSpi class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:33 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:41 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$EdDSA class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -3007,11 +2950,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:33 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:41 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$EdDSA class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:33 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:41 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$Ed25519 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -3081,11 +3024,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:33 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:41 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$Ed25519 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:33 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:41 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$X25519 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -3155,11 +3098,11 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:33 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:41 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyFactorySpi$X25519 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:33 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:41 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$X448 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.eclipse.persistence.internal.libraries.asm.ClassReader.&lt;init&gt;(ClassReader.java:195)
@@ -3229,72 +3172,74 @@ java.lang.IllegalArgumentException: Unsupported class file major version 59
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 
-may. 17, 2021 6:09:33 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.metadata
+may. 18, 2021 3:53:41 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.metadata
 SEVERE: The META-INF.versions.15.org.bouncycastle.jcajce.provider.asymmetric.edec.KeyPairGeneratorSpi$X448 class was compiled with an unsupported JDK. Report this error to the EclipseLink open source project.
 java.lang.ArrayIndexOutOfBoundsException
 
-may. 17, 2021 6:09:34 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII
+may. 18, 2021 3:53:42 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII
 INFO: EclipseLink, version: Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f
-may. 17, 2021 6:09:34 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.connection
-INFO: /file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII login successful
-may. 17, 2021 6:09:34 P. M. com.sun.ejb.containers.BaseContainer initializeHome
-INFO: Portable JNDI names for EJB ModificarAlumnoEJB: [java:global/classes/ModificarAlumnoEJB!ejb.GestionAlumno, java:global/classes/ModificarAlumnoEJB]
-may. 17, 2021 6:09:35 P. M. com.sun.ejb.containers.BaseContainer initializeHome
-INFO: Portable JNDI names for EJB ModificarExpedienteEJB: [java:global/classes/ModificarExpedienteEJB, java:global/classes/ModificarExpedienteEJB!ejb.GestionExpediente]
-may. 17, 2021 6:09:35 P. M. com.sun.ejb.containers.BaseContainer initializeHome
-INFO: Portable JNDI names for EJB GestionMatriculaEJB: [java:global/classes/GestionMatriculaEJB, java:global/classes/GestionMatriculaEJB!ejb.GestionMatricula]
-may. 17, 2021 6:09:35 P. M. com.sun.ejb.containers.BaseContainer initializeHome
+may. 18, 2021 3:53:42 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.connection
+INFO: /file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII login successful
+may. 18, 2021 3:53:43 P. M. com.sun.ejb.containers.BaseContainer initializeHome
 INFO: Portable JNDI names for EJB ModificarAsignaturaEJB: [java:global/classes/ModificarAsignaturaEJB!ejb.GestionAsignatura, java:global/classes/ModificarAsignaturaEJB]
-may. 17, 2021 6:09:35 P. M. com.sun.ejb.containers.BaseContainer initializeHome
+may. 18, 2021 3:53:43 P. M. com.sun.ejb.containers.BaseContainer initializeHome
+INFO: Portable JNDI names for EJB ModificarAlumnoEJB: [java:global/classes/ModificarAlumnoEJB!ejb.GestionAlumno, java:global/classes/ModificarAlumnoEJB]
+may. 18, 2021 3:53:43 P. M. com.sun.ejb.containers.BaseContainer initializeHome
+INFO: Portable JNDI names for EJB GestionMatriculaEJB: [java:global/classes/GestionMatriculaEJB, java:global/classes/GestionMatriculaEJB!ejb.GestionMatricula]
+may. 18, 2021 3:53:43 P. M. com.sun.ejb.containers.BaseContainer initializeHome
+INFO: Portable JNDI names for EJB ModificarExpedienteEJB: [java:global/classes/ModificarExpedienteEJB, java:global/classes/ModificarExpedienteEJB!ejb.GestionExpediente]
+may. 18, 2021 3:53:43 P. M. com.sun.ejb.containers.BaseContainer initializeHome
 INFO: Portable JNDI names for EJB ImportarDatosEJB: [java:global/classes/ImportarDatosEJB, java:global/classes/ImportarDatosEJB!ejb.ImportarDatos]
-may. 17, 2021 6:09:35 P. M. org.jboss.weld.bootstrap.WeldStartup &lt;clinit&gt;
+may. 18, 2021 3:53:43 P. M. org.jboss.weld.bootstrap.WeldStartup &lt;clinit&gt;
 INFO: WELD-000900: 3.0.0 (Final)
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.event.ExtensionObserverMethodImpl checkRequiredTypeAnnotations
-INFO: WELD-000411: Observer method [BackedAnnotatedMethod] public org.hibernate.validator.cdi.ValidationExtension.processAnnotatedType(@Observes ProcessAnnotatedType&lt;T&gt;) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.event.ExtensionObserverMethodImpl checkRequiredTypeAnnotations
-INFO: WELD-000411: Observer method [BackedAnnotatedMethod] public org.glassfish.jms.injection.JMSCDIExtension.processAnnotatedType(@Observes ProcessAnnotatedType&lt;T&gt;) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.event.ExtensionObserverMethodImpl checkRequiredTypeAnnotations
-INFO: WELD-000411: Observer method [BackedAnnotatedMethod] org.glassfish.sse.impl.ServerSentEventCdiExtension.processAnnotatedType(@Observes ProcessAnnotatedType&lt;T&gt;, BeanManager) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.event.ExtensionObserverMethodImpl checkRequiredTypeAnnotations
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.event.ExtensionObserverMethodImpl checkRequiredTypeAnnotations
 INFO: WELD-000411: Observer method [BackedAnnotatedMethod] private org.glassfish.jersey.ext.cdi1x.internal.CdiComponentProvider.processAnnotatedType(@Observes ProcessAnnotatedType) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
-WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorMandatory is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
-WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorNever is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
-WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorNotSupported is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
-WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorRequired is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
-WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorRequiresNew is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
-WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorSupports is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
-WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.jersey.ext.cdi1x.servlet.internal.CdiExternalRequestScope is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
-WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class com.sun.faces.flow.FlowDiscoveryCDIHelper is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.event.ExtensionObserverMethodImpl checkRequiredTypeAnnotations
+INFO: WELD-000411: Observer method [BackedAnnotatedMethod] public org.glassfish.jms.injection.JMSCDIExtension.processAnnotatedType(@Observes ProcessAnnotatedType&lt;T&gt;) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.event.ExtensionObserverMethodImpl checkRequiredTypeAnnotations
+INFO: WELD-000411: Observer method [BackedAnnotatedMethod] public org.hibernate.validator.cdi.ValidationExtension.processAnnotatedType(@Observes ProcessAnnotatedType&lt;T&gt;) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.event.ExtensionObserverMethodImpl checkRequiredTypeAnnotations
+INFO: WELD-000411: Observer method [BackedAnnotatedMethod] org.glassfish.sse.impl.ServerSentEventCdiExtension.processAnnotatedType(@Observes ProcessAnnotatedType&lt;T&gt;, BeanManager) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
 WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.jersey.ext.cdi1x.transaction.internal.WebAppExceptionHolder is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
 WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.jersey.ext.cdi1x.transaction.internal.WebAppExceptionInterceptor is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
 WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.jersey.ext.cdi1x.transaction.internal.TransactionalExceptionMapper is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
-WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class com.ibm.jbatch.container.cdi.BatchProducerBean is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
 WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.jersey.ext.cdi1x.internal.CdiComponentProvider$JaxRsParamProducer is deprecated from CDI 1.1!
-may. 17, 2021 6:09:44 P. M. org.glassfish.deployment.admin.DeployCommand execute
-INFO: classes was successfully deployed in 121.754 milliseconds.
-may. 17, 2021 6:09:44 P. M. org.eclipse.persistence.session./file:/D:/Universidad - Informática/Tercero/Sistemas de Información para Internet/Trabajo/Tarea 1/ProyectoSII/Proyecto-SII/ProyectoEJB/target/classes/_Proyecto-SII
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.jersey.ext.cdi1x.servlet.internal.CdiExternalRequestScope is deprecated from CDI 1.1!
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class com.ibm.jbatch.container.cdi.BatchProducerBean is deprecated from CDI 1.1!
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorMandatory is deprecated from CDI 1.1!
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorNever is deprecated from CDI 1.1!
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorNotSupported is deprecated from CDI 1.1!
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorRequired is deprecated from CDI 1.1!
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorRequiresNew is deprecated from CDI 1.1!
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class org.glassfish.cdi.transaction.TransactionalInterceptorSupports is deprecated from CDI 1.1!
+may. 18, 2021 3:53:53 P. M. org.jboss.weld.bootstrap.events.BeforeBeanDiscoveryImpl addAnnotatedType
+WARN: WELD-000146: BeforeBeanDiscovery.addAnnotatedType(AnnotatedType&lt;?&gt;) used for class com.sun.faces.flow.FlowDiscoveryCDIHelper is deprecated from CDI 1.1!
+may. 18, 2021 3:53:54 P. M. org.glassfish.deployment.admin.DeployCommand execute
+INFO: classes was successfully deployed in 119.124 milliseconds.
+may. 18, 2021 3:53:54 P. M. org.eclipse.persistence.session./file:/D:/Universidad - Informática/Tercero/Sistemas de Información para Internet/Trabajo/Tarea 1/ProyectoSII/Proyecto-SII/ProyectoEJB/target/test-classes/_Proyecto-SII
 INFO: EclipseLink, version: Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f
-may. 17, 2021 6:09:44 P. M. org.eclipse.persistence.session./file:/D:/Universidad - Informática/Tercero/Sistemas de Información para Internet/Trabajo/Tarea 1/ProyectoSII/Proyecto-SII/ProyectoEJB/target/classes/_Proyecto-SII.ejb
+may. 18, 2021 3:53:55 P. M. org.eclipse.persistence.session./file:/D:/Universidad - Informática/Tercero/Sistemas de Información para Internet/Trabajo/Tarea 1/ProyectoSII/Proyecto-SII/ProyectoEJB/target/test-classes/_Proyecto-SII.ejb
 SEVERE: 
 Local Exception Stack: 
-Exception [EclipseLink-7060] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.ValidationException
-Exception Description: Cannot acquire data source [java:jboss/datasources/sii].
-Internal Exception: javax.naming.NamingException: Lookup failed for &apos;java:jboss/datasources/sii&apos; in SerialContext[myEnv={java.naming.factory.initial=com.sun.enterprise.naming.impl.SerialInitContextFactory, java.naming.factory.url.pkgs=com.sun.enterprise.naming, java.naming.factory.state=com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl} [Root exception is javax.naming.NamingException: Invocation exception: Got null ComponentInvocation ]
-	at org.eclipse.persistence.exceptions.ValidationException.cannotAcquireDataSource(ValidationException.java:525)
-	at org.eclipse.persistence.sessions.JNDIConnector.connect(JNDIConnector.java:124)
+Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.7.6.v20200131-b7c997804f): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Nombre de usuario ó password incorrecto
+Wrong user name or password [28000-200]
+Error Code: 28000
+	at org.eclipse.persistence.exceptions.DatabaseException.sqlException(DatabaseException.java:333)
+	at org.eclipse.persistence.exceptions.DatabaseException.sqlException(DatabaseException.java:328)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:140)
 	at org.eclipse.persistence.sessions.DatasourceLogin.connectToDatasource(DatasourceLogin.java:172)
 	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.setOrDetectDatasource(DatabaseSessionImpl.java:225)
 	at org.eclipse.persistence.internal.sessions.DatabaseSessionImpl.loginAndDetectDatasource(DatabaseSessionImpl.java:809)
@@ -3333,26 +3278,31 @@ Internal Exception: javax.naming.NamingException: Lookup failed for &apos;java:j
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: javax.naming.NamingException: Lookup failed for &apos;java:jboss/datasources/sii&apos; in SerialContext[myEnv={java.naming.factory.initial=com.sun.enterprise.naming.impl.SerialInitContextFactory, java.naming.factory.url.pkgs=com.sun.enterprise.naming, java.naming.factory.state=com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl} [Root exception is javax.naming.NamingException: Invocation exception: Got null ComponentInvocation ]
-	at com.sun.enterprise.naming.impl.SerialContext.lookup(SerialContext.java:467)
-	at com.sun.enterprise.naming.impl.SerialContext.lookup(SerialContext.java:414)
-	at com.sun.enterprise.naming.impl.SerialContext.lookup(SerialContext.java:598)
-	at java.naming/javax.naming.InitialContext.lookup(InitialContext.java:413)
-	at java.naming/javax.naming.InitialContext.lookup(InitialContext.java:413)
-	at org.eclipse.persistence.sessions.JNDIConnector.connect(JNDIConnector.java:118)
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Nombre de usuario ó password incorrecto
+Wrong user name or password [28000-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:461)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.message.DbException.get(DbException.java:170)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:357)
+	at org.h2.engine.Engine.createSessionAndValidate(Engine.java:176)
+	at org.h2.engine.Engine.createSession(Engine.java:166)
+	at org.h2.engine.Engine.createSession(Engine.java:29)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:340)
+	at org.h2.jdbc.JdbcConnection.&lt;init&gt;(JdbcConnection.java:173)
+	at org.h2.jdbc.JdbcConnection.&lt;init&gt;(JdbcConnection.java:152)
+	at org.h2.Driver.connect(Driver.java:69)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:189)
+	at org.eclipse.persistence.sessions.DefaultConnector.connect(DefaultConnector.java:100)
 	... 38 more
-Caused by: javax.naming.NamingException: Invocation exception: Got null ComponentInvocation 
-	at com.sun.enterprise.naming.impl.GlassfishNamingManagerImpl.getComponentId(GlassfishNamingManagerImpl.java:818)
-	at com.sun.enterprise.naming.impl.GlassfishNamingManagerImpl.lookup(GlassfishNamingManagerImpl.java:690)
-	at com.sun.enterprise.naming.impl.JavaURLContext.lookup(JavaURLContext.java:143)
-	at com.sun.enterprise.naming.impl.SerialContext.lookup(SerialContext.java:447)
-	... 43 more
 
-may. 17, 2021 6:09:44 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII.connection
-INFO: /file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1411701393434160490tmp/applications/classes/_Proyecto-SII logout successful
-may. 17, 2021 6:09:56 P. M. com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl deleteConnectorResource
+may. 18, 2021 3:53:55 P. M. org.eclipse.persistence.session./file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII.connection
+INFO: /file:/C:/Users/Efrain/AppData/Local/Temp/gfembed1483536951362777227tmp/applications/classes/_Proyecto-SII logout successful
+may. 18, 2021 3:54:09 P. M. com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl deleteConnectorResource
 SEVERE: RAR7133: Unable to remove resource [ java:jboss/datasources/sii ] from jndi
-may. 17, 2021 6:09:56 P. M. com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl deleteConnectorResource
+may. 18, 2021 3:54:09 P. M. com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl deleteConnectorResource
 SEVERE: 
 com.sun.appserv.connectors.internal.api.ConnectorRuntimeException: Failed to delete connector resource from jndi
 	at com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl.deleteConnectorResource(ConnectorResourceAdminServiceImpl.java:157)
@@ -3398,15 +3348,15 @@ Caused by: javax.naming.NamingException: java:comp namespace cannot be modified
 	at com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl.deleteConnectorResource(ConnectorResourceAdminServiceImpl.java:142)
 	... 32 more
 
-may. 17, 2021 6:09:56 P. M. org.glassfish.resourcebase.resources.listener.ResourceManager undeployResources
+may. 18, 2021 3:54:09 P. M. org.glassfish.resourcebase.resources.listener.ResourceManager undeployResources
 WARNING: Unable to undeploy resource [java:jboss/datasources/sii] due to following exception: [com.sun.appserv.connectors.internal.api.ConnectorRuntimeException: Failed to delete connector resource from jndi].
-may. 17, 2021 6:09:56 P. M. com.sun.enterprise.connectors.service.ResourceAdapterAdminServiceImpl sendStopToResourceAdapter
+may. 18, 2021 3:54:09 P. M. com.sun.enterprise.connectors.service.ResourceAdapterAdminServiceImpl sendStopToResourceAdapter
 INFO: RAR7094: __ds_jdbc_ra shutdown successful.
-may. 17, 2021 6:09:56 P. M. org.glassfish.admin.mbeanserver.JMXStartupService shutdown
+may. 18, 2021 3:54:09 P. M. org.glassfish.admin.mbeanserver.JMXStartupService shutdown
 INFO: JMXStartupService and JMXConnectors have been shut down.
-may. 17, 2021 6:09:56 P. M. com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl deleteConnectorResource
+may. 18, 2021 3:54:09 P. M. com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl deleteConnectorResource
 SEVERE: RAR7133: Unable to remove resource [ java:jboss/datasources/sii ] from jndi
-may. 17, 2021 6:09:56 P. M. com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl deleteConnectorResource
+may. 18, 2021 3:54:09 P. M. com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl deleteConnectorResource
 SEVERE: 
 com.sun.appserv.connectors.internal.api.ConnectorRuntimeException: Failed to delete connector resource from jndi
 	at com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl.deleteConnectorResource(ConnectorResourceAdminServiceImpl.java:157)
@@ -3439,9 +3389,9 @@ Caused by: javax.naming.NamingException: java:comp namespace cannot be modified
 	at com.sun.enterprise.connectors.service.ConnectorResourceAdminServiceImpl.deleteConnectorResource(ConnectorResourceAdminServiceImpl.java:142)
 	... 19 more
 
-may. 17, 2021 6:09:56 P. M. org.glassfish.resourcebase.resources.listener.ResourceManager undeployResources
+may. 18, 2021 3:54:09 P. M. org.glassfish.resourcebase.resources.listener.ResourceManager undeployResources
 WARNING: Unable to undeploy resource [java:jboss/datasources/sii] due to following exception: [com.sun.appserv.connectors.internal.api.ConnectorRuntimeException: Failed to delete connector resource from jndi].
-may. 17, 2021 6:09:56 P. M. com.sun.enterprise.v3.server.AppServerStartup stop
+may. 18, 2021 3:54:09 P. M. com.sun.enterprise.v3.server.AppServerStartup stop
 INFO: Shutdown procedure finished
 </system-err>
   </testcase>
