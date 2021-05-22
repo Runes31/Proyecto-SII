@@ -1,19 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+    xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
+	<h:outputStylesheet library="css" name="test.css"/>
 	<title>Hola mundo</title>
 </h:head>
 
 <h:body>
+	<div class="topnav">
+		<a class="active" href="#">Home</a>
+		<a href="/ProyectoWAR-0.0.1-SNAPSHOT/faces/importar.xhtml">Importar</a>
+		<a href="#contact">Contact</a>
+		<a href="#about">About</a>
+	</div>
+	<div class="container">
+        <h:form>
+			<h:inputText id="name" value="#{saludo.name}"/>
+			<h:inputText id="class" value="#{saludo.clase}"/>
+			<br/>
+			<h:commandButton value="Buscar" actionListener="#{saludo.search}">
+				<f:ajax execute="@form" render="result"/>
+			</h:commandButton>
+			<br/>
 
-<h1 id="cabecera"><h:outputText id="texto" value="#{saludo.saludo}"/></h1>
-
+			<h:panelGrid id="result">
+				Hola
+                <h:outputText value="#{saludo.name != null ? saludo.name : ''}"/>
+				 de la clase
+				<h:outputText value="#{saludo.clase != null ? saludo.clase : ''}"/>
+			</h:panelGrid>
+		</h:form>
+	</div>
 </h:body>
 
 </html>
