@@ -36,7 +36,7 @@ public class Importar {
 
   private File getFile(Part part) throws IOException {
     
-    String filename = part.getSubmittedFileName();
+    /**String filename = part.getSubmittedFileName();
     String prefix = filename;
     String suffix = "";
     if (filename.contains("."))
@@ -63,9 +63,9 @@ public class Importar {
     }
     part.delete();
     return file;
-    }
+    }*/
    
-    /**String fileName = part.getSubmittedFileName();
+    String fileName = part.getSubmittedFileName();
     File f = null;
     try(InputStream inputStream = part.getInputStream()) {
       f = File.createTempFile("alumnos", "xlsx");
@@ -79,5 +79,4 @@ public class Importar {
       e.printStackTrace();
     }
     return f;
-    */
   }
