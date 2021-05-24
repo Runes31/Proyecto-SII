@@ -15,44 +15,38 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.Part;
 
+import org.apache.commons.io.FileUtils;
+
 @ViewScoped
 @Named
 public class Importar {
-  private Part alumnos;
+  private Part titulaciones;
   @Inject
   ImportarDatos ejb;
 
-  public Part getAlumnos() {
-    return alumnos;
+  public Part getTitulaciones() {
+    return titulaciones;
   }
 
-  public void setAlumnos(Part alumnos) {
-    this.alumnos = alumnos;
+  public void setTitulaciones(Part titulaciones) {
+    this.titulaciones = titulaciones;
   }
 
   public void process() throws IOException{
-    if(alumnos != null) ejb.importarTitulacionExcel(getFile(alumnos));
+    if(titulaciones != null) ejb.importarTitulacionExcel(getFile(titulaciones));
   }
 
   private File getFile(Part part) throws IOException {
     
-    /**String filename = part.getSubmittedFileName();
-    String prefix = filename;
-    String suffix = "";
-    if (filename.contains("."))
-    {
-        prefix = filename.substring(0, filename.lastIndexOf('.'));
-        suffix = filename.substring(filename.lastIndexOf('.'));
-    }
-    File file = File.createTempFile("alumnos", "xlsx");
-    
+    File f = File.createTempFile("titulaciones", "xlsx");
     InputStream input = null;
     OutputStream output = null;
-    try {
-      input = new BufferedInputStream(part.getInputStream(), 2048);
-      output = new BufferedOutputStream(new FileOutputStream(file), 2048);
-      byte[] buffer = new byte[2048];
-      for (int length = 0; ((length = input.read(buffer)) > 0);){
+    /*try {
+      input = part.getInputStream();
+      output = new FileOutputStream(f);
+      byte[] buffer = new byte[8192];
+      int length;
+      while((length = input.read(buffer)) != -1){
         output.write(buffer, 0, length);
       }
     } finally {
@@ -60,22 +54,19 @@ public class Importar {
         try {output.close();} catch (IOException logOrIgnore) {}
       if (input != null)
         try {input.close();} catch (IOException logOrIgnore) {}
-    }
-    part.delete();
-    return file;
-    }*/
-    String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
-    File f = null;
-    try(InputStream inputStream = part.getInputStream()) {
-      f = File.createTempFile("alumnos", "xlsx");
-      OutputStream outputStream = new FileOutputStream(f);
-      byte[] buffer = new byte[1024];
-      int length;
-      while ((length = inputStream.read(buffer)) > 0){
-        outputStream.write(buffer, 0, length);
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
+    }   
+    return f;*/
+    try {
+      input = part.getInputStream();
+      output = new FileOutputStream(f);
+
+      // commons-io
+      FileUtils.copyInputStreamToFile(input, f);
+    } finally {
+      if (output != null)
+        try {output.close();} catch (IOException logOrIgnore) {}
+      if (input != null)
+        try {input.close();} catch (IOException logOrIgnore) {}
     }
     return f;
   }

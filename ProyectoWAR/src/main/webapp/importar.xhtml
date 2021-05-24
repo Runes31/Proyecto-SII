@@ -9,20 +9,20 @@
 
 <h:head>
     <h:outputStylesheet library="css" name="test.css"/>
-    <title>Hola mundo</title>
+    <title>Proyecto-SII</title>
 </h:head>
 
 <h:body>
     <div class="topnav">
         <a href="/ProyectoWAR-0.0.1-SNAPSHOT/faces/index.xhtml">Home</a>
-        <a class="active" href="#">Importar</a>
+        <a class="active" href="#">Import</a>
         <a href="#contact">Contact</a>
         <a href="#about">About</a>
     </div>
     <div class="container">
         <h:form enctype="multipart/form-data">
-            <h:outputLabel for="alumnos">Archivo de alumnos: </h:outputLabel>
-            <h:inputFile id="alumnos" value="#{importar.alumnos}"></h:inputFile><br/>
+            <h:outputLabel for="titulaciones">Archivo de Titulaciones: </h:outputLabel>
+            <h:inputFile id="titulaciones" value="#{importar.titulaciones}"></h:inputFile><br/>
             <h:commandButton id="submit" value="Procesar" onclick="#{importar.process}"/>
         </h:form>
     </div>
