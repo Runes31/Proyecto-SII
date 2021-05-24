@@ -21,9 +21,9 @@
     </div>
     <div class="container">
         <h:form enctype="multipart/form-data">
-            <h:outputLabel for="titulaciones">Archivo de Titulaciones: </h:outputLabel>
-            <h:inputFile id="titulaciones" value="#{importar.titulaciones}"></h:inputFile><br/>
-            <h:commandButton id="submit" value="Procesar" onclick="#{importar.process}"/>
+        	<h:inputFile id="titulaciones" value="#{importar.titulaciones}"></h:inputFile><br/>
+        	<h:commandButton id="submit" value="process" onclick="#{importar.process}"/>
+        	<h:messages/>
         </h:form>
     </div>
 </h:body>
