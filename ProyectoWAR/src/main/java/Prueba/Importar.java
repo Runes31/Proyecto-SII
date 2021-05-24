@@ -31,7 +31,7 @@ public class Importar {
   }
 
   public void process() throws IOException{
-    if(alumnos != null) ejb.importarAlumnosExcel(getFile(alumnos));
+    if(alumnos != null) ejb.importarTitulacionExcel(getFile(alumnos));
   }
 
   private File getFile(Part part) throws IOException {
@@ -64,8 +64,7 @@ public class Importar {
     part.delete();
     return file;
     }*/
-   
-    String fileName = part.getSubmittedFileName();
+    String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
     File f = null;
     try(InputStream inputStream = part.getInputStream()) {
       f = File.createTempFile("alumnos", "xlsx");
@@ -80,3 +79,4 @@ public class Importar {
     }
     return f;
   }
+}
