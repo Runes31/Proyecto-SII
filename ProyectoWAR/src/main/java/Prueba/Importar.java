@@ -17,7 +17,7 @@ import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
 
 @ViewScoped
-@Named("Importar")
+@Named
 public class Importar implements Serializable{
   private Part titulaciones;
   @Inject
@@ -31,7 +31,7 @@ public class Importar implements Serializable{
     this.titulaciones = titulaciones;
   }
 
-  public void process() throws IOException{
+  public void process() throws IOException {
     if(titulaciones != null) ejb.importarTitulacionExcel(getFile(titulaciones));
   }
 

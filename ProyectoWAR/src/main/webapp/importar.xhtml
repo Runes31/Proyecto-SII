@@ -22,7 +22,8 @@
     <div class="container">
         <h:form enctype="multipart/form-data">
         	<h:inputFile id = "titulaciones" value="#{importar.titulaciones}"/>
-        	<h:commandButton id = "submit" value="process" onclick="#{importar.process}"/><br/>
+        	<h:commandButton id = "submit" value="Procesar" action="#{importar.process()}"/><br/>
+        	<h:outputText> Titulaciones procesadas</h:outputText>
         	<h:messages/>
         </h:form>
     </div>
