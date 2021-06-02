@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -17,7 +18,7 @@ import org.apache.commons.io.FileUtils;
 
 @ViewScoped
 @Named
-public class Importar {
+public class Importar implements Serializable{
   private Part titulaciones;
   @Inject
   ImportarDatos ejb;
