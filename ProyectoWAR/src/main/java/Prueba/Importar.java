@@ -17,7 +17,7 @@ import javax.servlet.http.Part;
 import org.apache.commons.io.FileUtils;
 
 @ViewScoped
-@Named
+@Named("Importar")
 public class Importar implements Serializable{
   private Part titulaciones;
   @Inject
