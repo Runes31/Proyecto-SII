@@ -10,6 +10,7 @@
 <h:head>
 	<h:outputStylesheet library="css" name="test.css"/>
 	<title>Hola mundo</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
 </h:head>
 
 <h:body>
@@ -36,6 +37,33 @@
 				<h:outputText value="#{saludo.clase != null ? saludo.clase : ''}"/>
 			</h:panelGrid>
 		</h:form>
+
+		<h:dataTable value="#{saludo.cosas}" var="c">
+			<h:column>
+				<f:facet name="header">S</f:facet>
+				#{c}
+			</h:column>
+            <h:column>
+				<f:facet name="header">Actions</f:facet>
+				<!-- Abre el modal para editar matricula y la selecciona -->
+                <h:commandButton onclick="document.getElementById('id01').style.display='block'"
+								 actionListener="#{saludo.seleccionar(c)}" styleClass="we-button" value="Open">
+					<f:ajax render="sel"/>
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+	</div>
+
+    <!-- Modal para editar matriculas -->
+	<div id="id01" class="w3-modal">
+		<div class="w3-modal-content">
+			<div class="w3-container">
+      <span onclick="document.getElementById('id01').style.display='none'"
+			class="w3-button w3-display-topright">&times;</span>
+				<p>El string seleccionado es: <h:outputText id="sel" value="#{saludo.selected}"/> </p>
+				<p>Some text in the Modal..</p>
+			</div>
+		</div>
 	</div>
 </h:body>
 

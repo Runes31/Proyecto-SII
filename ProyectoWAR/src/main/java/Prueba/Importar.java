@@ -28,7 +28,17 @@ public class Importar {
   }
 
   public void process(){
-    if(alumnos != null) ejb.importarAlumnosExcel(getFile(alumnos));
+    File f = new File("../DATOS/");
+
+    File t = new File("../DATOS/Titulacion.xlsx");
+    ejb.importarTitulacionExcel(t);
+    File file = new File("../DATOS/Oferta_asignaturas.xlsx");
+    ejb.importarAsignaturasExcel(file);
+    ejb.importarAlumnosExcel(new File("../DATOS/alumnos.xlsx"));
+    ejb.importarGruposExcel(new File("../DATOS/grupos.xlsx"));
+    ejb.importarEncuestaExcel(new File("../DATOS/Encuesta.xlsx"));
+
+    //if(alumnos != null) ejb.importarAlumnosExcel(getFile(alumnos));
   }
 
   private File getFile(Part part) {
