@@ -145,28 +145,29 @@ public class Grupo {
     this.gruposPorAsignatura = gruposPorAsignatura;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Grupo grupo1 = (Grupo) o;
-    return id == grupo1.id && ingles == grupo1.ingles && visible == grupo1.visible
-        && asignar == grupo1.asignar && plazas == grupo1.plazas && curso.equals(grupo1.curso)
-        && letra .equals(grupo1.letra) && turno.equals(grupo1.turno)
-        && Objects.equals(titulacion, grupo1.titulacion);
-  }
+   @Override
+   public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + id;
+	return result;
+   }
 
-  @Override
-  public int hashCode() {
-    return Objects
-        .hash(id, curso, letra, turno, ingles, visible, asignar, plazas,titulacion);
-  }
+   @Override
+   public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Grupo other = (Grupo) obj;
+	if (id != other.id)
+		return false;
+	return true;
+}
 
-  @Override
+@Override
   public String toString() {
     return "Grupo{" +
         "id=" + id +

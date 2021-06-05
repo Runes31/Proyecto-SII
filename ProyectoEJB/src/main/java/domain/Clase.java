@@ -85,13 +85,12 @@ public class Clase {
       return false;
     }
     Clase clase = (Clase) o;
-    return dia.equals(clase.dia) && horaIni.equals(clase.horaIni) && Objects
-        .equals(horaFin, clase.horaFin) && gruposPorAsignaturas.equals(clase.getGruposPorAsignaturas());
+    return dia.equals(clase.dia) && horaIni.equals(clase.horaIni) && gruposPorAsignaturas.equals(clase.getGruposPorAsignaturas());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dia, horaIni, horaFin, gruposPorAsignaturas);
+    return Objects.hash(dia, horaIni, gruposPorAsignaturas);
   }
 
   @Override

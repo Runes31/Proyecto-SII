@@ -99,25 +99,43 @@ public class GruposPorAsignatura {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    GruposPorAsignatura that = (GruposPorAsignatura) o;
-    return oferta == that.oferta && cursoAcademico.equals(that.cursoAcademico) && Objects
-        .equals(clases, that.clases)
-        && asignatura.equals(that.asignatura) && grupo.equals(that.grupo);
-  }
-
-  @Override
   public int hashCode() {
-    return Objects.hash(cursoAcademico, oferta, clases, asignatura, grupo);
-  }
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((asignatura == null) ? 0 : asignatura.hashCode());
+	result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
+	result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
+	return result;
+}
 
   @Override
+	public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	GruposPorAsignatura other = (GruposPorAsignatura) obj;
+	if (asignatura == null) {
+		if (other.asignatura != null)
+			return false;
+	} else if (!asignatura.equals(other.asignatura))
+		return false;
+	if (cursoAcademico == null) {
+		if (other.cursoAcademico != null)
+			return false;
+	} else if (!cursoAcademico.equals(other.cursoAcademico))
+		return false;
+	if (grupo == null) {
+		if (other.grupo != null)
+			return false;
+	} else if (!grupo.equals(other.grupo))
+		return false;
+	return true;
+}
+
+@Override
   public String toString() {
     return "GruposPorAsignatura{" +
         "cursoAcademico='" + cursoAcademico + '\'' +

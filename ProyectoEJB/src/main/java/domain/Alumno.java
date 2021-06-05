@@ -149,20 +149,13 @@ public class Alumno {
       return false;
     }
     Alumno alumno = (Alumno) o;
-    return id == alumno.id && dni.equals(alumno.dni) && nombre.equals(alumno.nombre)
-        && emailInstitucional.equals(alumno.emailInstitucional) && Objects
-        .equals(emailPersonal, alumno.emailPersonal) && Objects
-        .equals(telefono, alumno.telefono) && Objects.equals(movil, alumno.movil)
-        && direccion.equals(alumno.direccion) && localidad.equals(alumno.localidad)
-        && Objects.equals(provincia, alumno.provincia) && Objects
-        .equals(codigoPostal, alumno.codigoPostal);
+    return id == alumno.id;
   }
 
   @Override
   public int hashCode() {
     return Objects
-        .hash(id, dni, nombre, emailInstitucional, emailPersonal, telefono, movil, direccion,
-            localidad, provincia, codigoPostal);
+        .hash(id);
   }
 
   @Override
