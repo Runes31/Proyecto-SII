@@ -79,13 +79,12 @@ public class Centro {
       return false;
     }
     Centro centro = (Centro) o;
-    return id == centro.id && tlfConsejeria == centro.tlfConsejeria && nombre.equals(centro.nombre)
-        && direccion.equals(centro.direccion);
+    return id == centro.id;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, nombre, direccion, tlfConsejeria);
+    return Objects.hash(id);
   }
 
   @Override

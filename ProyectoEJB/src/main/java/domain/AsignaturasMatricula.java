@@ -65,13 +65,12 @@ public class AsignaturasMatricula {
       return false;
     }
     AsignaturasMatricula that = (AsignaturasMatricula) o;
-    return matricula.equals(that.matricula) && asignatura.equals(that.asignatura) && Objects
-        .equals(grupo, that.grupo);
+    return matricula.equals(that.matricula);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(matricula, asignatura, grupo);
+    return Objects.hash(matricula);
   }
 
   @Override

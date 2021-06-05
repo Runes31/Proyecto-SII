@@ -66,13 +66,12 @@ public class Encuesta{
       return false;
     }
     Encuesta encuesta = (Encuesta) o;
-    return fechaEnvio.equals(encuesta.fechaEnvio) && expediente.equals(encuesta.expediente)
-        && Objects.equals(gruposPorAsignaturas, encuesta.gruposPorAsignaturas);
+    return fechaEnvio.equals(encuesta.fechaEnvio) && expediente.equals(encuesta.expediente);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fechaEnvio, expediente, gruposPorAsignaturas);
+    return Objects.hash(fechaEnvio, expediente);
   }
 
   @Override

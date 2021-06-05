@@ -167,29 +167,25 @@ public class Expediente {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		Expediente that = (Expediente) o;
-		return numExpediente == that.numExpediente && activo == that.activo
-				&& Double.compare(that.notaMediaProvisional, notaMediaProvisional) == 0
-				&& creditosSuperados == that.creditosSuperados && creditosFB == that.creditosFB
-				&& creditosOB == that.creditosOB && creditosOP == that.creditosOP
-				&& creditosCF == that.creditosCF && creditosPE == that.creditosPE
-				&& creditosTF == that.creditosTF && titulacion.equals(that.titulacion) && Objects
-				.equals(alumno, that.alumno);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + numExpediente;
+		return result;
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects
-				.hash(numExpediente, activo, notaMediaProvisional, creditosSuperados, creditosFB,
-						creditosOB,
-						creditosOP, creditosCF, creditosPE, creditosTF, titulacion, alumno);
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Expediente other = (Expediente) obj;
+		if (numExpediente != other.numExpediente)
+			return false;
+		return true;
 	}
 
 	@Override

@@ -118,61 +118,37 @@ public class Matricula{
   }
 
   @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
-    result = prime * result + ((estado == null) ? 0 : estado.hashCode());
-    result = prime * result + ((fechaMatricula == null) ? 0 : fechaMatricula.hashCode());
-    result = prime * result + ((listadoAsignaturas == null) ? 0 : listadoAsignaturas.hashCode());
-    result = prime * result + (nuevoIngreso ? 1231 : 1237);
-    result = prime * result + numArchivo;
-    result = prime * result + ((turnoPreferente == null) ? 0 : turnoPreferente.hashCode());
-    return result;
-  }
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
+	result = prime * result + ((expediente == null) ? 0 : expediente.hashCode());
+	return result;
+}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Matricula other = (Matricula) obj;
-    if (cursoAcademico == null) {
-      if (other.cursoAcademico != null)
-        return false;
-    } else if (!cursoAcademico.equals(other.cursoAcademico))
-      return false;
-    if (estado == null) {
-      if (other.estado != null)
-        return false;
-    } else if (!estado.equals(other.estado))
-      return false;
-    if (fechaMatricula == null) {
-      if (other.fechaMatricula != null)
-        return false;
-    } else if (!fechaMatricula.equals(other.fechaMatricula))
-      return false;
-    if (listadoAsignaturas == null) {
-      if (other.listadoAsignaturas != null)
-        return false;
-    } else if (!listadoAsignaturas.equals(other.listadoAsignaturas))
-      return false;
-    if (nuevoIngreso != other.nuevoIngreso)
-      return false;
-    if (numArchivo != other.numArchivo)
-      return false;
-    if (turnoPreferente == null) {
-      if (other.turnoPreferente != null)
-        return false;
-    } else if (!turnoPreferente.equals(other.turnoPreferente))
-      return false;
-    return true;
-  }
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Matricula other = (Matricula) obj;
+	if (cursoAcademico == null) {
+		if (other.cursoAcademico != null)
+			return false;
+	} else if (!cursoAcademico.equals(other.cursoAcademico))
+		return false;
+	if (expediente == null) {
+		if (other.expediente != null)
+			return false;
+	} else if (!expediente.equals(other.expediente))
+		return false;
+	return true;
+}
 
-  @Override
+@Override
   public String toString() {
     return "Matricula [cursoAcademico=" + cursoAcademico + ", estado=" + estado + ", numArchivo=" + numArchivo
         + ", turnoPreferente=" + turnoPreferente + ", fechaMatricula=" + fechaMatricula + ", nuevoIngreso="

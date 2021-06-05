@@ -93,12 +93,12 @@ public class Titulacion {
       return false;
     }
     Titulacion that = (Titulacion) o;
-    return creditos == that.creditos && codigo.equals(that.codigo) && nombre.equals(that.nombre) ;
+    return codigo.equals(that.codigo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(codigo, nombre, creditos);
+    return Objects.hash(codigo);
   }
 
   @Override
