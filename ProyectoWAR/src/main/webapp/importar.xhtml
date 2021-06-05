@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,25 +9,42 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-    <h:outputStylesheet library="css" name="test.css"/>
+    <h:outputStylesheet library="css" name="main.css"/>
     <title>Proyecto-SII</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
 </h:head>
 
 <h:body>
     <div class="topnav">
-        <a href="/ProyectoWAR-0.0.1-SNAPSHOT/index.xhtml">Home</a>
-        <a class="active" href="#">Import</a>
+        <a href="/ProyectoWAR/index.xhtml">Home</a>
+        <a class="active" href="#">Importar</a>
         <a href="#contact">Contact</a>
         <a href="#about">About</a>
     </div>
     <div class="container">
+        <h2>Selecciona los archivos excel a importar:</h2>
         <h:form enctype="multipart/form-data">
-        	<h:inputFile id = "titulaciones" value="#{importar.titulaciones}"/>
-        	<h:commandButton id = "submit" value="Procesar" action="#{importar.process()}"/><br/>
+            <h:outputLabel for="Alumnos">Alumnos: </h:outputLabel>
+            <h:inputFile styleClass="btn-pr" id = "Alumnos" value="#{importarBean.alumnos}"/>
+            <br/>
+            <h:outputLabel for="titulaciones">Titulaciones: </h:outputLabel>
+            <h:inputFile id = "titulaciones" styleClass="btn-pr" value="#{importarBean.titulaciones}"/>
+            <br/>
+            <h:outputLabel for="Asignaturas">Asignaturas: </h:outputLabel>
+            <h:inputFile id = "Asignaturas" styleClass="btn-pr" value="#{importarBean.asignaturas}"/>
+            <br/>
+            <h:outputLabel for="Grupos">Grupos: </h:outputLabel>
+            <h:inputFile id = "Grupos" styleClass="btn-pr" value="#{importarBean.grupos}"/>
+            <br/>
+            <h:outputLabel for="Encuestas">Encuestas: </h:outputLabel>
+        	<h:inputFile id = "Encuestas" styleClass="btn-pr" value="#{importarBean.encuestas}"/>
+            <br/>
+            <div style="text-align: center">
+                <h:commandButton id = "submit" style="min-height: 40px; min-width: 150px" styleClass="btn-pr" value="Procesar" actionListener="#{importarBean.process()}"/><br/>
+            </div>
         	<h:outputText> Titulaciones procesadas</h:outputText>
         	<h:messages/>
         </h:form>
     </div>
 </h:body>
-
 </html>

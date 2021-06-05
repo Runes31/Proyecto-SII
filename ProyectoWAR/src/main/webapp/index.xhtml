@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,50 +9,83 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-	<h:outputStylesheet library="css" name="test.css"/>
-	<title>Home</title>
+	<h:outputStylesheet library="css" name="main.css"/>
+	<title>Proyecto-SII</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
 </h:head>
 
 <h:body>
 	<div class="topnav">
 		<a class="active" href="#">Home</a>
-		<a href="/ProyectoWAR-0.0.1-SNAPSHOT/importar.xhtml">Import</a>
+		<a href="/ProyectoWAR/importar.xhtml">Importar</a>
 		<a href="#contact">Contact</a>
 		<a href="#about">About</a>
 	</div>
 	<div class="container">
         <h:form>
-			<h:inputText id="name" value="#{saludo.name}"/>
-			<h:inputText id="class" value="#{saludo.clase}"/>
+			<div style="text-align: center">
+				<h:outputLabel styleClass="form-label" for="name">Nombre: </h:outputLabel>
+				<h:inputText id="name" value="#{indexBean.name}"/>
+				<h:outputLabel styleClass="form-label" for="titulacion">Titulacion: </h:outputLabel>
+				<h:inputText id="titulacion" value="#{indexBean.titulacion}"/>
+				<br/>
+				<h:outputLabel styleClass="form-label" for="curso">Curso: </h:outputLabel>
+				<h:inputText id="curso" value="#{indexBean.curso}"/>
+				<h:outputLabel styleClass="form-label" for="grupo">Grupo: </h:outputLabel>
+				<h:inputText id="grupo" value="#{indexBean.grupo}"/>
+				<h:outputLabel for="nuevo" styleClass="form-label">Nuevo ingreso: </h:outputLabel>
+				<h:selectBooleanCheckbox id="nuevo" value="#{indexBean.nuevo}"/>
+			</div>
 			<br/>
-			<h:commandButton value="Buscar" actionListener="#{saludo.search}">
-				<f:ajax execute="@form" render="result"/>
-			</h:commandButton>
+			<div style="text-align: right">
+				<h:commandButton value="Asignar grupos" style="float:left; min-width: 150px; margin-left: 20px; min-height: 40px"
+								 styleClass="btn btn-pr" actionListener="#{indexBean.asignar}">
+				</h:commandButton>
+
+				<h:commandButton value="Buscar" style="min-width: 150px; margin-right: 20px; min-height: 40px"
+								 styleClass="btn btn-pr" actionListener="#{indexBean.search}">
+					<f:ajax execute="@form" render="matriculas"/>
+				</h:commandButton>
+			</div>
 			<br/>
 
-			<h:panelGrid id="result">
-				Hola
-                <h:outputText value="#{saludo.name != null ? saludo.name : ''}"/>
-				 de la clase
-				<h:outputText value="#{saludo.clase != null ? saludo.clase : ''}"/>
-			</h:panelGrid>
+			<div style="max-height: 500px; overflow-y: auto">
+				<h:dataTable id="matriculas" value="#{indexBean.matriculas}" var="m">
+					<h:column>
+						<f:facet name="header">Alumno</f:facet>
+						#{m.expediente.alumno.nombre}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Dni</f:facet>
+						#{m.expediente.alumno.dni}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Número expediente</f:facet>
+						#{m.expediente.numExpediente}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Titulación</f:facet>
+						#{m.expediente.titulacion.nombre}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Curso</f:facet>
+						#{m.cursoAcademico}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Asignaturas</f:facet>
+						#{indexBean.printAsignaturas(m.asignaturasMatriculas)}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Acciones</f:facet>
+						<h:commandButton value="Editar Matricula" styleClass="btn-pr"/>
+						<h:commandButton value="Editar Expediente" styleClass="btn-pr"/>
+						<h:commandButton value="Editar Alumno" styleClass="btn-pr"/>
+						<h:commandButton value="Editar Preferencias" styleClass="btn-pr"/>
+					</h:column>
+				</h:dataTable>
+			</div>
 		</h:form>
 
-		<h:dataTable value="#{saludo.cosas}" var="c">
-			<h:column>
-				<f:facet name="header">S</f:facet>
-				#{c}
-			</h:column>
-            <h:column>
-				<f:facet name="header">Actions</f:facet>
-				<!-- Abre el modal para editar matricula y la selecciona -->
-                <h:commandButton onclick="document.getElementById('id01').style.display='block'"
-								 actionListener="#{saludo.seleccionar(c)}" styleClass="we-button" value="Open">
-					<f:ajax render="sel"/>
-				</h:commandButton>
-			</h:column>
-		</h:dataTable>
 	</div>
 
     <!-- Modal para editar matriculas -->
@@ -60,7 +94,7 @@
 			<div class="w3-container">
       <span onclick="document.getElementById('id01').style.display='none'"
 			class="w3-button w3-display-topright">&times;</span>
-				<p>El string seleccionado es: <h:outputText id="sel" value="#{saludo.selected}"/> </p>
+				<p>El string seleccionado es: <h:outputText id="sel" value="#{indexBean.selected}"/> </p>
 				<p>Some text in the Modal..</p>
 			</div>
 		</div>

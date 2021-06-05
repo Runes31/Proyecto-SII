@@ -37,3 +37,49 @@ body{
     background-color: #04AA6D;
     color: white;
 }
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+}
+
+thead {
+    border-bottom: 1px solid black;
+}
+
+th {
+    text-align: center;
+}
+
+tbody > tr:nth-child(even){
+    background: #dfd;
+}
+
+tbody {
+    text-align: center;
+}
+
+td {
+    padding: 5px;
+    max-width: 250px;
+}
+
+.form-label {
+    margin: 5px;
+}
+
+.btn-pr {
+    background: #04CC6D;
+    color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.btn-pr:hover {
+    background: #02994B;
+}
+
+.btn-pr:active {
+    background: #025518;
+}

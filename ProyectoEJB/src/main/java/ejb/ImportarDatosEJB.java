@@ -107,8 +107,8 @@ public class ImportarDatosEJB implements ImportarDatos{
 
         em.persist(al);
         exp.setAlumno(al);
-        // Hardcodeamos la gente a informatica porque en el excel no viene la titulacion y es necesario...
-        exp.setTitulacion(em.find(Titulacion.class, "1041.0"));
+        // Los 4 primeros digitos del expediente son la titulacion
+        exp.setTitulacion(em.find(Titulacion.class, (""+exp.getNumExpediente()).substring(0, 4) + ".0"));
         em.persist(exp);
         m.setExpediente(exp);
         em.persist(m);

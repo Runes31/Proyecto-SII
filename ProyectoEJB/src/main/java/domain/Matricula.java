@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
@@ -37,7 +38,7 @@ public class Matricula{
   private Date fechaMatricula;
   private boolean nuevoIngreso;
   private String listadoAsignaturas;
-  @OneToMany(mappedBy = "matricula")
+  @OneToMany(mappedBy = "matricula", fetch = FetchType.EAGER)
   private List<AsignaturasMatricula> asignaturasMatriculas;
   @Id
   @ManyToOne
