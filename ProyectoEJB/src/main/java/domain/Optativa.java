@@ -1,14 +1,13 @@
 package domain;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
 public class Optativa extends Asignatura {
 
   @Column(nullable = false)
-	private int plazas;
+  private int plazas;
   private String mencion;
 
   public Optativa() { super(); }
@@ -27,34 +26,6 @@ public class Optativa extends Asignatura {
 
   public void setMencion(String mencion) {
     this.mencion = mencion;
-  }
-
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = super.hashCode();
-    result = prime * result + ((mencion == null) ? 0 : mencion.hashCode());
-    result = prime * result + plazas;
-    return result;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (!super.equals(obj))
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Optativa other = (Optativa) obj;
-    if (mencion == null) {
-      if (other.mencion != null)
-        return false;
-    } else if (!mencion.equals(other.mencion))
-      return false;
-    if (plazas != other.plazas)
-      return false;
-    return true;
   }
 
   @Override
