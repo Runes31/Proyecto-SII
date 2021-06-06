@@ -12,6 +12,7 @@
     <h:outputStylesheet library="css" name="main.css"/>
     <title>Proyecto-SII</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"/>
 </h:head>
 
 <h:body>
@@ -23,27 +24,31 @@
     </div>
     <div class="container">
         <h2>Selecciona los archivos excel a importar:</h2>
+        <hr/>
         <h:form enctype="multipart/form-data">
-            <h:outputLabel for="Alumnos">Alumnos: </h:outputLabel>
-            <h:inputFile styleClass="btn-pr" id = "Alumnos" value="#{importarBean.alumnos}"/>
-            <br/>
-            <h:outputLabel for="titulaciones">Titulaciones: </h:outputLabel>
-            <h:inputFile id = "titulaciones" styleClass="btn-pr" value="#{importarBean.titulaciones}"/>
-            <br/>
-            <h:outputLabel for="Asignaturas">Asignaturas: </h:outputLabel>
-            <h:inputFile id = "Asignaturas" styleClass="btn-pr" value="#{importarBean.asignaturas}"/>
-            <br/>
-            <h:outputLabel for="Grupos">Grupos: </h:outputLabel>
-            <h:inputFile id = "Grupos" styleClass="btn-pr" value="#{importarBean.grupos}"/>
-            <br/>
-            <h:outputLabel for="Encuestas">Encuestas: </h:outputLabel>
-        	<h:inputFile id = "Encuestas" styleClass="btn-pr" value="#{importarBean.encuestas}"/>
-            <br/>
-            <div style="text-align: center">
+            <div class="w3-margin">
+                <h:outputLabel for="Alumnos">Alumnos: </h:outputLabel>
+                <h:inputFile styleClass="btn-pr" id = "Alumnos" value="#{importarBean.alumnos}"/>
+            </div>
+            <div class="w3-margin">
+                <h:outputLabel for="titulaciones">Titulaciones: </h:outputLabel>
+                <h:inputFile id = "titulaciones" styleClass="btn-pr" value="#{importarBean.titulaciones}"/>
+            </div>
+            <div class="w3-margin">
+                <h:outputLabel for="Asignaturas">Asignaturas: </h:outputLabel>
+                <h:inputFile id = "Asignaturas" styleClass="btn-pr" value="#{importarBean.asignaturas}"/>
+            </div>
+            <div class="w3-margin">
+                <h:outputLabel for="Grupos">Grupos: </h:outputLabel>
+                <h:inputFile id = "Grupos" styleClass="btn-pr" value="#{importarBean.grupos}"/>
+            </div>
+            <div class="w3-margin">
+                <h:outputLabel for="Encuestas">Encuestas: </h:outputLabel>
+                <h:inputFile id = "Encuestas" styleClass="btn-pr" value="#{importarBean.encuestas}"/>
+            </div>
+            <div class="w3-margin" style="text-align: center">
                 <h:commandButton id = "submit" style="min-height: 40px; min-width: 150px" styleClass="btn-pr" value="Procesar" actionListener="#{importarBean.process()}"/><br/>
             </div>
-        	<h:outputText> Titulaciones procesadas</h:outputText>
-        	<h:messages/>
         </h:form>
     </div>
 </h:body>

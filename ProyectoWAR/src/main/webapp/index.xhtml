@@ -12,6 +12,7 @@
 	<h:outputStylesheet library="css" name="main.css"/>
 	<title>Proyecto-SII</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"/>
 </h:head>
 
 <h:body>
@@ -22,73 +23,82 @@
 		<a href="#about">About</a>
 	</div>
 	<div class="container">
-        <h:form>
-			<div style="text-align: center">
-				<h:outputLabel styleClass="form-label" for="name">Nombre: </h:outputLabel>
-				<h:inputText id="name" value="#{indexBean.name}"/>
-				<h:outputLabel styleClass="form-label" for="titulacion">Titulacion: </h:outputLabel>
-				<h:inputText id="titulacion" value="#{indexBean.titulacion}"/>
-				<br/>
-				<h:outputLabel styleClass="form-label" for="curso">Curso: </h:outputLabel>
-				<h:inputText id="curso" value="#{indexBean.curso}"/>
-				<h:outputLabel styleClass="form-label" for="grupo">Grupo: </h:outputLabel>
-				<h:inputText id="grupo" value="#{indexBean.grupo}"/>
-				<h:outputLabel for="nuevo" styleClass="form-label">Nuevo ingreso: </h:outputLabel>
-				<h:selectBooleanCheckbox id="nuevo" value="#{indexBean.nuevo}"/>
+        <h:form id="form">
+			<div class="w3-row-padding">
+				<div class="w3-half">
+					<h:outputLabel styleClass="form-label" for="name">Nombre: </h:outputLabel>
+					<h:inputText id="name" styleClass="w3-input w3-border" value="#{indexBean.name}" onkeypress="enter(event)"/>
+				</div>
+				<div class="w3-half">
+					<h:outputLabel styleClass="form-label" for="titulacion">Titulacion: </h:outputLabel>
+					<h:inputText id="titulacion" styleClass="w3-input w3-border"  value="#{indexBean.titulacion}" onkeypress="enter(event)"/>
+				</div>
+			</div>
+			<div class="w3-row-padding">
+				<div class="w3-third">
+					<h:outputLabel styleClass="form-label" for="curso">Curso: </h:outputLabel>
+					<h:inputText id="curso" styleClass="w3-input w3-border"  value="#{indexBean.curso}" onkeypress="enter(event)"/>
+				</div>
+				<div class="w3-third">
+					<h:outputLabel styleClass="form-label" for="grupo">Grupo: </h:outputLabel>
+					<h:inputText id="grupo" styleClass="w3-input w3-border"  value="#{indexBean.grupo}" onkeypress="enter(event)"/>
+				</div>
+				<div class="w3-third" style="padding-top: 25px">
+					<h:outputLabel for="nuevo" styleClass="form-label">Nuevo ingreso: </h:outputLabel>
+					<h:selectBooleanCheckbox id="nuevo" styleClass="w3-check" value="#{indexBean.nuevo}" onkeypress="enter(event)"/>
+				</div>
 			</div>
 			<br/>
 			<div style="text-align: right">
-				<h:commandButton value="Asignar grupos" style="float:left; min-width: 150px; margin-left: 20px; min-height: 40px"
+				<h:commandButton id="asignar" value="Asignar grupos" style="float:left; min-width: 150px; margin-left: 20px; min-height: 40px"
 								 styleClass="btn btn-pr" actionListener="#{indexBean.asignar}">
 				</h:commandButton>
 
-				<h:commandButton value="Buscar" style="min-width: 150px; margin-right: 20px; min-height: 40px"
+				<h:commandButton id="search" value="Buscar" style="min-width: 150px; margin-right: 20px; min-height: 40px"
 								 styleClass="btn btn-pr" actionListener="#{indexBean.search}">
 					<f:ajax execute="@form" render="matriculas"/>
 				</h:commandButton>
 			</div>
-			<br/>
-
-			<div style="max-height: 500px; overflow-y: auto">
-				<h:dataTable id="matriculas" value="#{indexBean.matriculas}" var="m">
-					<h:column>
-						<f:facet name="header">Alumno</f:facet>
-						#{m.expediente.alumno.nombre}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Dni</f:facet>
-						#{m.expediente.alumno.dni}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Número expediente</f:facet>
-						#{m.expediente.numExpediente}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Titulación</f:facet>
-						#{m.expediente.titulacion.nombre}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Curso</f:facet>
-						#{m.cursoAcademico}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Asignaturas</f:facet>
-						#{indexBean.printAsignaturas(m.asignaturasMatriculas)}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Acciones</f:facet>
-						<h:commandButton value="Editar Matricula" styleClass="btn-pr"/>
-						<h:commandButton value="Editar Expediente" styleClass="btn-pr"/>
-						<h:commandButton value="Editar Alumno" styleClass="btn-pr"/>
-						<h:commandButton value="Editar Preferencias" styleClass="btn-pr"/>
-					</h:column>
-				</h:dataTable>
-			</div>
 		</h:form>
-
+		<hr/>
+		<div style="max-height: 500px; overflow-y: auto">
+			<h:dataTable id="matriculas" value="#{indexBean.matriculas}" var="m">
+				<h:column>
+					<f:facet name="header">Alumno</f:facet>
+					#{m.expediente.alumno.nombre}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Dni</f:facet>
+					#{m.expediente.alumno.dni}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Número expediente</f:facet>
+					#{m.expediente.numExpediente}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Titulación</f:facet>
+					#{m.expediente.titulacion.nombre}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Curso</f:facet>
+					#{m.cursoAcademico}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Asignaturas</f:facet>
+					#{indexBean.printAsignaturas(m.asignaturasMatriculas)}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton value="Editar Matricula" styleClass="btn-pr"/>
+					<h:commandButton value="Editar Expediente" styleClass="btn-pr"/>
+					<h:commandButton value="Editar Alumno" styleClass="btn-pr"/>
+					<h:commandButton value="Editar Preferencias" styleClass="btn-pr"/>
+				</h:column>
+			</h:dataTable>
+		</div>
 	</div>
 
-    <!-- Modal para editar matriculas -->
+	<!-- Modal para editar matriculas -->
 	<div id="id01" class="w3-modal">
 		<div class="w3-modal-content">
 			<div class="w3-container">
@@ -100,5 +110,5 @@
 		</div>
 	</div>
 </h:body>
-
+<h:outputScript name="main.js" library="js"/>
 </html>

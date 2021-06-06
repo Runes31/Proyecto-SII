@@ -1,13 +1,15 @@
+body,h1,h2,h3,h4,h5,h6 {font-family: Roboto, sans-serif;}
+
 body{
     margin: 0px;    
 }
 
 .container{
-    margin: 100px auto;
     width: 60%;
     border: 1px solid black;
     border-radius: 5px;
     padding: 10px;
+    margin: 100px auto 0;
 }
 
 /* Add a black background color to the top navigation */
@@ -70,6 +72,7 @@ td {
 }
 
 .btn-pr {
+    cursor: pointer;
     background: #04CC6D;
     color: white;
     border: 2px solid black;
@@ -82,4 +85,10 @@ td {
 
 .btn-pr:active {
     background: #025518;
+}
+
+.btn-pr:disabled {
+    background: #ddffdd;
+    border: 1px solid #333333;
+    cursor: default;
 }
