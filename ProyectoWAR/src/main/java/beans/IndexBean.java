@@ -1,8 +1,11 @@
 package beans;
 
 import domain.AsignaturasMatricula;
+import domain.Expediente;
 import domain.Matricula;
+import ejb.GestionExpediente;
 import ejb.GestionMatricula;
+import exceptions.ExpedienteNoEncontradoException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
@@ -22,16 +25,20 @@ public class IndexBean implements Serializable {
   private String selected;
   private Boolean nuevo;
   @Inject
-  GestionMatricula ejb;
+  GestionMatricula gm;
+  @Inject
+  GestionExpediente ge;
+
+  private Expediente selExp = new Expediente();
 
   // TODO: Fix el import para que se pueda asignar algun grupo pa poder probarlo lul
   public String asignar(){
-    ejb.generarAsignaciones();
+    gm.generarAsignaciones();
     return "";
   }
 
   public List<Matricula> getMatriculas(){
-    List<Matricula> list = ejb.getAllMatriculas();
+    List<Matricula> list = gm.getAllMatriculas();
     Stream<Matricula> st = list.stream();
     if(name != null && !name.equals("")) st = st.filter(m -> m.getExpediente().getAlumno().getNombre().toLowerCase(
         Locale.ROOT).contains(name.toLowerCase(Locale.ROOT)));
@@ -110,5 +117,22 @@ public class IndexBean implements Serializable {
 
   public Boolean getNuevo() {
     return nuevo;
+  }
+
+  public Expediente getSelExp() {
+    return selExp;
+  }
+
+  public void setSelExp(Expediente selExp) {
+    this.selExp = selExp;
+  }
+
+  public void selectExp(Expediente e) {
+    selExp = e;
+  }
+
+  public void saveExp() throws ExpedienteNoEncontradoException {
+    // TODO: Fix lanza excepcion de que no lo encuentra, resto ok potencialmente
+    ge.actualizarExpediente(selExp);
   }
 }

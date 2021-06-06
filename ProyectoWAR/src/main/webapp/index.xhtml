@@ -90,7 +90,10 @@
 				<h:column>
 					<f:facet name="header">Acciones</f:facet>
 					<h:commandButton value="Editar Matricula" styleClass="btn-pr"/>
-					<h:commandButton value="Editar Expediente" styleClass="btn-pr"/>
+					<h:commandButton value="Editar Expediente" styleClass="btn-pr"
+									 onclick="showExpModal()" action="#{indexBean.selectExp(m.expediente)}">
+						<f:ajax execute="" render="exp-form"/>
+					</h:commandButton>
 					<h:commandButton value="Editar Alumno" styleClass="btn-pr"/>
 					<h:commandButton value="Editar Preferencias" styleClass="btn-pr"/>
 				</h:column>
@@ -98,14 +101,60 @@
 		</div>
 	</div>
 
-	<!-- Modal para editar matriculas -->
+	<!-- Modal para editar expedientes -->
 	<div id="id01" class="w3-modal">
 		<div class="w3-modal-content">
 			<div class="w3-container">
       <span onclick="document.getElementById('id01').style.display='none'"
 			class="w3-button w3-display-topright">&times;</span>
-				<p>El string seleccionado es: <h:outputText id="sel" value="#{indexBean.selected}"/> </p>
-				<p>Some text in the Modal..</p>
+				<h:form id="exp-form">
+					<div class="w3-row-padding">
+						<h2>Editar expediente</h2>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="numExp">Número de expediente: </h:outputLabel>
+					<h:inputText id="numExp" styleClass="w3-input w3-border" disabled="true" value="#{indexBean.selExp.numExpediente}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="activo">Activo: </h:outputLabel>
+					<h:selectBooleanCheckbox id="activo" styleClass="w3-check" value="#{indexBean.selExp.activo}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="media">Nota media provisional: </h:outputLabel>
+					<h:inputText id="media" styleClass="w3-input w3-border" value="#{indexBean.selExp.notaMediaProvisional}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="credFB">Créditos FB: </h:outputLabel>
+					<h:inputText id="credFB" styleClass="w3-input w3-border" value="#{indexBean.selExp.creditosFB}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="credOB">Créditos OB: </h:outputLabel>
+					<h:inputText id="credOB" styleClass="w3-input w3-border" value="#{indexBean.selExp.creditosOB}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="credOP">Créditos OP: </h:outputLabel>
+					<h:inputText id="credOP" styleClass="w3-input w3-border" value="#{indexBean.selExp.creditosOP}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="credCF">Créditos CF: </h:outputLabel>
+					<h:inputText id="credCF" styleClass="w3-input w3-border" value="#{indexBean.selExp.creditosCF}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="credPE">Créditos PE: </h:outputLabel>
+					<h:inputText id="credPE" styleClass="w3-input w3-border" value="#{indexBean.selExp.creditosPE}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="credTF">Créditos TF: </h:outputLabel>
+					<h:inputText id="credTF" styleClass="w3-input w3-border" value="#{indexBean.selExp.creditosTF}"/>
+					</div>
+
+					<div class="w3-row-padding" style="text-align: center">
+					<h:commandButton id="sendExp" value="Guardar" style="min-width: 150px; margin: 20px; min-height: 40px" onclick="hideModals()"
+									 styleClass="btn btn-pr" actionListener="#{indexBean.saveExp}">
+						<f:ajax execute="@form" render="matriculas"/>
+					</h:commandButton>
+					</div>
+				</h:form>
 			</div>
 		</div>
 	</div>

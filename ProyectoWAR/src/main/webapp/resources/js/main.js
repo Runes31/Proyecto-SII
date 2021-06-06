@@ -4,3 +4,12 @@ function enter(event){
     document.getElementById('form:search').click();
   }
 }
+
+function showExpModal(){
+  document.getElementById('id01').style.display = 'block';
+}
+
+function hideModals(){
+  // Expedientes
+  document.getElementById('id01').style.display='none';
+}
