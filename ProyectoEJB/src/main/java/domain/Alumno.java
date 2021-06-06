@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -141,24 +140,28 @@ public class Alumno {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Alumno alumno = (Alumno) o;
-    return id == alumno.id;
-  }
-
-  @Override
   public int hashCode() {
-    return Objects
-        .hash(id);
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + id;
+	return result;
   }
 
   @Override
+  public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Alumno other = (Alumno) obj;
+	if (id != other.id)
+		return false;
+	return true;
+}
+
+@Override
   public String toString() {
     return "Alumno{" +
         "id=" + id +

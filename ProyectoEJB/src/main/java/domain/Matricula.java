@@ -25,6 +25,34 @@ public class Matricula{
       cursoAcademico = c;
       expediente = e;
     }
+    
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
+		result = prime * result + expediente;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MatriculaId other = (MatriculaId) obj;
+		if (cursoAcademico == null) {
+			if (other.cursoAcademico != null)
+				return false;
+		} else if (!cursoAcademico.equals(other.cursoAcademico))
+			return false;
+		if (expediente != other.expediente)
+			return false;
+		return true;
+	}
+    
   }
 
   @Id
@@ -119,16 +147,16 @@ public class Matricula{
   }
 
   @Override
-public int hashCode() {
+  public int hashCode() {
 	final int prime = 31;
 	int result = 1;
 	result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
-	result = prime * result + ((expediente == null) ? 0 : expediente.hashCode());
+	result = prime * result + expediente.hashCode();
 	return result;
-}
+  }
 
-@Override
-public boolean equals(Object obj) {
+  @Override
+  public boolean equals(Object obj) {
 	if (this == obj)
 		return true;
 	if (obj == null)
@@ -141,15 +169,12 @@ public boolean equals(Object obj) {
 			return false;
 	} else if (!cursoAcademico.equals(other.cursoAcademico))
 		return false;
-	if (expediente == null) {
-		if (other.expediente != null)
-			return false;
-	} else if (!expediente.equals(other.expediente))
+	if (expediente != other.expediente)
 		return false;
 	return true;
 }
-
-@Override
+  
+  @Override
   public String toString() {
     return "Matricula [cursoAcademico=" + cursoAcademico + ", estado=" + estado + ", numArchivo=" + numArchivo
         + ", turnoPreferente=" + turnoPreferente + ", fechaMatricula=" + fechaMatricula + ", nuevoIngreso="

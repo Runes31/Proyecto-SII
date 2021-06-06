@@ -27,6 +27,38 @@ public class Asignatura {
       this.referencia = referencia;
       this.titulacion = titulacion;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((referencia == null) ? 0 : referencia.hashCode());
+		result = prime * result + ((titulacion == null) ? 0 : titulacion.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AsignaturaId other = (AsignaturaId) obj;
+		if (referencia == null) {
+			if (other.referencia != null)
+				return false;
+		} else if (!referencia.equals(other.referencia))
+			return false;
+		if (titulacion == null) {
+			if (other.titulacion != null)
+				return false;
+		} else if (!titulacion.equals(other.titulacion))
+			return false;
+		return true;
+	}
+    
   }
   
   @Id
@@ -148,30 +180,36 @@ public class Asignatura {
 		this.gruposPorAsignatura = gruposPorAsignatura;
 	}
 	
-  @Override
-public boolean equals(Object obj) {
-	if (this == obj)
-		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Asignatura other = (Asignatura) obj;
-	if (referencia == null) {
-		if (other.referencia != null)
-			return false;
-	} else if (!referencia.equals(other.referencia))
-		return false;
-	return true;
-}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((referencia == null) ? 0 : referencia.hashCode());
+		result = prime * result + ((titulacion == null) ? 0 : titulacion.hashCode());
+		return result;
+	}
 
-  @Override
-public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((referencia == null) ? 0 : referencia.hashCode());
-	return result;
-}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Asignatura other = (Asignatura) obj;
+		if (referencia == null) {
+			if (other.referencia != null)
+				return false;
+		} else if (!referencia.equals(other.referencia))
+			return false;
+		if (titulacion == null) {
+			if (other.titulacion != null)
+				return false;
+		} else if (!titulacion.equals(other.titulacion))
+			return false;
+		return true;
+	}
 
   @Override
   public String toString() {
