@@ -32,7 +32,7 @@ public class PruebaImportacionIT {
   }
   @Test
   public void prueba() {
-	File titulacion = new File("/Proyecto-SII/DATOS/Titulacion.xlsx");
+	File titulacion = new File("Titulacion.xlsx");
 	File alumnos = new File("alumnos.xlsx");
 	File asignaturas = new File("Oferta_asignaturas.xlsx");
 	File grupos = new File("grupos.xlsx");
