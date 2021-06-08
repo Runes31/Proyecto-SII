@@ -14,7 +14,7 @@
   	<module>ProyectoEJB</module>
   	<module>ProyectoWAR</module>
   	<module>ProyectoEAR</module>
-  	<!--<module>ProyectoTests</module>-->
+  	<module>ProyectoTests</module>
   </modules>
   
 </project>
