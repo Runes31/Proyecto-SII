@@ -2,10 +2,8 @@ package domain;
 
 import domain.Asignatura.AsignaturaId;
 import domain.GruposPorAsignatura.GruposPorAsignaturaId;
-import domain.Matricula.MatriculaId;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,6 +28,40 @@ public class GruposPorAsignatura {
       this.asignatura = asignatura;
       this.grupo = grupo;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((asignatura == null) ? 0 : asignatura.hashCode());
+		result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
+		result = prime * result + grupo;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		GruposPorAsignaturaId other = (GruposPorAsignaturaId) obj;
+		if (asignatura == null) {
+			if (other.asignatura != null)
+				return false;
+		} else if (!asignatura.equals(other.asignatura))
+			return false;
+		if (cursoAcademico == null) {
+			if (other.cursoAcademico != null)
+				return false;
+		} else if (!cursoAcademico.equals(other.cursoAcademico))
+			return false;
+		if (grupo != other.grupo)
+			return false;
+		return true;
+	}
   }
 
   @Id
@@ -99,43 +131,40 @@ public class GruposPorAsignatura {
   }
 
   @Override
-  public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((asignatura == null) ? 0 : asignatura.hashCode());
-	result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
-	result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
-	return result;
-}
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((asignatura == null) ? 0 : asignatura.hashCode());
+		result = prime * result + ((cursoAcademico == null) ? 0 : cursoAcademico.hashCode());
+		result = prime * result + grupo.hashCode();
+		return result;
+	}
 
-  @Override
+	@Override
 	public boolean equals(Object obj) {
-	if (this == obj)
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		GruposPorAsignatura other = (GruposPorAsignatura) obj;
+		if (asignatura == null) {
+			if (other.asignatura != null)
+				return false;
+		} else if (!asignatura.equals(other.asignatura))
+			return false;
+		if (cursoAcademico == null) {
+			if (other.cursoAcademico != null)
+				return false;
+		} else if (!cursoAcademico.equals(other.cursoAcademico))
+			return false;
+		if (grupo != other.grupo)
+			return false;
 		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	GruposPorAsignatura other = (GruposPorAsignatura) obj;
-	if (asignatura == null) {
-		if (other.asignatura != null)
-			return false;
-	} else if (!asignatura.equals(other.asignatura))
-		return false;
-	if (cursoAcademico == null) {
-		if (other.cursoAcademico != null)
-			return false;
-	} else if (!cursoAcademico.equals(other.cursoAcademico))
-		return false;
-	if (grupo == null) {
-		if (other.grupo != null)
-			return false;
-	} else if (!grupo.equals(other.grupo))
-		return false;
-	return true;
-}
-
-@Override
+	}
+  
+	@Override
   public String toString() {
     return "GruposPorAsignatura{" +
         "cursoAcademico='" + cursoAcademico + '\'' +

@@ -1,7 +1,6 @@
 package domain;
 
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -85,23 +84,31 @@ public class Titulacion {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Titulacion that = (Titulacion) o;
-    return codigo.equals(that.codigo);
-  }
-
-  @Override
   public int hashCode() {
-    return Objects.hash(codigo);
-  }
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+	return result;
+}
 
   @Override
+  public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Titulacion other = (Titulacion) obj;
+	if (codigo == null) {
+		if (other.codigo != null)
+			return false;
+	} else if (!codigo.equals(other.codigo))
+		return false;
+	return true;
+}
+
+@Override
   public String toString() {
     return "Titulacion{" +
         "codigo='" + codigo + '\'' +

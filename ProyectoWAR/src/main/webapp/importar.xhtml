@@ -25,25 +25,25 @@
     <div class="container">
         <h2>Selecciona los archivos excel a importar:</h2>
         <hr/>
-        <h:form enctype="multipart/form-data">
+        <h:form id ="Importaciones" enctype="multipart/form-data">
             <div class="w3-margin">
-                <h:outputLabel for="Alumnos">Alumnos: </h:outputLabel>
-                <h:inputFile styleClass="btn-pr" id = "Alumnos" value="#{importarBean.alumnos}"/>
+                <h:outputLabel id="A" for="Alumnos">Alumnos: </h:outputLabel>
+                <h:inputFile id="Alumnos" styleClass="btn-pr" value="#{importarBean.alumnos}"/>
             </div>
             <div class="w3-margin">
-                <h:outputLabel for="titulaciones">Titulaciones: </h:outputLabel>
-                <h:inputFile id = "titulaciones" styleClass="btn-pr" value="#{importarBean.titulaciones}"/>
+                <h:outputLabel id="T" for="Titulaciones">Titulaciones: </h:outputLabel>
+                <h:inputFile id="Titulaciones" styleClass="btn-pr" value="#{importarBean.titulaciones}"/>
             </div>
             <div class="w3-margin">
-                <h:outputLabel for="Asignaturas">Asignaturas: </h:outputLabel>
-                <h:inputFile id = "Asignaturas" styleClass="btn-pr" value="#{importarBean.asignaturas}"/>
+                <h:outputLabel id="Asig" for="Asignaturas">Asignaturas: </h:outputLabel>
+                <h:inputFile id="Asignaturas" styleClass="btn-pr" value="#{importarBean.asignaturas}"/>
             </div>
             <div class="w3-margin">
-                <h:outputLabel for="Grupos">Grupos: </h:outputLabel>
-                <h:inputFile id = "Grupos" styleClass="btn-pr" value="#{importarBean.grupos}"/>
+                <h:outputLabel id="G" for="Grupos">Grupos: </h:outputLabel>
+                <h:inputFile id="Grupos" styleClass="btn-pr" value="#{importarBean.grupos}"/>
             </div>
             <div class="w3-margin">
-                <h:outputLabel for="Encuestas">Encuestas: </h:outputLabel>
+                <h:outputLabel id="E" for="Encuestas">Encuestas: </h:outputLabel>
                 <h:inputFile id = "Encuestas" styleClass="btn-pr" value="#{importarBean.encuestas}"/>
             </div>
             <div class="w3-margin" style="text-align: center">
