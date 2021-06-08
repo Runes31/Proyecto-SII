@@ -13,13 +13,12 @@ public class BuscarAlumnoIT {
   
   @Before
   public void setUp() {
-	System.setProperty("webdriver.chrome.driver","./src/test/resources/drivers/chromedriver.exe");
     driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
   }
   @After
   public void tearDown() {
-    //driver.quit();
+    driver.quit();
   }
   @Test
   public void dada() {

@@ -16,7 +16,6 @@ public class PruebaImportacionIT {
   
   @Before
   public void setUp() {
-	System.setProperty("webdriver.chrome.driver","./src/test/resources/drivers/chromedriver.exe");
     driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
   }
