@@ -19,7 +19,13 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<type>ear</type>
 			<scope>test</scope>
-	  	</dependency>
+		</dependency>
+		<dependency>
+			<groupId>es.uma.informatica.sii</groupId>
+			<artifactId>ProyectoEJB</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
