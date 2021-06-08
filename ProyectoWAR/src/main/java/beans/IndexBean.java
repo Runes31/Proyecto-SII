@@ -22,7 +22,6 @@ public class IndexBean implements Serializable {
   private String titulacion;
   private String curso;
   private String grupo;
-  private String selected;
   private Boolean nuevo;
   @Inject
   GestionMatricula gm;
@@ -59,18 +58,6 @@ public class IndexBean implements Serializable {
     this.grupo = grupo;
   }
 
-  public String getSelected() {
-    return selected;
-  }
-
-  public void setSelected(String selected) {
-    this.selected = selected;
-  }
-
-  public void seleccionar(String s){
-    selected = s;
-  }
-
   public String getCurso() {
     return curso;
   }
@@ -104,7 +91,7 @@ public class IndexBean implements Serializable {
     StringBuilder sb = new StringBuilder();
     for(AsignaturasMatricula am: asignaturas){
       sb.append(", ");
-      sb.append(am.getAsignatura().getCodigo().substring(0, 3));
+      sb.append(am.getAsignatura().getCodigo(), 0, 3);
       sb.append("-");
       if(am.getGrupo() != null) sb.append(am.getGrupo().getLetra());
     }
