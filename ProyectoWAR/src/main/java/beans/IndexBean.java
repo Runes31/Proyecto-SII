@@ -5,19 +5,23 @@ import domain.Expediente;
 import domain.Matricula;
 import ejb.GestionExpediente;
 import ejb.GestionMatricula;
+import ejb.ModificarExpedienteEJB;
 import exceptions.ExpedienteNoEncontradoException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-@RequestScoped
+@ViewScoped
 @Named
 public class IndexBean implements Serializable {
+  private static final Logger LOG = Logger.getLogger(IndexBean.class.getCanonicalName());
   private String name;
   private String titulacion;
   private String curso;
@@ -120,6 +124,7 @@ public class IndexBean implements Serializable {
 
   public void saveExp() throws ExpedienteNoEncontradoException {
     // TODO: Fix lanza excepcion de que no lo encuentra, resto ok potencialmente
+    LOG.log(Level.INFO, "Guardando expediente con número: " + selExp.getNumExpediente());
     ge.actualizarExpediente(selExp);
   }
 }
