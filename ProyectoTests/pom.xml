@@ -13,6 +13,7 @@
 			<artifactId>ProyectoEAR</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<type>ear</type>
+			<scope>test</scope>
 	  	</dependency>
 		<dependency>
 			<groupId>junit</groupId>
