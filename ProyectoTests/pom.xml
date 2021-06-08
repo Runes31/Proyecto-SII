@@ -1,39 +1,29 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>es.uma.informatica.sii</groupId>
-		<artifactId>Proyecto-SII</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
-	<artifactId>Tests</artifactId>
-	<dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>es.uma.informatica.sii</groupId>
+    <artifactId>Proyecto-SII</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>ProyectoTests</artifactId>
+  
+  <dependencies>
 		<dependency>
-			<groupId>es.uma.informatica.sii</groupId>
+	  		<groupId>es.uma.informatica.sii</groupId>
 			<artifactId>ProyectoEAR</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<scope>test</scope>
 			<type>ear</type>
-		</dependency>
-		<dependency>
-	  		<groupId>es.uma.informatica.sii</groupId>
-			<artifactId>ProyectoEJB</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>test</scope>
-			<type>ejb</type>
-	  	</dependency>
-	  	<dependency>
-	  		<groupId>es.uma.informatica.sii</groupId>
-			<artifactId>ProyectoWAR</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>test</scope>
-			<type>war</type>
 	  	</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.13</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -95,39 +85,34 @@
 							<cargo.remote.password>Admin#70365</cargo.remote.password>
 						</properties>
 					</configuration>
-
+	
 					<deployables>
 						<deployable>
 							<groupId>es.uma.informatica.sii</groupId>
 							<artifactId>ProyectoEAR</artifactId>
 							<type>ear</type>
-							<pingURL>http://localhost:8080/ProyectoEAR/</pingURL>
+							<pingURL>http://localhost:8080/ProyectoWAR/</pingURL>
 						</deployable>
 					</deployables>
-				</configuration>
+			</configuration>
 
-				<executions>
-					<execution>
-						<id>pre</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>deploy</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>post</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>undeploy</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
+			<executions>
+				<execution>
+					<id>pre</id>
+					<phase>pre-integration-test</phase>
+					<goals>
+						<goal>deploy</goal>
+					</goals>
+				</execution>
+				<execution>
+					<id>post</id>
+					<phase>post-integration-test</phase>
+					<goals>
+						<goal>undeploy</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
 	</build>
-
-	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-	</properties>
 </project>
