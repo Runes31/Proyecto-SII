@@ -123,7 +123,6 @@ public class IndexBean implements Serializable {
   }
 
   public void saveExp() throws ExpedienteNoEncontradoException {
-    // TODO: Fix lanza excepcion de que no lo encuentra, resto ok potencialmente
     LOG.log(Level.INFO, "Guardando expediente con número: " + selExp.getNumExpediente());
     ge.actualizarExpediente(selExp);
   }
