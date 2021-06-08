@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -29,6 +30,7 @@ public class PruebaImportacionIT {
     //driver.quit();
   }
   @Test
+  @Ignore
   public void prueba() {
     driver.get("http://localhost:8080/ProyectoWAR/");
     driver.manage().window().setSize(new Dimension(1936, 1056));
