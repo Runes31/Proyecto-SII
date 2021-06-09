@@ -2,6 +2,7 @@
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import es.uma.informatica.sii.anotaciones.Requisitos;
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -34,6 +35,12 @@ public class PruebasIT {
   }
 
   @Test
+  @Requisitos({"006", "009", "012", "014", "015"})
+  /*
+  006, 012, 014 y 015 ya que estamos importando los datos
+  009 porque estamos comprobando que los datos están y se han importado bien mirando en la vista que
+  los datos se muestran
+   */
   public void aaPruebaImportar() {
     File titulacion = new File("Titulacion.xlsx");
     File alumnos = new File("alumnos.xlsx");
@@ -63,6 +70,12 @@ public class PruebasIT {
   }
 
   @Test
+  @Requisitos({"009", "008"})
+  /*
+  008 ya que estamos modificando una matricula
+  009 ya que estamos comprobando que esa matricula se ha cambiado en la vista y estamos usando los
+  filtros de la vista además
+   */
   public void modificarMatricula() {
     driver.get("http://127.0.0.1:8080/ProyectoWAR/");
     driver.manage().window().maximize();
@@ -101,6 +114,10 @@ public class PruebasIT {
   }
 
   @Test
+  @Requisitos({"007"})
+  /*
+  007 ya que estamos modificando un expediente y comprobamos que los datos se vuelven a cargar en el modal
+   */
   public void modificarExpediente() {
     driver.get("http://127.0.0.1:8080/ProyectoWAR/#");
     driver.manage().window().maximize();
@@ -142,6 +159,10 @@ public class PruebasIT {
   }
 
   @Test
+  @Requisitos({"003"})
+  /*
+  003 ya que estamos modificando la asignaturas y comprobando en la tabla que se han cambiado
+   */
   public void modificarAsignatura() {
     driver.get("http://127.0.0.1:8080/ProyectoWAR/");
     driver.manage().window().maximize();
@@ -172,6 +193,8 @@ public class PruebasIT {
   }
 
   @Test
+  @Requisitos({"005"})
+  // 005 Ya que modificamos un alumno y comprobamos que sus datos han cambiado
   public void modificarAlumno() {
     driver.get("http://127.0.0.1:8080/ProyectoWAR/");
     driver.manage().window().maximize();
@@ -209,6 +232,8 @@ public class PruebasIT {
   }
 
   @Test
+  @Requisitos({"009"})
+  // 009 ya que estamos comprobando que podemos filtrar las matriculas que visualizamos por su titulación
   public void buscarTitulacion() {
     driver.get("http://127.0.0.1:8080/ProyectoWAR/");
     driver.manage().window().maximize();
@@ -231,6 +256,8 @@ public class PruebasIT {
   }
 
   @Test
+  @Requisitos({"009"})
+  // 009 ya que estamos comprobando que podemos filtrar las matriculas que visualizamos por su curso
   public void buscarCurso() {
     driver.get("http://127.0.0.1:8080/ProyectoWAR/");
     driver.manage().window().setSize(new Dimension(1936, 1056));
@@ -249,6 +276,8 @@ public class PruebasIT {
   }
 
   @Test
+  @Requisitos({"009"})
+  // 009 ya que estamos comprobando que podemos filtrar las matriculas que visualizamos por su nombre de alumno
   public void buscarAlumno() {
     driver.get("http://127.0.0.1:8080/ProyectoWAR/");
     driver.manage().window().maximize();
