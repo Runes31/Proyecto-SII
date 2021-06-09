@@ -34,7 +34,7 @@ public class PruebasIT {
   }
 
   @Test
-  public void pruebaImportar() {
+  public void aaPruebaImportar() {
     File titulacion = new File("Titulacion.xlsx");
     File alumnos = new File("alumnos.xlsx");
     File asignaturas = new File("Oferta_asignaturas.xlsx");
