@@ -32,7 +32,7 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Codigo</f:facet>
-						#{asignatura.codigo}
+						#{asignatura.codigo.substring(0, asignatura.codigo.length()-2)}
 					</h:column>
 					<h:column>
 						<f:facet name="header">Titulación</f:facet>
@@ -125,6 +125,20 @@
 						<h:outputLabel styleClass="form-label" for="idiomas">Idiomas: </h:outputLabel>
 						<h:inputText id="idiomas" styleClass="w3-input w3-border" value="#{asignaturasBean.selAsignatura.idiomas}"/>
 					</div>
+
+					<h:panelGroup id="groups">
+                        <ui:repeat value="#{asignaturasBean.grupos}" var="g">
+                            <h:panelGroup rendered="#{asignaturasBean.renderButton(g)}">
+								<div class="w3-row-padding">
+									#{g.curso}-#{g.letra}
+									<h:commandButton styleClass="btn-pr" value="Añadir"
+													 action="#{asignaturasBean.addGrupo(g)}">
+										<f:ajax execute="" render="groups"/>
+									</h:commandButton>
+								</div>
+							</h:panelGroup>
+						</ui:repeat>
+					</h:panelGroup>
 
 					<div class="w3-row-padding" style="text-align: center">
 					<h:commandButton id="sendAsig" value="Guardar" style="min-width: 150px; margin: 20px; min-height: 40px" onclick="document.getElementById('id01').style.display='none'"

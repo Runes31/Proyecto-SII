@@ -65,7 +65,6 @@ public class GruposPorAsignatura {
   }
 
   @Id
-  @GeneratedValue
   private String cursoAcademico;
   private boolean oferta;
   @OneToMany(mappedBy = "gruposPorAsignaturas")

@@ -3,6 +3,7 @@ package domain;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -22,7 +23,7 @@ public class Titulacion {
   private List<Asignatura> asignaturas;
   @OneToMany(mappedBy = "titulacion")
   private List<Expediente> expedientes;
-  @OneToMany(mappedBy = "titulacion")
+  @OneToMany(mappedBy = "titulacion", fetch = FetchType.EAGER)
   private List<Grupo> grupos;
   
   public Titulacion() { }
