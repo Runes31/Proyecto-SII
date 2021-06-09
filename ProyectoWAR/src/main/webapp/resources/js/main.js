@@ -9,7 +9,13 @@ function showExpModal(){
   document.getElementById('id01').style.display = 'block';
 }
 
+function showAluModal(){
+  document.getElementById('id02').style.display = 'block';
+}
+
 function hideModals(){
   // Expedientes
   document.getElementById('id01').style.display='none';
+  // Alumnos
+  document.getElementById('id02').style.display='none';
 }

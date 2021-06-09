@@ -94,7 +94,10 @@
 									 onclick="showExpModal()" action="#{indexBean.selectExp(m.expediente)}">
 						<f:ajax execute="" render="exp-form"/>
 					</h:commandButton>
-					<h:commandButton value="Editar Alumno" styleClass="btn-pr"/>
+					<h:commandButton value="Editar Alumno" action="#{indexBean.selectAlumno(m.expediente.alumno)}"
+									 onclick="showAluModal()" styleClass="btn-pr">
+						<f:ajax execute="" render="alu-form"/>
+					</h:commandButton>
 					<h:commandButton value="Editar Preferencias" styleClass="btn-pr"/>
 				</h:column>
 			</h:dataTable>
@@ -153,6 +156,68 @@
 									 styleClass="btn btn-pr" actionListener="#{indexBean.saveExp}">
 						<f:ajax execute="@form" render="matriculas"/>
 					</h:commandButton>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal para editar alumnos -->
+	<div id="id02" class="w3-modal">
+		<div class="w3-modal-content">
+			<div class="w3-container">
+      <span onclick="document.getElementById('id02').style.display='none'"
+			class="w3-button w3-display-topright">&times;</span>
+				<h:form id="alu-form">
+					<div class="w3-row-padding">
+						<h2>Editar alumno</h2>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="nombre">Nombre: </h:outputLabel>
+						<h:inputText styleClass="w3-input w3-border" id="nombre" value="#{indexBean.selAlumno.nombre}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="dni">DNI: </h:outputLabel>
+						<h:inputText styleClass="w3-input w3-border" id="dni" value="#{indexBean.selAlumno.dni}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="ei">Email institucional: </h:outputLabel>
+						<h:inputText id="ei" styleClass="w3-input w3-border" value="#{indexBean.selAlumno.emailInstitucional}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="ep">Email personal: </h:outputLabel>
+						<h:inputText id="ep" styleClass="w3-input w3-border" value="#{indexBean.selAlumno.emailPersonal}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="telf">Telefono: </h:outputLabel>
+						<h:inputText id="telf" styleClass="w3-input w3-border" value="#{indexBean.selAlumno.telefono}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="movil">Móvil: </h:outputLabel>
+						<h:inputText id="movil" styleClass="w3-input w3-border" value="#{indexBean.selAlumno.movil}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="direccion">Dirección: </h:outputLabel>
+						<h:inputText id="direccion" styleClass="w3-input w3-border" value="#{indexBean.selAlumno.direccion}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="localidad">Localidad: </h:outputLabel>
+						<h:inputText id="localidad" styleClass="w3-input w3-border" value="#{indexBean.selAlumno.localidad}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="provincia">Provincia: </h:outputLabel>
+						<h:inputText id="provincia" styleClass="w3-input w3-border" value="#{indexBean.selAlumno.provincia}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="codigo">Código postal: </h:outputLabel>
+						<h:inputText id="codigo" styleClass="w3-input w3-border" value="#{indexBean.selAlumno.codigoPostal}"/>
+					</div>
+
+					<div class="w3-row-padding" style="text-align: center">
+						<h:commandButton id="sendAlu" value="Guardar" style="min-width: 150px; margin: 20px; min-height: 40px" onclick="hideModals()"
+										 styleClass="btn btn-pr" actionListener="#{indexBean.saveAlu}">
+							<f:ajax execute="@form" render="matriculas"/>
+						</h:commandButton>
 					</div>
 				</h:form>
 			</div>

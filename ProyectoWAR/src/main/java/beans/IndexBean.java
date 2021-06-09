@@ -1,11 +1,13 @@
 package beans;
 
+import domain.Alumno;
 import domain.AsignaturasMatricula;
 import domain.Expediente;
 import domain.Matricula;
+import ejb.GestionAlumno;
 import ejb.GestionExpediente;
 import ejb.GestionMatricula;
-import ejb.ModificarExpedienteEJB;
+import exceptions.AlumnoNoEncontradoException;
 import exceptions.ExpedienteNoEncontradoException;
 import java.io.Serializable;
 import java.util.List;
@@ -31,10 +33,12 @@ public class IndexBean implements Serializable {
   GestionMatricula gm;
   @Inject
   GestionExpediente ge;
+  @Inject
+  GestionAlumno ga;
 
   private Expediente selExp = new Expediente();
+  private Alumno selAlumno = new Alumno();
 
-  // TODO: Fix el import para que se pueda asignar algun grupo pa poder probarlo lul
   public String asignar(){
     gm.generarAsignaciones();
     return "";
@@ -125,5 +129,21 @@ public class IndexBean implements Serializable {
   public void saveExp() throws ExpedienteNoEncontradoException {
     LOG.log(Level.INFO, "Guardando expediente con número: " + selExp.getNumExpediente());
     ge.actualizarExpediente(selExp);
+  }
+
+  public Alumno getSelAlumno() {
+    return selAlumno;
+  }
+
+  public void setSelAlumno(Alumno selAlumno) {
+    this.selAlumno = selAlumno;
+  }
+
+  public void selectAlumno(Alumno a){
+    setSelAlumno(a);
+  }
+  public void saveAlu() throws AlumnoNoEncontradoException {
+    LOG.log(Level.INFO, "Guardando alumno: " + selAlumno);
+    ga.actualizarAlumno(selAlumno);
   }
 }
