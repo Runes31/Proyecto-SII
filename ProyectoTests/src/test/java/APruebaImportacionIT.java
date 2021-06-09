@@ -18,7 +18,7 @@ public class APruebaImportacionIT {
   
   @Before
   public void setUp() {
-	//System.setProperty("webdriver.chrome.driver","./src/test/resources/drivers/chromedriver.exe");
+	System.setProperty("webdriver.chrome.driver","./src/test/resources/drivers/chromedriver.exe");
     driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
   }
@@ -43,7 +43,7 @@ public class APruebaImportacionIT {
     driver.findElement(By.id("Importaciones:Encuestas")).sendKeys(encuesta.getAbsolutePath());
     driver.findElement(By.id("Importaciones:submit")).click();
     try {
-        Thread.sleep(5000);
+        Thread.sleep(3500);
     } catch (Exception e) {
         System.out.println(e);
     }

@@ -28,17 +28,18 @@ public class ModificarMatriculaIT {
   JavascriptExecutor js;
   @Before
   public void setUp() {
-	System.setProperty("webdriver.chrome.driver","./src/test/resources/drivers/chromedriver.exe");
+	//System.setProperty("webdriver.chrome.driver","./src/test/resources/drivers/chromedriver.exe");
     driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
   }
   @After
   public void tearDown() {
-    //driver.quit();
+    driver.quit();
   }
   @Test
   public void prueba() {
     driver.get("http://127.0.0.1:8080/ProyectoWAR/");
+    driver.manage().window().maximize();
     driver.findElement(By.id("matriculas:0:_mat")).click();
     try {
         Thread.sleep(7000);
