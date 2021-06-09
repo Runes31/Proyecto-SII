@@ -364,7 +364,8 @@ public class PruebasIT {
     }
  	assertThat(driver.findElement(By.cssSelector("#pref-form h2")).getText(), is("Editar preferencias"));
  	assertThat(driver.findElement(By.cssSelector("#pref-form > .w3-row-padding:nth-child(3)")).getText(), is("Preferencias del alumno Gregorina Gómez Pabon"));
- 	driver.findElement(By.id("pref-form:sendPref")).click(); 	 
+ 	driver.findElement(By.id("pref-form:sendPref")).click();
+ 	 
   }
   
   @Test
