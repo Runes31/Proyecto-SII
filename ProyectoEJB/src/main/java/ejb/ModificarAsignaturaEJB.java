@@ -54,6 +54,7 @@ public class ModificarAsignaturaEJB implements GestionAsignatura {
       throw new GrupoAsignaturaYaRelacionadoException();
 
     GruposPorAsignatura gpa = new GruposPorAsignatura();
+    gpa.setCursoAcademico("2020/2021");
     gpa.setAsignatura(a);
     gpa.setGrupo(g);
 
