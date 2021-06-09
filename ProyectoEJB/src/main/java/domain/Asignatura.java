@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Inheritance;
@@ -79,7 +80,7 @@ public class Asignatura {
   @Id
   @ManyToOne(optional = false)
   private Titulacion titulacion;
-  @OneToMany(mappedBy = "asignatura")
+  @OneToMany(mappedBy = "asignatura", fetch = FetchType.EAGER)
   private List<GruposPorAsignatura> gruposPorAsignatura;
 
 	public Asignatura() { }

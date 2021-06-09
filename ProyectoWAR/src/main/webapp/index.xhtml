@@ -95,19 +95,22 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Acciones</f:facet>
-					<h:commandButton value="Editar Matricula" styleClass="btn-pr"
+					<h:commandButton id="#{m.expediente.numExpediente}_mat" value="Editar Matrícula" styleClass="btn-pr"
 									 onclick="showMatriculaModal()" action="#{indexBean.selectMatricula(m)}">
 						<f:ajax execute="" render="mat-form"/>
 					</h:commandButton>
-					<h:commandButton value="Editar Expediente" styleClass="btn-pr"
+					<h:commandButton id="#{m.expediente.numExpediente}_exp" value="Editar Expediente" styleClass="btn-pr"
 									 onclick="showExpModal()" action="#{indexBean.selectExp(m.expediente)}">
 						<f:ajax execute="" render="exp-form"/>
 					</h:commandButton>
-					<h:commandButton value="Editar Alumno" action="#{indexBean.selectAlumno(m.expediente.alumno)}"
+					<h:commandButton id="#{m.expediente.numExpediente}_alu" value="Editar Alumno" action="#{indexBean.selectAlumno(m.expediente.alumno)}"
 									 onclick="showAluModal()" styleClass="btn-pr">
 						<f:ajax execute="" render="alu-form"/>
 					</h:commandButton>
-					<h:commandButton value="Editar Preferencias" styleClass="btn-pr"/>
+					<h:commandButton id="#{m.expediente.numExpediente}_pref" value="Editar Preferencias" styleClass="btn-pr"
+									onclick="showPrefModal()" action="#{indexBean.selectPreferencias(m)}">
+						<f:ajax execute="" render="pref-form"/>
+					</h:commandButton>
 				</h:column>
 			</h:dataTable>
 		</div>
@@ -262,6 +265,40 @@
 					<div class="w3-row-padding" style="text-align: center">
 						<h:commandButton id="sendMatricula" value="Guardar" style="min-width: 150px; margin: 20px; min-height: 40px" onclick="hideModals()"
 										 styleClass="btn btn-pr" actionListener="#{indexBean.saveMatricula}">
+							<f:ajax execute="@form" render="matriculas"/>
+						</h:commandButton>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+    <!-- Modal para editar preferencias -->
+	<div id="id04" class="w3-modal">
+		<div class="w3-modal-content">
+			<div class="w3-container">
+      <span onclick="document.getElementById('id04').style.display='none'"
+			class="w3-button w3-display-topright">&times;</span>
+				<h:form id="pref-form">
+					<div class="w3-row-padding">
+						<h2>Editar preferencias</h2>
+					</div>
+					<div class="w3-row-padding">
+                        Preferencias del alumno #{indexBean.selMatricula.expediente.alumno.nombre}
+					</div>
+					<ui:repeat value="#{indexBean.preferencias.gruposPorAsignaturas}" var="pref">
+						<div class="w3-row-padding">
+							<h:outputLabel styleClass="form-label" for="#{pref.asignatura.referencia}">#{pref.asignatura.nombre}: </h:outputLabel>
+                            <h:selectOneMenu value="#{pref.grupo}">
+								<ui:repeat value="#{pref.asignatura.gruposPorAsignatura}" var="gpa">
+									<f:selectItem itemValue="#{gpa.grupo}" itemLabel="#{gpa.grupo.curso}-#{gpa.grupo.letra}"/>
+								</ui:repeat>
+							</h:selectOneMenu>
+						</div>
+					</ui:repeat>
+					<div class="w3-row-padding" style="text-align: center">
+						<h:commandButton id="sendPref" value="Guardar" style="min-width: 150px; margin: 20px; min-height: 40px" onclick="hideModals()"
+										 styleClass="btn btn-pr" actionListener="#{indexBean.savePref}">
 							<f:ajax execute="@form" render="matriculas"/>
 						</h:commandButton>
 					</div>

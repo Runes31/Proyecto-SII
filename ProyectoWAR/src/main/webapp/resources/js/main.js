@@ -17,6 +17,10 @@ function showMatriculaModal(){
   document.getElementById('id03').style.display = 'block';
 }
 
+function showPrefModal(){
+  document.getElementById('id04').style.display = 'block';
+}
+
 function hideModals(){
   // Expedientes
   document.getElementById('id01').style.display='none';
@@ -24,4 +28,6 @@ function hideModals(){
   document.getElementById('id02').style.display='none';
   // Matriculas
   document.getElementById('id03').style.display='none';
+  // Preferencias
+  document.getElementById('id04').style.display='none';
 }

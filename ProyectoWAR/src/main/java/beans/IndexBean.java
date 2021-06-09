@@ -2,7 +2,9 @@ package beans;
 
 import domain.Alumno;
 import domain.AsignaturasMatricula;
+import domain.Encuesta;
 import domain.Expediente;
+import domain.GruposPorAsignatura;
 import domain.Matricula;
 import ejb.GestionAlumno;
 import ejb.GestionExpediente;
@@ -12,6 +14,7 @@ import exceptions.ExpedienteNoEncontradoException;
 import exceptions.MatriculaNoEncontradaException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -42,6 +45,7 @@ public class IndexBean implements Serializable {
   private Expediente selExp = new Expediente();
   private Alumno selAlumno = new Alumno();
   private Matricula selMatricula = new Matricula();
+  private Encuesta preferencias = new Encuesta();
 
   public String asignar(){
     gm.generarAsignaciones();
@@ -179,5 +183,24 @@ public class IndexBean implements Serializable {
 
   public void setMatriculado(Boolean matriculado) {
     this.matriculado = matriculado;
+  }
+
+  public Encuesta getPreferencias() {
+    return preferencias;
+  }
+
+  public void setPreferencias(Encuesta preferencias) {
+    this.preferencias = preferencias;
+  }
+
+  public void selectPreferencias(Matricula m) throws MatriculaNoEncontradaException {
+    Encuesta p = gm.obtenerPreferencias(m);
+    if(p != null) preferencias = p;
+    selMatricula = m;
+  }
+
+  public void savePref(){
+    preferencias.setFechaEnvio(new Date());
+    gm.guardarPreferencias(preferencias);
   }
 }
