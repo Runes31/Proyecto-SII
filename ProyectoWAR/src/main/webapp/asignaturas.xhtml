@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<h:outputStylesheet library="css" name="main.css"/>
+	<title>Proyecto-SII</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"/>
+</h:head>
+
+<h:body>
+	<div class="topnav">
+		<a href="/ProyectoWAR/index.xhtml">Home</a>
+		<a href="/ProyectoWAR/importar.xhtml">Importar</a>
+        <a href="#" class="active">Asignaturas</a>
+	</div>
+
+	<div class="container">
+		<div style="max-height: 600px; overflow-y: auto">
+            <h:form id="frm">
+				<h:dataTable id="asignaturas" value="#{asignaturasBean.asignaturas}" var="asignatura">
+					<h:column>
+						<f:facet name="header">Referencia</f:facet>
+						#{asignatura.referencia.substring(0, asignatura.referencia.length()-2)}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Codigo</f:facet>
+						#{asignatura.codigo}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Titulación</f:facet>
+						#{asignatura.titulacion.nombre}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						#{asignatura.nombre}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Curso</f:facet>
+						#{asignatura.curso}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Caracter</f:facet>
+						#{asignatura.caracter}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Duración</f:facet>
+						#{asignatura.duracion}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Cuatrimestre</f:facet>
+						#{asignatura.cuatrimestre}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Idiomas</f:facet>
+						#{asignatura.idiomas}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Acciones</f:facet>
+						<h:commandButton id="#{asignatura.referencia}_#{asignatura.titulacion.codigo}_edit" value="Editar" styleClass="btn-pr"
+										 disabled="#{!asignatura.ofertada}"
+										 onclick="document.getElementById('id01').style.display='block'" action="#{asignaturasBean.selectAsignatura(asignatura)}">
+							<f:ajax execute="" render="asig-form"/>
+						</h:commandButton>
+						<h:commandButton id="#{asignatura.referencia}_#{asignatura.titulacion.codigo}_borrar" value="Borrar" styleClass="btn-pr w3-red w3-hover-white #{(!asignatura.ofertada) ? 'w3-disabled' : ''}"
+										 disabled="#{!asignatura.ofertada}" action="#{asignaturasBean.borrarAsignatura(asignatura)}">
+							<f:ajax execute="" render="frm"/>
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
+	</div>
+
+	<!-- Modal para editar expedientes -->
+	<div id="id01" class="w3-modal">
+		<div class="w3-modal-content">
+			<div class="w3-container">
+      <span onclick="document.getElementById('id01').style.display='none'"
+			class="w3-button w3-display-topright">&times;</span>
+				<h:form id="asig-form">
+					<div class="w3-row-padding">
+						<h2>Editar asignatura</h2>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="codigo">Código: </h:outputLabel>
+						<h:inputText styleClass="w3-input w3-border" id="codigo" value="#{asignaturasBean.selAsignatura.codigo}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="creditos">Créditos: </h:outputLabel>
+					<h:inputText id="creditos" styleClass="w3-input w3-border" value="#{asignaturasBean.selAsignatura.creditos}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="ofertada">Ofertada: </h:outputLabel>
+					<h:selectBooleanCheckbox id="ofertada" styleClass="w3-check" value="#{asignaturasBean.selAsignatura.ofertada}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="nombre">Nombre: </h:outputLabel>
+					<h:inputText id="nombre" styleClass="w3-input w3-border" value="#{asignaturasBean.selAsignatura.nombre}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="curso">Curso: </h:outputLabel>
+					<h:inputText id="curso" styleClass="w3-input w3-border" value="#{asignaturasBean.selAsignatura.curso}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="caracter">Caracter: </h:outputLabel>
+					<h:inputText id="caracter" styleClass="w3-input w3-border" value="#{asignaturasBean.selAsignatura.caracter}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="duration">Duración: </h:outputLabel>
+					<h:inputText id="duration" styleClass="w3-input w3-border" value="#{asignaturasBean.selAsignatura.duracion}"/>
+					</div>
+					<div class="w3-row-padding">
+					<h:outputLabel styleClass="form-label" for="cuatri">Cuatrimestre: </h:outputLabel>
+					<h:inputText id="cuatri" styleClass="w3-input w3-border" value="#{asignaturasBean.selAsignatura.cuatrimestre}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="idiomas">Idiomas: </h:outputLabel>
+						<h:inputText id="idiomas" styleClass="w3-input w3-border" value="#{asignaturasBean.selAsignatura.idiomas}"/>
+					</div>
+
+					<div class="w3-row-padding" style="text-align: center">
+					<h:commandButton id="sendAsig" value="Guardar" style="min-width: 150px; margin: 20px; min-height: 40px" onclick="document.getElementById('id01').style.display='none'"
+									 styleClass="btn btn-pr" action="#{asignaturasBean.save}">
+						<f:ajax execute="@form" render="frm"/>
+					</h:commandButton>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+</h:body>
+<h:outputScript name="main.js" library="js"/>
+</html>
