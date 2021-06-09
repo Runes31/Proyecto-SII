@@ -21,12 +21,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>es.uma.informatica.sii</groupId>
-			<artifactId>ProyectoEJB</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.13</version>
@@ -61,6 +55,12 @@
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
 			<version>2.25.1</version>
+		</dependency>
+		<dependency>
+			<groupId>es.uma.informatica.sii</groupId>
+			<artifactId>ProyectoEJB</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
