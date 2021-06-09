@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class PruebaImportacionIT {
+public class APruebaImportacionIT {
   private WebDriver driver;
   JavascriptExecutor js;
   
@@ -42,7 +42,13 @@ public class PruebaImportacionIT {
     driver.findElement(By.id("Importaciones:Grupos")).sendKeys(grupos.getAbsolutePath());
     driver.findElement(By.id("Importaciones:Encuestas")).sendKeys(encuesta.getAbsolutePath());
     driver.findElement(By.id("Importaciones:submit")).click();
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    try {
+        Thread.sleep(5000);
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+
+    driver.findElement(By.linkText("Home")).click();
     {
        List<WebElement> elements = driver.findElements(By.cssSelector("tr:nth-child(1) > td:nth-child(1)"));
        assert(elements.size() > 0);
