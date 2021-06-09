@@ -346,7 +346,7 @@ public class PruebasIT {
   @Test
   @Requisitos({"013"})
   // 013 ya que estamos viendo como existe un lugar donde se podrán editar las preferencias
-  public void editarPreferencais() {
+  public void editarPreferencias() {
  	driver.get("http://localhost:8080/ProyectoWAR/index.xhtml");
  	driver.manage().window().maximize();
  	driver.findElement(By.id("form:name")).sendKeys("Gregorina");
@@ -366,17 +366,12 @@ public class PruebasIT {
  	assertThat(driver.findElement(By.cssSelector("#pref-form > .w3-row-padding:nth-child(3)")).getText(), is("Preferencias del alumno Gregorina GÃ³mez Pabon"));
  	driver.findElement(By.id("pref-form:sendPref")).click();
  	 
- 	 
- 	 
- 	 
- 	 
- 	 
   }
   
   @Test
   @Requisitos({"010"})
   // 010 ya que añadimos una asignatura a un grupo
-  public void untitled() {
+  public void asignarAsignaturaGrupo() {
     driver.get("http://127.0.0.1:8080/ProyectoWAR/");
     driver.manage().window().maximize();
     driver.findElement(By.linkText("Asignaturas")).click();
