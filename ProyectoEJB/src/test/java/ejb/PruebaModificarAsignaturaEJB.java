@@ -43,7 +43,7 @@ public class PruebaModificarAsignaturaEJB {
     assertNotNull(a);
     Grupo g = a.getTitulacion().getGrupos().get(0);
     try {
-      ga.addGrupoAsignatura(a, g);
+      ga.addGrupoAsignatura(a, g, "2020/2021");
     } catch (GrupoAsignaturaYaRelacionadoException | AsignaturaNoEncontradaException | GrupoNoEncontradoException e) {
       fail();
       e.printStackTrace();
@@ -64,12 +64,12 @@ public class PruebaModificarAsignaturaEJB {
     assertNotNull(a);
     Grupo g = a.getTitulacion().getGrupos().get(0);
     try {
-      ga.addGrupoAsignatura(a, g);
+      ga.addGrupoAsignatura(a, g, "2020/2021");
     } catch (GrupoAsignaturaYaRelacionadoException | AsignaturaNoEncontradaException | GrupoNoEncontradoException e) {
       fail();
       e.printStackTrace();
     }
-    assertThrows(GrupoAsignaturaYaRelacionadoException.class, () -> ga.addGrupoAsignatura(a, g));
+    assertThrows(GrupoAsignaturaYaRelacionadoException.class, () -> ga.addGrupoAsignatura(a, g, "2020/2021"));
   }
 
   @Test

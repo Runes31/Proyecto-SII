@@ -7,7 +7,10 @@ import exceptions.AsignaturaNoEncontradaException;
 import exceptions.GrupoAsignaturaYaRelacionadoException;
 import exceptions.GrupoNoEncontradoException;
 import java.io.Serializable;
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +32,19 @@ public class AsignaturasBean implements Serializable {
   public void addGrupo(Grupo g)
       throws AsignaturaNoEncontradaException, GrupoAsignaturaYaRelacionadoException, GrupoNoEncontradoException {
     LOG.log(Level.INFO, "Añadiendo el grupo " + g + " a la asignatura " + selAsignatura + " de la titulación " + selAsignatura.getTitulacion());
-    ga.addGrupoAsignatura(selAsignatura, g);
+    ga.addGrupoAsignatura(selAsignatura, g, cursoActual());
+  }
+
+  private String cursoActual(){
+    Date cur = new Date();
+    Date next = new Date();
+    next.setMonth(Calendar.OCTOBER);
+    next.setDate(5);
+    if(cur.after(next)){
+      return ""+cur.getYear()+"/"+(cur.getYear()+1);
+    } else {
+      return ""+(cur.getYear()-1)+"/"+cur.getYear();
+    }
   }
 
   public Boolean renderButton(Grupo g){

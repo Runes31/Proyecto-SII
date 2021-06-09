@@ -42,7 +42,7 @@ public class ModificarAsignaturaEJB implements GestionAsignatura {
   }
 
   @Override
-  public void addGrupoAsignatura(Asignatura asignatura, Grupo grupo)
+  public void addGrupoAsignatura(Asignatura asignatura, Grupo grupo, String curso)
       throws GrupoAsignaturaYaRelacionadoException, AsignaturaNoEncontradaException, GrupoNoEncontradoException {
     Asignatura a = em.find(Asignatura.class, new AsignaturaId(asignatura.getReferencia(), asignatura.getTitulacion().getCodigo()));
     if(a == null)
@@ -54,7 +54,7 @@ public class ModificarAsignaturaEJB implements GestionAsignatura {
       throw new GrupoAsignaturaYaRelacionadoException();
 
     GruposPorAsignatura gpa = new GruposPorAsignatura();
-    gpa.setCursoAcademico("2020/2021");
+    gpa.setCursoAcademico(curso);
     gpa.setAsignatura(a);
     gpa.setGrupo(g);
 

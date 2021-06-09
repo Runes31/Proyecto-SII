@@ -34,7 +34,7 @@ public interface GestionAsignatura {
    * @throws AsignaturaNoEncontradaException Si no existe esa asignatura
    * @throws GrupoNoEncontradoException Si no existe ese grupo
    */
-  void addGrupoAsignatura(Asignatura asignatura, Grupo grupo)
+  void addGrupoAsignatura(Asignatura asignatura, Grupo grupo, String curso)
       throws GrupoAsignaturaYaRelacionadoException, AsignaturaNoEncontradaException, GrupoNoEncontradoException;
 
 
