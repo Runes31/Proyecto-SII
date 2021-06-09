@@ -44,8 +44,14 @@
 					<h:inputText id="grupo" styleClass="w3-input w3-border"  value="#{indexBean.grupo}" onkeypress="enter(event)"/>
 				</div>
 				<div class="w3-third" style="padding-top: 25px">
-					<h:outputLabel for="nuevo" styleClass="form-label">Nuevo ingreso: </h:outputLabel>
-					<h:selectBooleanCheckbox id="nuevo" styleClass="w3-check" value="#{indexBean.nuevo}" onkeypress="enter(event)"/>
+					<div class="w3-half">
+						<h:outputLabel for="nuevo" styleClass="form-label">Nuevo ingreso: </h:outputLabel>
+						<h:selectBooleanCheckbox id="nuevo" styleClass="w3-check" value="#{indexBean.nuevo}" onkeypress="enter(event)"/>
+					</div>
+                    <div class="w3-half">
+						<h:outputLabel for="matriculado" styleClass="form-label">Ya matriculado: </h:outputLabel>
+						<h:selectBooleanCheckbox id="matriculado" styleClass="w3-check" value="#{indexBean.matriculado}" onkeypress="enter(event)"/>
+					</div>
 				</div>
 			</div>
 			<br/>
@@ -89,7 +95,10 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Acciones</f:facet>
-					<h:commandButton value="Editar Matricula" styleClass="btn-pr"/>
+					<h:commandButton value="Editar Matricula" styleClass="btn-pr"
+									 onclick="showMatriculaModal()" action="#{indexBean.selectMatricula(m)}">
+						<f:ajax execute="" render="mat-form"/>
+					</h:commandButton>
 					<h:commandButton value="Editar Expediente" styleClass="btn-pr"
 									 onclick="showExpModal()" action="#{indexBean.selectExp(m.expediente)}">
 						<f:ajax execute="" render="exp-form"/>
@@ -216,6 +225,43 @@
 					<div class="w3-row-padding" style="text-align: center">
 						<h:commandButton id="sendAlu" value="Guardar" style="min-width: 150px; margin: 20px; min-height: 40px" onclick="hideModals()"
 										 styleClass="btn btn-pr" actionListener="#{indexBean.saveAlu}">
+							<f:ajax execute="@form" render="matriculas"/>
+						</h:commandButton>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</div>
+
+    <!-- Modal para editar matriculas -->
+	<div id="id03" class="w3-modal">
+		<div class="w3-modal-content">
+			<div class="w3-container">
+      <span onclick="document.getElementById('id03').style.display='none'"
+			class="w3-button w3-display-topright">&times;</span>
+				<h:form id="mat-form">
+					<div class="w3-row-padding">
+						<h2>Editar matrícula</h2>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="cursoAc">Curso académico: </h:outputLabel>
+						<h:inputText styleClass="w3-input w3-border" id="cursoAc" value="#{indexBean.selMatricula.cursoAcademico}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="estado">Estado: </h:outputLabel>
+						<h:inputText styleClass="w3-input w3-border" id="estado" value="#{indexBean.selMatricula.estado}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="numArchivo">Número de archivo: </h:outputLabel>
+						<h:inputText id="numArchivo" styleClass="w3-input w3-border" value="#{indexBean.selMatricula.numArchivo}"/>
+					</div>
+					<div class="w3-row-padding">
+						<h:outputLabel styleClass="form-label" for="nuevoIng">Nuevo ingreso: </h:outputLabel>
+						<h:selectBooleanCheckbox id="nuevoIng" styleClass="w3-check" value="#{indexBean.selMatricula.nuevoIngreso}"/>
+					</div>
+					<div class="w3-row-padding" style="text-align: center">
+						<h:commandButton id="sendMatricula" value="Guardar" style="min-width: 150px; margin: 20px; min-height: 40px" onclick="hideModals()"
+										 styleClass="btn btn-pr" actionListener="#{indexBean.saveMatricula}">
 							<f:ajax execute="@form" render="matriculas"/>
 						</h:commandButton>
 					</div>

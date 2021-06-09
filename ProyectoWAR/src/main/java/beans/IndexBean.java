@@ -9,7 +9,9 @@ import ejb.GestionExpediente;
 import ejb.GestionMatricula;
 import exceptions.AlumnoNoEncontradoException;
 import exceptions.ExpedienteNoEncontradoException;
+import exceptions.MatriculaNoEncontradaException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -28,7 +30,8 @@ public class IndexBean implements Serializable {
   private String titulacion;
   private String curso;
   private String grupo;
-  private Boolean nuevo;
+  private Boolean nuevo = true;
+  private Boolean matriculado = true;
   @Inject
   GestionMatricula gm;
   @Inject
@@ -38,6 +41,7 @@ public class IndexBean implements Serializable {
 
   private Expediente selExp = new Expediente();
   private Alumno selAlumno = new Alumno();
+  private Matricula selMatricula = new Matricula();
 
   public String asignar(){
     gm.generarAsignaciones();
@@ -45,6 +49,8 @@ public class IndexBean implements Serializable {
   }
 
   public List<Matricula> getMatriculas(){
+    if(!matriculado && !nuevo) return new ArrayList<>();
+
     List<Matricula> list = gm.getAllMatriculas();
     Stream<Matricula> st = list.stream();
     if(name != null && !name.equals("")) st = st.filter(m -> m.getExpediente().getAlumno().getNombre().toLowerCase(
@@ -54,7 +60,10 @@ public class IndexBean implements Serializable {
     if(curso != null && !curso.equals("")) st = st.filter(m -> m.getCursoAcademico().contains(curso));
     if(grupo != null && !grupo.equals("")) st = st.filter(m -> m.getAsignaturasMatriculas().stream().anyMatch(am -> am.getGrupo() != null && am.getGrupo().getLetra().toLowerCase(
         Locale.ROOT).equalsIgnoreCase(grupo.toLowerCase(Locale.ROOT))));
-    if(nuevo != null && nuevo) st = st.filter(Matricula::isNuevoIngreso);
+    if(matriculado && nuevo){
+      // Se muestran todos
+    } else if(matriculado) st = st.filter(m -> !m.isNuevoIngreso());
+    else if(nuevo) st = st.filter(Matricula::isNuevoIngreso);
     return st.collect(Collectors.toList());
   }
 
@@ -145,5 +154,30 @@ public class IndexBean implements Serializable {
   public void saveAlu() throws AlumnoNoEncontradoException {
     LOG.log(Level.INFO, "Guardando alumno: " + selAlumno);
     ga.actualizarAlumno(selAlumno);
+  }
+
+  public Matricula getSelMatricula() {
+    return selMatricula;
+  }
+
+  public void setSelMatricula(Matricula selMatricula) {
+    this.selMatricula = selMatricula;
+  }
+
+  public void selectMatricula(Matricula m){
+    setSelMatricula(m);
+  }
+
+  public void saveMatricula() throws MatriculaNoEncontradaException {
+    LOG.log(Level.INFO, "Actualizando matricula: " + selMatricula);
+    gm.actualizarMatricula(selMatricula);
+  }
+
+  public Boolean getMatriculado() {
+    return matriculado;
+  }
+
+  public void setMatriculado(Boolean matriculado) {
+    this.matriculado = matriculado;
   }
 }
