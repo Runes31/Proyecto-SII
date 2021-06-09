@@ -344,16 +344,6 @@ public class PruebasIT {
   }
   
   @Test
-  @Ignore
-  @Requisitos({"010"})
-  // 010 ya que estamos asignándole manualmente a una asignatura su grupo
-  public void asignarAsignaturaGrupo() {
-    driver.get("http://127.0.0.1:8080/ProyectoWAR/");
-    driver.manage().window().maximize();
-    
-  }
-  
-  @Test
   @Requisitos({"013"})
   // 013 ya que estamos viendo como existe un lugar donde se podrán editar las preferencias
   public void editarPreferencais() {
