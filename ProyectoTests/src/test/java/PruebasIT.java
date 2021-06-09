@@ -345,8 +345,8 @@ public class PruebasIT {
   
   @Test
   @Requisitos({"013"})
-  // 013 ya que estamos viendo como existe un lugar donde se podrán editar las preferencias
-  public void editarPreferencias() {
+  // 013 ya que estamos viendo como existe un lugar donde se podrï¿½n editar las preferencias
+  public void zzeditarPreferencias() {
  	driver.get("http://localhost:8080/ProyectoWAR/index.xhtml");
  	driver.manage().window().maximize();
  	driver.findElement(By.id("form:name")).sendKeys("Gregorina");
@@ -369,7 +369,7 @@ public class PruebasIT {
   
   @Test
   @Requisitos({"010"})
-  // 010 ya que añadimos una asignatura a un grupo
+  // 010 ya que aï¿½adimos una asignatura a un grupo
   public void asignarAsignaturaGrupo() {
     driver.get("http://127.0.0.1:8080/ProyectoWAR/");
     driver.manage().window().maximize();
@@ -380,7 +380,7 @@ public class PruebasIT {
     } catch (Exception e) {
        System.out.println(e);
     }
-    driver.findElement(By.id("asig-form:j_idt65:0:j_idt68")).click();
+    driver.findElement(By.id("asig-form:repeat:0:add_grupo")).click();
     driver.findElement(By.id("asig-form:sendAsig")).click();
     driver.findElement(By.id("frm:asignaturas:1:__edit")).click();
     try {
