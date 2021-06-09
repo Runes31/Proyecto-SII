@@ -127,11 +127,12 @@
 					</div>
 
 					<h:panelGroup id="groups">
-                        <ui:repeat value="#{asignaturasBean.grupos}" var="g">
-                            <h:panelGroup rendered="#{asignaturasBean.renderButton(g)}">
+                        <ui:repeat id="repeat" value="#{asignaturasBean.grupos}" var="g">
+                            <h:panelGroup id="grupo" rendered="#{asignaturasBean.renderButton(g)}">
 								<div class="w3-row-padding">
 									#{g.curso}-#{g.letra}
 									<h:commandButton styleClass="btn-pr" value="Añadir"
+													 id="add_grupo"
 													 action="#{asignaturasBean.addGrupo(g)}">
 										<f:ajax execute="" render="groups"/>
 									</h:commandButton>
