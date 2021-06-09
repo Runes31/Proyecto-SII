@@ -347,11 +347,24 @@ public class PruebasIT {
   @Requisitos({"013"})
   // 013 ya que estamos viendo como existe un lugar donde se podrán editar las preferencias
   public void editarPreferencais() {
- 	 driver.get("http://localhost:8080/ProyectoWAR/index.xhtml");
- 	 driver.manage().window().maximize();
- 	 driver.findElement(By.id("matriculas:0:_pref")).click();
- 	 assertThat(driver.findElement(By.cssSelector("#pref-form h2")).getText(), is("Editar preferencias"));
- 	 driver.findElement(By.id("pref-form:sendPref")).click();
+ 	driver.get("http://localhost:8080/ProyectoWAR/index.xhtml");
+ 	driver.manage().window().maximize();
+ 	driver.findElement(By.id("form:name")).sendKeys("Gregorina");
+ 	driver.findElement(By.id("form:search")).click();
+ 	try {
+       Thread.sleep(5000);
+    } catch (Exception e) {
+       System.out.println(e);
+    } 	 
+ 	driver.findElement(By.id("matriculas:0:_pref")).click();
+ 	try {
+       Thread.sleep(5000);
+    } catch (Exception e) {
+       System.out.println(e);
+    }
+ 	assertThat(driver.findElement(By.cssSelector("#pref-form h2")).getText(), is("Editar preferencias"));
+ 	assertThat(driver.findElement(By.cssSelector("#pref-form > .w3-row-padding:nth-child(3)")).getText(), is("Preferencias del alumno Gregorina GÃ³mez Pabon"));
+ 	driver.findElement(By.id("pref-form:sendPref")).click(); 	 
   }
   
   @Test
