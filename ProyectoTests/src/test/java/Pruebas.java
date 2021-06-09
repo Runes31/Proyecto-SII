@@ -1,4 +1,5 @@
-import static org.hamcrest.CoreMatchers.is;
+/*import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -29,14 +30,8 @@ public class Pruebas {
   public void tearDown() {
     //driver.quit();
   }
- @Test
- @Requisitos({"009"})
- // 009 ya que estamos comprobando que podemos filtrar las matriculas que visualizamos por su titulación
- public void buscarTitulacion() {
-	 driver.get("http://localhost:8080/ProyectoWAR/index.xhtml");
-	 driver.manage().window().maximize();
-	 driver.findElement(By.id("matriculas:0:_pref")).click();
-	 assertThat(driver.findElement(By.cssSelector("#pref-form h2")).getText(), is("Editar preferencias"));
-	 driver.findElement(By.id("pref-form:sendPref")).click();
- }
-}
+ 
+  
+  
+  
+}*/

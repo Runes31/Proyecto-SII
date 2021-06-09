@@ -364,4 +364,29 @@ public class PruebasIT {
  	 driver.findElement(By.id("pref-form:sendPref")).click();
   }
   
+  @Test
+  @Requisitos({"010"})
+  // 010 ya que añadimos una asignatura a un grupo
+  public void untitled() {
+    driver.get("http://127.0.0.1:8080/ProyectoWAR/");
+    driver.manage().window().maximize();
+    driver.findElement(By.linkText("Asignaturas")).click();
+    driver.findElement(By.id("frm:asignaturas:1:__edit")).click();
+    try {
+       Thread.sleep(5000);
+    } catch (Exception e) {
+       System.out.println(e);
+    }
+    driver.findElement(By.id("asig-form:j_idt65:0:j_idt68")).click();
+    driver.findElement(By.id("asig-form:sendAsig")).click();
+    driver.findElement(By.id("frm:asignaturas:1:__edit")).click();
+    try {
+        Thread.sleep(5000);
+    } catch (Exception e) {
+        System.out.println(e);
+    }
+    assertThat(driver.findElement(By.cssSelector(".w3-row-padding:nth-child(1)")).getText(), is(not("1.0-a")));
+    driver.findElement(By.id("asig-form:sendAsig")).click();
+  }
+  
 }
